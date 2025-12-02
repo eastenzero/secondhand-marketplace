@@ -1,0 +1,17 @@
+%% 二手交易平台 - 顺序图：留言新增
+sequenceDiagram
+  participant U as 会员
+  participant API as API
+  participant S as CommentService
+  participant R as Repo
+  participant DB as PostgreSQL
+
+  U->>API: POST /api/comments
+  API->>S: addComment(req, user)
+  S->>S: validate(target exists, content non-empty)
+  S->>R: insertComment(target_type, target_id, user_id, content)
+  R->>DB: INSERT INTO comments ... RETURNING comment_id
+  DB-->>R: comment_id
+  R-->>S: comment_id
+  S-->>API: comment_id
+  API-->>U: 201 Created {comment_id}

@@ -1,0 +1,39 @@
+%% 二手交易平台 - 前端路由结构（MVP）
+flowchart TB
+  subgraph Public
+    login["登录 (/login)"]
+    register["注册 (/register)"]
+    items["商品列表 (/items)"]
+    itemDetail["商品详情 (/items/:id)"]
+    demands["需求列表 (/demands)"]
+    demandDetail["需求详情 (/demands/:id)"]
+  end
+
+  subgraph Protected
+    publishItem["发布商品 (/publish/item)"]
+    publishDemand["发布需求 (/publish/demand)"]
+    mePosts["我的发布 (/me/posts)"]
+  end
+
+  subgraph Admin
+    review["审核台 (/admin/review)"]
+  end
+
+  items --> itemDetail
+  demands --> demandDetail
+
+  itemDetail -.发起报价.-> offerDialog["报价弹窗"]
+  itemDetail -.留言提交.-> commentForm["留言表单"]
+
+  login --> items
+  register --> items
+
+  mePosts --> itemDetail
+
+  classDef pub fill:#F3FAFF,stroke:#2B6CB0,color:#1A202C
+  classDef pro fill:#F3FFF5,stroke:#2F855A,color:#1A202C
+  classDef adm fill:#FFF5F5,stroke:#C53030,color:#1A202C
+
+  class login,register,items,itemDetail,demands,demandDetail pub
+  class publishItem,publishDemand,mePosts pro
+  class review adm

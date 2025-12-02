@@ -1,0 +1,7 @@
+/home/work/new/backend/src/test/java/com/example/marketplace/offer/OfferControllerTest.java
+/home/work/new/backend/src/test/java/com/example/marketplace/comment/CommentControllerTest.java
+/home/work/new/backend/src/test/java/com/example/marketplace/demand/DemandControllerTest.java
+/home/work/new/backend/src/test/java/com/example/marketplace/item/ItemControllerTest.java
+/home/work/new/backend/src/test/java/com/example/marketplace/nfr/NfrIntegrationTest.java
+/home/work/new/backend/src/test/java/com/example/marketplace/auth/AuthControllerTest.java
+/home/work/new/backend/src/test/java/com/example/marketplace/BaseIntegrationTest.java

@@ -1,0 +1,24 @@
+flowchart LR
+  %% 二手交易平台 用例图（Mermaid 以流程图近似表示）
+  subgraph 系统边界[二手交易平台]
+    UC_Publish(发布信息)
+    UC_Search(搜索与查看详情)
+    UC_Offer(发起报价)
+    UC_Comment(留言互动)
+    UC_Manage(信息管理)
+    UC_Admin(审核/下架管理)
+  end
+
+  游客[游客]
+  会员[会员]
+  管理员[管理员]
+
+  游客 --> UC_Search
+
+  会员 --> UC_Publish
+  会员 --> UC_Search
+  会员 --> UC_Offer
+  会员 --> UC_Comment
+  会员 --> UC_Manage
+
+  管理员 --> UC_Admin

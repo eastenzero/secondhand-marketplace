@@ -1,0 +1,3 @@
+-- V2__add_user_role.sql
+ALTER TABLE users
+  ADD COLUMN IF NOT EXISTS role VARCHAR(20) NOT NULL DEFAULT 'MEMBER';

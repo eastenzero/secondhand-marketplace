@@ -1,0 +1,73 @@
+classDiagram
+  %% 二手交易平台 领域类图
+  class User {
+    +string userId
+    +string username
+    +string contact
+    +string role  // visitor/member/admin
+    +string status // active, banned
+    +datetime createdAt
+  }
+
+  class Item {
+    +string itemId
+    +string sellerId
+    +string title
+    +string desc
+    +string category
+    +decimal price
+    +string condition
+    +string status // draft,pending,listed,unlisted,deleted
+    +datetime createdAt
+    +datetime updatedAt
+  }
+
+  class Demand {
+    +string demandId
+    +string buyerId
+    +string title
+    +string desc
+    +string category
+    +decimal expectedPrice
+    +string status // active,closed
+    +datetime createdAt
+  }
+
+  class Offer {
+    +string offerId
+    +string targetType // item|demand
+    +string targetId
+    +string offererId
+    +decimal amount
+    +string message
+    +string status // submitted,accepted,rejected,cancelled
+    +datetime createdAt
+  }
+
+  class Comment {
+    +string commentId
+    +string targetType // item|demand
+    +string targetId
+    +string userId
+    +string content
+    +datetime createdAt
+  }
+
+  class AuditLog {
+    +string logId
+    +string level
+    +string message
+    +datetime ts
+  }
+
+  %% 关联与多重度
+  User "1" --> "*" Item : sells
+  User "1" --> "*" Demand : posts
+  User "1" --> "*" Offer : makes
+  User "1" --> "*" Comment : writes
+
+  Item "1" o-- "*" Offer : receives
+  Demand "1" o-- "*" Offer : receives
+
+  Item "1" o-- "*" Comment : has
+  Demand "1" o-- "*" Comment : has

@@ -1,0 +1,51 @@
+%% 二手交易平台 - 逻辑架构（MVP，单体优先）
+flowchart TB
+  subgraph Client
+    U[Web/移动端]
+  end
+
+  subgraph Server[应用单体（MVP）]
+    API[接口层（REST）]
+    SvcUser[用户服务]
+    SvcItem[商品服务]
+    SvcDemand[需求服务]
+    SvcOffer[报价服务]
+    SvcComment[留言服务]
+    Repo[数据访问层（Repository/DAO）]
+  end
+
+  DB[(PostgreSQL)]
+  Cache[(缓存/可选)]
+  Search[(搜索/可选)]
+  Notif[(通知/消息抽象)]
+  ObjStore[(对象存储-图片)]
+
+  U -->|HTTP| API
+  API --> SvcUser
+  API --> SvcItem
+  API --> SvcDemand
+  API --> SvcOffer
+  API --> SvcComment
+
+  SvcUser --> Repo
+  SvcItem --> Repo
+  SvcDemand --> Repo
+  SvcOffer --> Repo
+  SvcComment --> Repo
+
+  Repo --> DB
+
+  SvcItem --- ObjStore
+  SvcDemand --- ObjStore
+
+  SvcOffer --- Notif
+  SvcComment --- Notif
+
+  SvcItem --- Cache
+  SvcDemand --- Cache
+  SvcOffer --- Cache
+
+  API --- Search
+
+  classDef infra fill:#eef,stroke:#669;
+  class DB,Cache,Search,Notif,ObjStore infra

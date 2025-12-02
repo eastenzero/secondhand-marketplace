@@ -1,0 +1,20 @@
+sequenceDiagram
+  %% 发布信息 顺序图（商品/需求）
+  actor 会员
+  participant 前端
+  participant 平台
+  participant 商品库
+  participant 需求库
+  participant 日志库
+
+  会员->>前端: 填写发布表单（类型、标题、价格/预期价、描述、图片等）
+  前端->>平台: POST /publish {type,item/demand payload}
+  平台->>平台: 表单校验/权限校验
+  alt 审核开启
+    平台->>平台: 进入待审状态
+  else 直接上架
+    平台->>商品库: 入库（type=item）
+    平台->>需求库: 入库（type=demand）
+  end
+  平台->>日志库: 记录发布操作
+  平台-->>前端: 返回发布结果（id/status）

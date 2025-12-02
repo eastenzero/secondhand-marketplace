@@ -1,0 +1,19 @@
+package com.example.marketplace.exception;
+
+public enum ErrorCode {
+
+    AUTH_REQUIRED,
+    AUTH_FAILED,
+    USERNAME_TAKEN,
+    VALIDATION_ERROR,
+    NOT_FOUND,
+    TARGET_NOT_FOUND,
+    TARGET_NOT_ACTIVE,
+    FORBIDDEN_OWNER,
+    CONFLICT_STATE,
+    SELF_OFFER_NOT_ALLOWED,
+    INVALID_RANGE,
+    INVALID_AMOUNT,
+    CONTENT_INVALID,
+    RATE_LIMITED
+}

@@ -1,0 +1,27 @@
+sequenceDiagram
+  %% 发起报价 顺序图
+  actor 会员
+  participant 前端
+  participant 平台
+  participant 商品库
+  participant 需求库
+  participant 报价库
+
+  会员->>前端: 在详情页点击“报价”并填写金额/备注
+  前端->>平台: POST /offers {targetType,id,amount,remark}
+  alt 未登录
+    平台-->>前端: 401 未登录，提示先登录
+  else 已登录
+    alt 目标不存在/下架
+      平台->>商品库: 查询商品（若 targetType=item）
+      平台->>需求库: 查询需求（若 targetType=demand）
+      平台-->>前端: 400 目标不可报价
+    else 金额非法
+      平台-->>前端: 400 金额非法
+    else 自报价
+      平台-->>前端: 400 禁止自报价
+    else 校验通过
+      平台->>报价库: 写入报价记录
+      平台-->>前端: 200 报价成功（返回 offerId）
+    end
+  end

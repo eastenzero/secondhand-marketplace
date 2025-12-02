@@ -1,0 +1,80 @@
+%% 二手交易平台 - ER 概念模型（MVP）
+erDiagram
+  USERS ||--o{ ITEMS : sells
+  USERS ||--o{ DEMANDS : posts
+  USERS ||--o{ OFFERS : makes
+  USERS ||--o{ COMMENTS : writes
+  ITEMS ||--o{ OFFERS : receives
+  DEMANDS ||--o{ OFFERS : receives
+  ITEMS ||--o{ COMMENTS : has
+  DEMANDS ||--o{ COMMENTS : has
+
+  USERS {
+    user_id int PK
+    username string
+    password_hash string
+    phone string
+    email string
+    status string
+    created_at date
+  }
+
+  ITEMS {
+    item_id int PK
+    seller_id int
+    title string
+    description string
+    category string
+    price float
+    condition string
+    status string
+    images string
+    created_at date
+    updated_at date
+    deleted_at date
+  }
+
+  DEMANDS {
+    demand_id int PK
+    buyer_id int
+    title string
+    description string
+    category string
+    expected_price float
+    status string
+    created_at date
+    updated_at date
+    deleted_at date
+  }
+
+  OFFERS {
+    offer_id int PK
+    target_type string
+    target_id int
+    offerer_id int
+    amount float
+    message string
+    status string
+    created_at date
+  }
+
+  COMMENTS {
+    comment_id int PK
+    target_type string
+    target_id int
+    user_id int
+    content string
+    created_at date
+  }
+
+  AUDIT_LOGS {
+    log_id int PK
+    level string
+    actor_user_id int
+    action string
+    entity_type string
+    entity_id int
+    message string
+    ip string
+    created_at date
+  }

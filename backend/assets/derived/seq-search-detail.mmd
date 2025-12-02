@@ -1,0 +1,25 @@
+%% 二手交易平台 - 顺序图：搜索与查看详情
+sequenceDiagram
+  participant U as 用户
+  participant API as API
+  participant S as SearchService
+  participant R as Repo
+  participant DB as PostgreSQL
+
+  U->>API: GET /api/items?keywords&filters
+  API->>S: search(query)
+  S->>R: queryItems(filters, page, size)
+  R->>DB: SELECT ... FROM items WHERE ...
+  DB-->>R: rows
+  R-->>S: items
+  S-->>API: results(total, items[])
+  API-->>U: 200 OK (items[])
+
+  U->>API: GET /api/items/{id}
+  API->>R: getItemWithAggregates(id)
+  R->>DB: SELECT * FROM items WHERE item_id=id
+  R->>DB: SELECT * FROM offers WHERE target_type='item' AND target_id=id
+  R->>DB: SELECT * FROM comments WHERE target_type='item' AND target_id=id
+  DB-->>R: rows
+  R-->>API: item + offers + comments
+  API-->>U: 200 OK (detail)
