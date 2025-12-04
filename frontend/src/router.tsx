@@ -5,7 +5,6 @@ import { RequireAuth } from '@/components/auth/RequireAuth';
 import { RequireAdmin } from '@/components/auth/RequireAdmin';
 
 // Lazy load pages
-// Lazy load pages
 const LoginPage = lazy(() => import('./pages/auth/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/auth/RegisterPage'));
 const ItemListPage = lazy(() => import('./pages/items/ItemListPage'));
@@ -18,6 +17,8 @@ const MyPostsPage = lazy(() => import('./pages/me/MyPostsPage'));
 const SettingsPage = lazy(() => import('./pages/me/SettingsPage'));
 const NotificationsPage = lazy(() => import('./pages/me/NotificationsPage'));
 const ChatPage = lazy(() => import('./pages/messages/ChatPage'));
+const OrderListPage = lazy(() => import('./pages/orders/OrderListPage'));
+const OrderDetailPage = lazy(() => import('./pages/orders/OrderDetailPage'));
 const AdminReviewPage = lazy(() => import('./pages/admin/AdminReviewPage'));
 
 import Home from '@/pages/Home';
@@ -74,6 +75,13 @@ export const router = createBrowserRouter([
             {
                 path: 'messages',
                 element: <RequireAuth><SuspenseWrapper><ChatPage /></SuspenseWrapper></RequireAuth>
+            },
+            {
+                path: 'orders',
+                children: [
+                    { index: true, element: <RequireAuth><SuspenseWrapper><OrderListPage /></SuspenseWrapper></RequireAuth> },
+                    { path: ':id', element: <RequireAuth><SuspenseWrapper><OrderDetailPage /></SuspenseWrapper></RequireAuth> },
+                ],
             },
         ],
     },

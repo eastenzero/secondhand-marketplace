@@ -1,4 +1,6 @@
-export type ItemStatus = 'pending' | 'active' | 'sold' | 'inactive' | 'rejected';
+import { ItemStatus } from './enums';
+
+export { ItemStatus };
 
 export interface Item {
     id: string;

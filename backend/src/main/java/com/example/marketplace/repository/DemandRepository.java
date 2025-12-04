@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 
@@ -16,14 +17,11 @@ public interface DemandRepository extends JpaRepository<Demand, Long> {
               and (:category is null or d.category = :category)
               and (:minPrice is null or d.expectedPrice >= :minPrice)
               and (:maxPrice is null or d.expectedPrice <= :maxPrice)
-              and (:keywords is null or (
-                lower(d.title) like lower(concat('%', :keywords, '%'))
-                or lower(d.description) like lower(concat('%', :keywords, '%'))
-              ))
+              and (:keywords is null or d.title like :keywords)
             """)
-    Page<Demand> searchActiveDemands(String keywords,
-                                     String category,
-                                     BigDecimal minPrice,
-                                     BigDecimal maxPrice,
+    Page<Demand> searchActiveDemands(@Param("keywords") String keywords,
+                                     @Param("category") String category,
+                                     @Param("minPrice") BigDecimal minPrice,
+                                     @Param("maxPrice") BigDecimal maxPrice,
                                      Pageable pageable);
 }

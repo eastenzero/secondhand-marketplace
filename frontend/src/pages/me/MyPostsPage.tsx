@@ -51,17 +51,17 @@ export default function MyPostsPage() {
     const myDemands = demands.filter(demand => demand.requesterId === user?.id);
 
     const handleStatusChange = async (type: 'item' | 'demand', id: string, currentStatus: string) => {
-        const newStatus = currentStatus === 'active' ? (type === 'item' ? 'inactive' : 'inactive') : 'active';
-        // For items: active <-> inactive (off-shelf)
-        // For demands: active <-> inactive (close)
+        const newStatus = currentStatus === ItemStatus.ACTIVE
+            ? ItemStatus.OFF
+            : ItemStatus.ACTIVE;
 
         try {
             if (type === 'item') {
-                await updateItem(id, { status: newStatus as ItemStatus });
-                toast.success(newStatus === 'active' ? '已上架' : '已下架');
+                await updateItem(id, { status: newStatus });
+                toast.success(newStatus === ItemStatus.ACTIVE ? '已上架' : '已下架');
             } else {
-                await updateDemand(id, { status: newStatus as DemandStatus });
-                toast.success(newStatus === 'active' ? '已重新开启' : '已关闭');
+                await updateDemand(id, { status: newStatus as unknown as DemandStatus });
+                toast.success((newStatus as unknown as DemandStatus) === DemandStatus.ACTIVE ? '已重新开启' : '已关闭');
             }
         } catch (error) {
             toast.error('操作失败');
@@ -93,8 +93,8 @@ export default function MyPostsPage() {
                             发布于 {new Date(item.createdAt).toLocaleDateString()}
                         </CardDescription>
                     </div>
-                    <Badge variant={item.status === 'active' ? 'default' : 'secondary'}>
-                        {item.status === 'active' ? '在售' : item.status === 'sold' ? '已售出' : '已下架'}
+                    <Badge variant={item.status === ItemStatus.ACTIVE ? 'default' : 'secondary'}>
+                        {item.status === ItemStatus.ACTIVE ? '在售' : item.status === ItemStatus.OFF ? '已下架' : '其他'}
                     </Badge>
                 </div>
             </CardHeader>
@@ -117,7 +117,7 @@ export default function MyPostsPage() {
                             <Edit className="mr-2 h-4 w-4" /> 编辑
                         </DropdownMenuItem>
                         <DropdownMenuItem onClick={() => handleStatusChange('item', item.id, item.status)}>
-                            {item.status === 'active' ? (
+                            {item.status === ItemStatus.ACTIVE ? (
                                 <>
                                     <EyeOff className="mr-2 h-4 w-4" /> 下架
                                 </>
@@ -150,8 +150,8 @@ export default function MyPostsPage() {
                             发布于 {new Date(demand.createdAt).toLocaleDateString()}
                         </CardDescription>
                     </div>
-                    <Badge variant={demand.status === 'active' ? 'default' : 'secondary'}>
-                        {demand.status === 'active' ? '求购中' : '已关闭'}
+                    <Badge variant={demand.status === DemandStatus.ACTIVE ? 'default' : 'secondary'}>
+                        {demand.status === DemandStatus.ACTIVE ? '求购中' : '已关闭'}
                     </Badge>
                 </div>
             </CardHeader>
@@ -174,7 +174,7 @@ export default function MyPostsPage() {
                             <Edit className="mr-2 h-4 w-4" /> 编辑
                         </DropdownMenuItem>
                         <DropdownMenuItem onClick={() => handleStatusChange('demand', demand.id, demand.status)}>
-                            {demand.status === 'active' ? (
+                            {demand.status === DemandStatus.ACTIVE ? (
                                 <>
                                     <EyeOff className="mr-2 h-4 w-4" /> 关闭
                                 </>

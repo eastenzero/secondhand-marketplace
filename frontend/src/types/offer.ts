@@ -1,5 +1,7 @@
+import { OfferStatus } from './enums';
+
 export type TargetType = 'item' | 'demand';
-export type OfferStatus = 'pending' | 'accepted' | 'rejected' | 'cancelled';
+export { OfferStatus };
 
 export interface Offer {
     id: string;

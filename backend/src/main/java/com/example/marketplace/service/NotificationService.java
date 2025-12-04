@@ -31,6 +31,32 @@ public class NotificationService {
         this.notificationRepository = notificationRepository;
     }
 
+    @Transactional
+    public Notification sendNotification(Long userId,
+                                         String type,
+                                         String title,
+                                         String content,
+                                         String relatedType,
+                                         Long relatedId) {
+        if (userId == null || type == null) {
+            return null;
+        }
+
+        Notification notification = new Notification();
+        notification.setUserId(userId);
+        notification.setType(type);
+        notification.setTitle(title);
+        notification.setContent(content);
+        notification.setRelatedType(relatedType);
+        notification.setRelatedId(relatedId);
+        notification.setStatus(NotificationStatus.active);
+        Instant now = Instant.now();
+        notification.setCreatedAt(now);
+        notification.setUpdatedAt(now);
+
+        return notificationRepository.save(notification);
+    }
+
     @Transactional(readOnly = true)
     public NotificationListResponse listMyNotifications(int page, int size) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

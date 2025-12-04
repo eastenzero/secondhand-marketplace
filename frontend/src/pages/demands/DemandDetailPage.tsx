@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent } from '@/components/ui/card';
-import { Demand } from '@/types/demand';
+import { Demand, DemandStatus } from '@/types/demand';
 import { OfferDialog } from '@/components/offers/OfferDialog';
 import { CommentList } from '@/components/comments/CommentList';
 
@@ -80,8 +80,8 @@ export default function DemandDetailPage() {
             <div className="space-y-6">
                 <div>
                     <div className="flex items-center justify-between">
-                        <Badge variant={demand.status === 'active' ? 'default' : 'secondary'} className="mb-2">
-                            {demand.status === 'active' ? '求购中' : '已满足'}
+                        <Badge variant={demand.status === DemandStatus.ACTIVE ? 'default' : 'secondary'} className="mb-2">
+                            {demand.status === DemandStatus.ACTIVE ? '求购中' : '已满足'}
                         </Badge>
                         <span className="text-sm text-muted-foreground">
                             发布于 {new Date(demand.createdAt).toLocaleDateString()}

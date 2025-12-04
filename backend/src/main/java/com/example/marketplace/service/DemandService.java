@@ -115,12 +115,12 @@ public class DemandService {
             throw new BusinessException(ErrorCode.INVALID_RANGE, "minPrice cannot be greater than maxPrice");
         }
 
-        String normalizedKeywords = StringUtils.hasText(keywords) ? keywords.trim() : null;
+        String keywordPattern = StringUtils.hasText(keywords) ? ("%" + keywords.trim() + "%") : null;
 
         Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.DESC, "createdAt"));
 
         Page<Demand> pageResult = demandRepository.searchActiveDemands(
-                normalizedKeywords,
+                keywordPattern,
                 category,
                 minPrice,
                 maxPrice,

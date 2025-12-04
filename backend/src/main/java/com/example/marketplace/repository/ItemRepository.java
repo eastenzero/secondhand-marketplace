@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 
@@ -18,9 +19,9 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
               and (:maxPrice is null or i.price <= :maxPrice)
               and (:keywords is null or i.title like :keywords)
             """)
-    Page<Item> searchActiveItems(String keywords,
-                                 String category,
-                                 BigDecimal minPrice,
-                                 BigDecimal maxPrice,
+    Page<Item> searchActiveItems(@Param("keywords") String keywords,
+                                 @Param("category") String category,
+                                 @Param("minPrice") BigDecimal minPrice,
+                                 @Param("maxPrice") BigDecimal maxPrice,
                                  Pageable pageable);
 }

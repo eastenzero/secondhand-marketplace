@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Demand } from '@/types/demand';
+import { Demand, DemandStatus } from '@/types/demand';
 
 interface DemandCardProps {
     demand: Demand;
@@ -14,8 +14,8 @@ export function DemandCard({ demand }: DemandCardProps) {
                 <CardHeader className="p-4 pb-2">
                     <div className="flex items-start justify-between gap-2">
                         <CardTitle className="line-clamp-1 text-lg">{demand.title}</CardTitle>
-                        <Badge variant={demand.status === 'active' ? 'default' : 'secondary'}>
-                            {demand.status === 'active' ? '求购中' : '已满足'}
+                        <Badge variant={demand.status === DemandStatus.ACTIVE ? 'default' : 'secondary'}>
+                            {demand.status === DemandStatus.ACTIVE ? '求购中' : '已关闭'}
                         </Badge>
                     </div>
                 </CardHeader>

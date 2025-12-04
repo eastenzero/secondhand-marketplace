@@ -34,17 +34,20 @@ public class CommentService {
     private final ItemRepository itemRepository;
     private final DemandRepository demandRepository;
     private final AuditService auditService;
+    private final NotificationService notificationService;
 
     private static final int MAX_PAGE_SIZE = 100;
 
     public CommentService(CommentRepository commentRepository,
                           ItemRepository itemRepository,
                           DemandRepository demandRepository,
-                          AuditService auditService) {
+                          AuditService auditService,
+                          NotificationService notificationService) {
         this.commentRepository = commentRepository;
         this.itemRepository = itemRepository;
         this.demandRepository = demandRepository;
         this.auditService = auditService;
+        this.notificationService = notificationService;
     }
 
     public Comment createComment(CreateCommentRequest request) {
@@ -70,23 +73,42 @@ public class CommentService {
             throw new BusinessException(ErrorCode.CONTENT_INVALID, "Comment content is invalid");
         }
 
+        Long ownerId = null;
         if (targetType == TargetType.item) {
-            itemRepository.findById(targetId)
+            Item item = itemRepository.findById(targetId)
                     .orElseThrow(() -> new BusinessException(ErrorCode.TARGET_NOT_FOUND, "Item not found"));
+            ownerId = item.getSellerId();
         } else if (targetType == TargetType.demand) {
-            demandRepository.findById(targetId)
+            Demand demand = demandRepository.findById(targetId)
                     .orElseThrow(() -> new BusinessException(ErrorCode.TARGET_NOT_FOUND, "Demand not found"));
+            ownerId = demand.getBuyerId();
         }
 
         Comment comment = new Comment();
+        Long currentUserId = principal.getUserId();
         comment.setTargetType(targetType);
         comment.setTargetId(targetId);
-        comment.setUserId(principal.getUserId());
+        comment.setUserId(currentUserId);
         comment.setContent(content.trim());
         comment.setCreatedAt(Instant.now());
 
         Comment saved = commentRepository.save(comment);
-        auditService.auditInfo(principal.getUserId(), "COMMENT_CREATE", "COMMENT", saved.getCommentId(), "Comment created");
+        auditService.auditInfo(currentUserId, "COMMENT_CREATE", "COMMENT", saved.getCommentId(), "Comment created");
+
+        if (ownerId != null && !ownerId.equals(currentUserId)) {
+            String preview = content.trim();
+            if (preview.length() > 50) {
+                preview = preview.substring(0, 50) + "...";
+            }
+            notificationService.sendNotification(
+                    ownerId,
+                    "COMMENT_RECEIVED",
+                    "New comment received",
+                    preview,
+                    targetType.name(),
+                    targetId
+            );
+        }
         return saved;
     }
 

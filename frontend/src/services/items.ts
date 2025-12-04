@@ -6,6 +6,7 @@ interface BackendItemSearchResultItem {
     title: string;
     price: number;
     status: string;
+    thumbnailUrl?: string;
 }
 
 interface BackendItemSearchResponse {
@@ -68,8 +69,8 @@ export const itemsService = {
             status: it.status as ItemStatus,
             sellerId: '',
             sellerName: undefined,
-            imageUrl: undefined,
-            images: [],
+            imageUrl: it.thumbnailUrl,
+            images: it.thumbnailUrl ? [it.thumbnailUrl] : [],
             category: undefined,
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),

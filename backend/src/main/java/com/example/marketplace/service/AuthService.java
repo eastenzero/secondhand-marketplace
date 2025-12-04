@@ -19,15 +19,18 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final AuditService auditService;
+    private final UserBanService userBanService;
 
     public AuthService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder,
                        JwtTokenProvider jwtTokenProvider,
-                       AuditService auditService) {
+                       AuditService auditService,
+                       UserBanService userBanService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtTokenProvider = jwtTokenProvider;
         this.auditService = auditService;
+        this.userBanService = userBanService;
     }
 
     public Long register(RegisterRequest request) {
@@ -63,6 +66,18 @@ public class AuthService {
             Long actorId = user != null ? user.getUserId() : null;
             auditService.auditWarn(actorId, "LOGIN_FAILED", "USER", actorId, "Invalid username or password for " + request.getUsername());
             throw new BusinessException(ErrorCode.AUTH_FAILED, "Invalid username or password");
+        }
+
+        if (!"active".equals(user.getStatus())) {
+            auditService.auditWarn(user.getUserId(), "LOGIN_DISABLED", "USER", user.getUserId(),
+                    "Login attempt for disabled user " + user.getUsername());
+            throw new BusinessException(ErrorCode.ACCOUNT_DISABLED, "User account is disabled");
+        }
+
+        if (userBanService.hasActiveBan(user.getUserId())) {
+            auditService.auditWarn(user.getUserId(), "LOGIN_BANNED", "USER", user.getUserId(),
+                    "Login attempt for banned user " + user.getUsername());
+            throw new BusinessException(ErrorCode.USER_BANNED, "User is banned");
         }
 
         auditService.auditInfo(user.getUserId(), "LOGIN", "USER", user.getUserId(), "User login success");

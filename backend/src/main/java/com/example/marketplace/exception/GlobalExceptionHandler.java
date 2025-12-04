@@ -48,7 +48,7 @@ public class GlobalExceptionHandler {
             case TARGET_NOT_ACTIVE, CONFLICT_STATE -> HttpStatus.CONFLICT;
             case INVALID_RANGE, INVALID_AMOUNT -> HttpStatus.BAD_REQUEST;
             case CONTENT_INVALID, VALIDATION_ERROR -> HttpStatus.UNPROCESSABLE_ENTITY;
-            case FORBIDDEN_OWNER, SELF_OFFER_NOT_ALLOWED -> HttpStatus.FORBIDDEN;
+            case FORBIDDEN_OWNER, SELF_OFFER_NOT_ALLOWED, ACCOUNT_DISABLED, USER_BANNED -> HttpStatus.FORBIDDEN;
             case RATE_LIMITED -> HttpStatus.TOO_MANY_REQUESTS;
         };
     }

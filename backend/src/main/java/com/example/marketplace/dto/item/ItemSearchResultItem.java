@@ -8,6 +8,7 @@ public class ItemSearchResultItem {
     private String title;
     private BigDecimal price;
     private String status;
+    private String thumbnailUrl;
 
     public Long getItemId() {
         return itemId;
@@ -39,5 +40,13 @@ public class ItemSearchResultItem {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
     }
 }

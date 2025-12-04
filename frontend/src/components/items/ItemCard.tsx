@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Item } from '@/types/item';
+import { Item, ItemStatus } from '@/types/item';
 
 interface ItemCardProps {
     item: Item;
@@ -13,9 +13,9 @@ export function ItemCard({ item }: ItemCardProps) {
             <Card className="h-full overflow-hidden transition-all hover:shadow-md">
                 <div className="aspect-video w-full bg-muted object-cover">
                     {/* Placeholder for image */}
-                    {item.imageUrl ? (
+                    {(item.imageUrl || (item.images && item.images.length > 0)) ? (
                         <img
-                            src={item.imageUrl}
+                            src={item.imageUrl || item.images?.[0]}
                             alt={item.title}
                             className="h-full w-full object-cover"
                             loading="lazy"
@@ -29,8 +29,8 @@ export function ItemCard({ item }: ItemCardProps) {
                 <CardHeader className="p-4">
                     <div className="flex items-start justify-between gap-2">
                         <CardTitle className="line-clamp-1 text-lg">{item.title}</CardTitle>
-                        <Badge variant={item.status === 'active' ? 'default' : 'secondary'}>
-                            {item.status === 'active' ? '在售' : '已售出'}
+                        <Badge variant={item.status === ItemStatus.ACTIVE ? 'default' : 'secondary'}>
+                            {item.status === ItemStatus.ACTIVE ? '在售' : '其他'}
                         </Badge>
                     </div>
                 </CardHeader>

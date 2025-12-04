@@ -52,6 +52,7 @@ public class ReportService {
     private final MessageRepository messageRepository;
     private final ReviewRepository reviewRepository;
     private final AuditService auditService;
+    private final NotificationService notificationService;
 
     private static final int MAX_PAGE_SIZE = 100;
 
@@ -64,7 +65,8 @@ public class ReportService {
                          OrderRepository orderRepository,
                          MessageRepository messageRepository,
                          ReviewRepository reviewRepository,
-                         AuditService auditService) {
+                         AuditService auditService,
+                         NotificationService notificationService) {
         this.reportRepository = reportRepository;
         this.userRepository = userRepository;
         this.itemRepository = itemRepository;
@@ -75,6 +77,7 @@ public class ReportService {
         this.messageRepository = messageRepository;
         this.reviewRepository = reviewRepository;
         this.auditService = auditService;
+        this.notificationService = notificationService;
     }
 
     @Transactional
@@ -210,5 +213,15 @@ public class ReportService {
 
         reportRepository.save(report);
         auditService.auditInfo(adminUserId, "REPORT_MANAGE", "REPORT", report.getReportId(), "Report managed: " + action);
+
+        String statusName = report.getStatus().name();
+        notificationService.sendNotification(
+                report.getReporterUserId(),
+                "REPORT_STATUS_CHANGED",
+                "Your report status changed",
+                "Report is now " + statusName,
+                "report",
+                report.getReportId()
+        );
     }
 }

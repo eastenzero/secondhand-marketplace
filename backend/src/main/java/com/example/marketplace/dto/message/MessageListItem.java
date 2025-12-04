@@ -10,6 +10,7 @@ public class MessageListItem {
     private String content;
     private boolean read;
     private Instant createdAt;
+    private String status;
 
     public Long getMessageId() {
         return messageId;
@@ -57,5 +58,13 @@ public class MessageListItem {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

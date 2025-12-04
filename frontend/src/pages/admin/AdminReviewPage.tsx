@@ -16,8 +16,8 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { itemsService } from '@/services/items';
 import { demandsService } from '@/services/demands';
-import { Item } from '@/types/item';
-import { Demand } from '@/types/demand';
+import { Item, ItemStatus } from '@/types/item';
+import { Demand, DemandStatus } from '@/types/demand';
 
 export default function AdminReviewPage() {
     const [items, setItems] = useState<Item[]>([]);
@@ -28,7 +28,7 @@ export default function AdminReviewPage() {
     const fetchPendingItems = useCallback(async () => {
         setIsLoading(true);
         try {
-            const data = await itemsService.getItems({ status: 'pending', limit: 100 });
+            const data = await itemsService.getItems({ status: ItemStatus.PENDING, limit: 100 });
             setItems(data.items);
         } catch (error) {
             console.error('Failed to fetch pending items', error);
@@ -41,7 +41,7 @@ export default function AdminReviewPage() {
     const fetchPendingDemands = useCallback(async () => {
         setIsLoading(true);
         try {
-            const data = await demandsService.getDemands({ status: 'pending', limit: 100 });
+            const data = await demandsService.getDemands({ status: DemandStatus.PENDING, limit: 100 });
             setDemands(data.demands);
         } catch (error) {
             console.error('Failed to fetch pending demands', error);
@@ -60,13 +60,18 @@ export default function AdminReviewPage() {
     }, [activeTab, fetchPendingItems, fetchPendingDemands]);
 
     const handleReview = async (type: 'item' | 'demand', id: string, action: 'approve' | 'reject') => {
-        const newStatus = action === 'approve' ? 'active' : 'rejected';
+        // Backend doesn't support 'rejected' status yet, so we use 'off' for now or 'draft'
+        // Doc says "Action=off or separate audit". Let's use OFF for rejected.
+        const newStatus = action === 'approve'
+            ? (type === 'item' ? ItemStatus.ACTIVE : DemandStatus.ACTIVE)
+            : (type === 'item' ? ItemStatus.OFF : DemandStatus.OFF);
+
         try {
             if (type === 'item') {
-                await itemsService.updateItem(id, { status: newStatus });
+                await itemsService.updateItem(id, { status: newStatus as ItemStatus });
                 setItems(prev => prev.filter(item => item.id !== id));
             } else {
-                await demandsService.updateDemand(id, { status: newStatus });
+                await demandsService.updateDemand(id, { status: newStatus as DemandStatus });
                 setDemands(prev => prev.filter(demand => demand.id !== id));
             }
             toast.success(action === 'approve' ? '已通过' : '已拒绝');

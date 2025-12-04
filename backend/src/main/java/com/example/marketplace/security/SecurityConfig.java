@@ -17,11 +17,14 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final RestAuthenticationEntryPoint authenticationEntryPoint;
+    private final UserBanFilter userBanFilter;
 
     public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter,
-                          RestAuthenticationEntryPoint authenticationEntryPoint) {
+                          RestAuthenticationEntryPoint authenticationEntryPoint,
+                          UserBanFilter userBanFilter) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.authenticationEntryPoint = authenticationEntryPoint;
+        this.userBanFilter = userBanFilter;
     }
 
     @Bean
@@ -37,7 +40,8 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(authenticationEntryPoint))
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(userBanFilter, JwtAuthenticationFilter.class);
 
         return http.build();
     }

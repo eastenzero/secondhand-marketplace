@@ -38,19 +38,22 @@ public class OrderService {
     private final ItemRepository itemRepository;
     private final DemandRepository demandRepository;
     private final AuditService auditService;
+    private final NotificationService notificationService;
 
     public OrderService(OrderRepository orderRepository,
                         OrderItemRepository orderItemRepository,
                         OfferRepository offerRepository,
                         ItemRepository itemRepository,
                         DemandRepository demandRepository,
-                        AuditService auditService) {
+                        AuditService auditService,
+                        NotificationService notificationService) {
         this.orderRepository = orderRepository;
         this.orderItemRepository = orderItemRepository;
         this.offerRepository = offerRepository;
         this.itemRepository = itemRepository;
         this.demandRepository = demandRepository;
         this.auditService = auditService;
+        this.notificationService = notificationService;
     }
 
     @Transactional
@@ -68,8 +71,16 @@ public class OrderService {
         Offer offer = offerRepository.findById(offerId)
                 .orElseThrow(() -> new BusinessException(ErrorCode.TARGET_NOT_FOUND, "Offer not found"));
 
-        if (offer.getStatus() != OfferStatus.created) {
-            throw new BusinessException(ErrorCode.CONFLICT_STATE, "Offer is not in created state");
+        if (orderRepository.existsByOfferId(offerId)) {
+            throw new BusinessException(ErrorCode.CONFLICT_STATE, "Order already exists for this offer");
+        }
+
+        OfferStatus offerStatus = offer.getStatus();
+        if (offerStatus == OfferStatus.rejected || offerStatus == OfferStatus.canceled) {
+            throw new BusinessException(ErrorCode.CONFLICT_STATE, "Offer is not available for order");
+        }
+        if (offerStatus != OfferStatus.created && offerStatus != OfferStatus.accepted) {
+            throw new BusinessException(ErrorCode.CONFLICT_STATE, "Offer is in invalid state");
         }
 
         TargetType targetType = offer.getTargetType();
@@ -138,6 +149,23 @@ public class OrderService {
 
         auditService.auditInfo(currentUserId, "ORDER_CREATE", "ORDER", savedOrder.getOrderId(), "Order created from offer");
 
+        notificationService.sendNotification(
+                buyerId,
+                "ORDER_CREATED",
+                "Order created",
+                "Order created from offer",
+                "order",
+                savedOrder.getOrderId()
+        );
+        notificationService.sendNotification(
+                sellerId,
+                "ORDER_CREATED",
+                "New order",
+                "You have a new order",
+                "order",
+                savedOrder.getOrderId()
+        );
+
         return savedOrder;
     }
 
@@ -174,5 +202,97 @@ public class OrderService {
 
         resp.setItems(itemDtos);
         return resp;
+    }
+
+    @Transactional
+    public Order updateOrderStatus(Long orderId, String action) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !(authentication.getPrincipal() instanceof AuthenticatedUser principal)) {
+            throw new BusinessException(ErrorCode.AUTH_REQUIRED, "Authentication required");
+        }
+
+        if (orderId == null) {
+            throw new BusinessException(ErrorCode.VALIDATION_ERROR, "orderId is required");
+        }
+
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_FOUND, "Order not found"));
+
+        Long buyerId = order.getBuyerId();
+        Long sellerId = order.getSellerId();
+        Long currentUserId = principal.getUserId();
+
+        if (!currentUserId.equals(buyerId) && !currentUserId.equals(sellerId)) {
+            throw new BusinessException(ErrorCode.FORBIDDEN_OWNER, "Not participant of this order");
+        }
+
+        OrderStatus status = order.getStatus();
+        Instant now = Instant.now();
+
+        switch (action) {
+            case "pay" -> {
+                if (!currentUserId.equals(buyerId)) {
+                    throw new BusinessException(ErrorCode.FORBIDDEN_OWNER, "Only buyer can pay");
+                }
+                if (status != OrderStatus.created) {
+                    throw new BusinessException(ErrorCode.CONFLICT_STATE, "Order cannot be paid in current status");
+                }
+                order.setStatus(OrderStatus.paid);
+                order.setUpdatedAt(now);
+                auditService.auditInfo(currentUserId, "ORDER_PAY", "ORDER", orderId, "Order paid");
+                notificationService.sendNotification(
+                        sellerId,
+                        "ORDER_PAID",
+                        "Order paid",
+                        "Buyer has paid the order",
+                        "order",
+                        orderId
+                );
+            }
+            case "cancel" -> {
+                if (status != OrderStatus.created) {
+                    throw new BusinessException(ErrorCode.CONFLICT_STATE, "Order cannot be canceled in current status");
+                }
+                order.setStatus(OrderStatus.canceled);
+                order.setUpdatedAt(now);
+                auditService.auditInfo(currentUserId, "ORDER_CANCEL", "ORDER", orderId, "Order canceled");
+                Long otherUserId = currentUserId.equals(buyerId) ? sellerId : buyerId;
+                notificationService.sendNotification(
+                        otherUserId,
+                        "ORDER_CANCELED",
+                        "Order canceled",
+                        "The order has been canceled",
+                        "order",
+                        orderId
+                );
+            }
+            case "complete" -> {
+                if (status != OrderStatus.paid) {
+                    throw new BusinessException(ErrorCode.CONFLICT_STATE, "Order cannot be completed in current status");
+                }
+                order.setStatus(OrderStatus.completed);
+                order.setUpdatedAt(now);
+                auditService.auditInfo(currentUserId, "ORDER_COMPLETE", "ORDER", orderId, "Order completed");
+                notificationService.sendNotification(
+                        buyerId,
+                        "ORDER_COMPLETED",
+                        "Order completed",
+                        "Order has been completed",
+                        "order",
+                        orderId
+                );
+                notificationService.sendNotification(
+                        sellerId,
+                        "ORDER_COMPLETED",
+                        "Order completed",
+                        "Order has been completed",
+                        "order",
+                        orderId
+                );
+            }
+            default -> throw new BusinessException(ErrorCode.VALIDATION_ERROR, "Unknown action");
+        }
+
+        return orderRepository.save(order);
     }
 }

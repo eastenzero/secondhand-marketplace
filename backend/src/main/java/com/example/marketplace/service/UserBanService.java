@@ -26,15 +26,18 @@ public class UserBanService {
     private final UserBanRepository userBanRepository;
     private final UserRepository userRepository;
     private final AuditService auditService;
+    private final NotificationService notificationService;
 
     private static final int MAX_PAGE_SIZE = 100;
 
     public UserBanService(UserBanRepository userBanRepository,
                           UserRepository userRepository,
-                          AuditService auditService) {
+                          AuditService auditService,
+                          NotificationService notificationService) {
         this.userBanRepository = userBanRepository;
         this.userRepository = userRepository;
         this.auditService = auditService;
+        this.notificationService = notificationService;
     }
 
     @Transactional
@@ -65,6 +68,16 @@ public class UserBanService {
 
         UserBan saved = userBanRepository.save(ban);
         auditService.auditInfo(adminUserId, "USER_BAN_CREATE", "USER_BAN", saved.getBanId(), "User banned");
+
+        notificationService.sendNotification(
+                userId,
+                "USER_BANNED",
+                "Account banned",
+                request.getReason(),
+                "user_ban",
+                saved.getBanId()
+        );
+
         return saved;
     }
 
@@ -120,5 +133,22 @@ public class UserBanService {
 
         userBanRepository.save(ban);
         auditService.auditInfo(adminUserId, "USER_BAN_REVOKE", "USER_BAN", ban.getBanId(), "User ban revoked");
+
+        notificationService.sendNotification(
+                ban.getUserId(),
+                "USER_BAN_REVOKED",
+                "Ban revoked",
+                null,
+                "user_ban",
+                ban.getBanId()
+        );
+    }
+
+    @Transactional(readOnly = true)
+    public boolean hasActiveBan(Long userId) {
+        if (userId == null) {
+            return false;
+        }
+        return userBanRepository.existsByUserIdAndStatus(userId, BanStatus.active);
     }
 }

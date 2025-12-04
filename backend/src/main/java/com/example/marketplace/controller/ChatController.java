@@ -2,14 +2,17 @@ package com.example.marketplace.controller;
 
 import com.example.marketplace.domain.thread.ChatThread;
 import com.example.marketplace.dto.common.ManageResultResponse;
+import com.example.marketplace.dto.common.ManageResultResponse;
 import com.example.marketplace.dto.message.MessageListResponse;
 import com.example.marketplace.dto.thread.CreateThreadRequest;
 import com.example.marketplace.dto.thread.CreateThreadResponse;
+import com.example.marketplace.dto.thread.ThreadListResponse;
 import com.example.marketplace.service.ChatService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +30,13 @@ public class ChatController {
         this.chatService = chatService;
     }
 
+    @GetMapping
+    public ResponseEntity<ThreadListResponse> listMyThreads(@RequestParam(defaultValue = "1") int page,
+                                                            @RequestParam(defaultValue = "20") int size) {
+        ThreadListResponse response = chatService.listMyThreads(page, size);
+        return ResponseEntity.ok(response);
+    }
+
     @PostMapping
     public ResponseEntity<CreateThreadResponse> createThread(@Valid @RequestBody CreateThreadRequest request) {
         ChatThread thread = chatService.createThreadWithFirstMessage(request);
@@ -40,5 +50,11 @@ public class ChatController {
                                                             @RequestParam(defaultValue = "20") int size) {
         MessageListResponse response = chatService.listMessages(id, page, size);
         return ResponseEntity.ok(response);
+    }
+
+    @PatchMapping("/{id}/read-all")
+    public ResponseEntity<ManageResultResponse> markThreadReadAll(@PathVariable("id") Long id) {
+        chatService.markThreadAsRead(id);
+        return ResponseEntity.ok(new ManageResultResponse("ok"));
     }
 }

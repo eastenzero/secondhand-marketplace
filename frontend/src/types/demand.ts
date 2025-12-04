@@ -1,4 +1,6 @@
-export type DemandStatus = 'pending' | 'active' | 'fulfilled' | 'inactive' | 'rejected';
+import { DemandStatus } from './enums';
+
+export { DemandStatus };
 
 export interface Demand {
     id: string;

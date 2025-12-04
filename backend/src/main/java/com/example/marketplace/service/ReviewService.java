@@ -38,6 +38,7 @@ public class ReviewService {
     private final DemandRepository demandRepository;
     private final OrderRepository orderRepository;
     private final AuditService auditService;
+    private final NotificationService notificationService;
 
     private static final int MAX_PAGE_SIZE = 100;
 
@@ -46,13 +47,15 @@ public class ReviewService {
                          ItemRepository itemRepository,
                          DemandRepository demandRepository,
                          OrderRepository orderRepository,
-                         AuditService auditService) {
+                         AuditService auditService,
+                         NotificationService notificationService) {
         this.reviewRepository = reviewRepository;
         this.userRepository = userRepository;
         this.itemRepository = itemRepository;
         this.demandRepository = demandRepository;
         this.orderRepository = orderRepository;
         this.auditService = auditService;
+        this.notificationService = notificationService;
     }
 
     @Transactional
@@ -100,7 +103,8 @@ public class ReviewService {
         }
 
         Review review = new Review();
-        review.setReviewerUserId(((AuthenticatedUser) authentication.getPrincipal()).getUserId());
+        Long reviewerUserId = ((AuthenticatedUser) authentication.getPrincipal()).getUserId();
+        review.setReviewerUserId(reviewerUserId);
         review.setTargetType(targetType);
         review.setTargetId(targetId);
         review.setRating(rating);
@@ -116,6 +120,34 @@ public class ReviewService {
 
         Review saved = reviewRepository.save(review);
         auditService.auditInfo(review.getReviewerUserId(), "REVIEW_CREATE", "REVIEW", saved.getReviewId(), "Review created");
+
+        if (targetType == ReviewTargetType.user) {
+            notificationService.sendNotification(
+                    targetId,
+                    "REVIEW_RECEIVED",
+                    "You received a new review",
+                    null,
+                    "user",
+                    targetId
+            );
+        } else if (targetType == ReviewTargetType.order) {
+            Order order = orderRepository.findById(targetId)
+                    .orElse(null);
+            if (order != null) {
+                Long otherUserId = reviewerUserId.equals(order.getBuyerId()) ? order.getSellerId() : order.getBuyerId();
+                if (otherUserId != null && !otherUserId.equals(reviewerUserId)) {
+                    notificationService.sendNotification(
+                            otherUserId,
+                            "REVIEW_RECEIVED",
+                            "You received a new review",
+                            null,
+                            "order",
+                            targetId
+                    );
+                }
+            }
+        }
+
         return saved;
     }
 

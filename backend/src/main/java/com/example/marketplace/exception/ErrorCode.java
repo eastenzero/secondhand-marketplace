@@ -4,6 +4,7 @@ public enum ErrorCode {
 
     AUTH_REQUIRED,
     AUTH_FAILED,
+    ACCOUNT_DISABLED,
     USERNAME_TAKEN,
     VALIDATION_ERROR,
     NOT_FOUND,
@@ -15,5 +16,6 @@ public enum ErrorCode {
     INVALID_RANGE,
     INVALID_AMOUNT,
     CONTENT_INVALID,
-    RATE_LIMITED
+    RATE_LIMITED,
+    USER_BANNED
 }

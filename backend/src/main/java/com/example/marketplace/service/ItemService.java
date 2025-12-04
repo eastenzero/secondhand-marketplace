@@ -196,6 +196,9 @@ public class ItemService {
                     dto.setTitle(item.getTitle());
                     dto.setPrice(item.getPrice());
                     dto.setStatus(item.getStatus());
+                    if (item.getImages() != null && item.getImages().length > 0) {
+                        dto.setThumbnailUrl(item.getImages()[0]);
+                    }
                     return dto;
                 })
                 .collect(Collectors.toList());
