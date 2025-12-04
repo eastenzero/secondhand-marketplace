@@ -1,0 +1,36 @@
+-- V8__add_reports_and_user_bans.sql
+-- 新增举报表 reports 与封禁记录表 user_bans，用于内容安全与风控。
+-- 仅新增表与索引，对现有数据兼容。
+
+CREATE TABLE IF NOT EXISTS reports (
+  report_id        BIGSERIAL PRIMARY KEY,
+  reporter_user_id BIGINT       NOT NULL REFERENCES users(user_id),
+  target_type      VARCHAR(16)  NOT NULL CHECK (target_type IN ('user','item','demand','offer','comment','order','message','review')),
+  target_id        BIGINT       NOT NULL,
+  category         VARCHAR(32),
+  reason           TEXT,
+  status           VARCHAR(16)  NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','reviewing','resolved','rejected')),
+  handled_by_user_id BIGINT     REFERENCES users(user_id),
+  resolution       TEXT,
+  created_at       TIMESTAMPTZ  NOT NULL DEFAULT now(),
+  updated_at       TIMESTAMPTZ  NOT NULL DEFAULT now(),
+  resolved_at      TIMESTAMPTZ
+);
+
+CREATE INDEX IF NOT EXISTS idx_reports_target   ON reports(target_type, target_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_reports_reporter ON reports(reporter_user_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_reports_status   ON reports(status);
+
+CREATE TABLE IF NOT EXISTS user_bans (
+  ban_id           BIGSERIAL PRIMARY KEY,
+  user_id          BIGINT       NOT NULL REFERENCES users(user_id),
+  reason           TEXT,
+  status           VARCHAR(16)  NOT NULL DEFAULT 'active' CHECK (status IN ('active','revoked','expired')),
+  start_at         TIMESTAMPTZ  NOT NULL DEFAULT now(),
+  end_at           TIMESTAMPTZ,
+  created_by_user_id BIGINT     REFERENCES users(user_id),
+  created_at       TIMESTAMPTZ  NOT NULL DEFAULT now(),
+  updated_at       TIMESTAMPTZ  NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_user_bans_user ON user_bans(user_id, status);
