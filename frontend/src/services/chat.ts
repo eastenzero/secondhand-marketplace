@@ -1,64 +1,43 @@
 import { api } from './api';
 import { ChatThread, Message, MessagesResponse, CreateThreadDTO } from '@/types/chat';
 
-// Mock data for threads list (since backend API is missing)
-const MOCK_THREADS: ChatThread[] = [
-    {
-        id: 'mock-1',
-        targetType: 'item',
-        targetId: '1',
-        unreadCount: 2,
-        updatedAt: new Date().toISOString(),
-        otherUser: { id: 'user1', name: 'Alice' },
-        lastMessage: {
-            id: 'm1',
-            threadId: 'mock-1',
-            senderId: 'user1',
-            recipientId: 'me',
-            content: '这个价格可以再便宜点吗？',
-            isRead: false,
-            status: 'active',
-            createdAt: new Date().toISOString(),
-        }
-    },
-    {
-        id: 'mock-2',
-        targetType: 'item',
-        targetId: '2',
-        unreadCount: 0,
-        updatedAt: new Date().toISOString(),
-        otherUser: { id: 'user2', name: 'Bob' },
-        lastMessage: {
-            id: 'm2',
-            threadId: 'mock-2',
-            senderId: 'me',
-            recipientId: 'user2',
-            content: '好的，下午见。',
-            isRead: true,
-            status: 'active',
-            createdAt: new Date().toISOString(),
-        }
-    }
-];
-
 interface BackendCreateThreadResponse {
     threadId: number;
 }
 
-interface BackendMessage {
-    id: number;
-    threadId: number;
+interface BackendMessageItem {
+    messageId: number;
     senderUserId: number;
     recipientUserId: number;
     content: string;
-    isRead: boolean;
-    status: string;
+    read: boolean;
     createdAt: string;
+    status: string;
 }
 
 interface BackendMessageListResponse {
     total: number;
-    messages: BackendMessage[];
+    messages: BackendMessageItem[];
+}
+
+interface BackendThreadListItem {
+    threadId: number;
+    targetType: string;
+    targetId: number | null;
+    otherUserId: number | null;
+    otherUsername: string | null;
+    lastMessageId: number | null;
+    lastMessageContent: string | null;
+    lastMessageSenderUserId: number | null;
+    lastMessageStatus: string | null;
+    lastMessageCreatedAt: string | null;
+    unreadCount: number;
+    hasUnread: boolean;
+}
+
+interface BackendThreadListResponse {
+    total: number;
+    threads: BackendThreadListItem[];
 }
 
 export const chatService = {
@@ -75,27 +54,17 @@ export const chatService = {
 
     // Real API: Get messages for a thread
     getMessages: async (threadId: string, page = 1, size = 20): Promise<MessagesResponse> => {
-        // If it's a mock ID, return mock messages to avoid 404/500
-        if (threadId.startsWith('mock-')) {
-            return {
-                messages: [],
-                total: 0,
-                page: 1,
-                totalPages: 1
-            };
-        }
-
         const response = await api.get<BackendMessageListResponse>(`/threads/${threadId}/messages`, {
             params: { page, size }
         });
 
         const messages: Message[] = response.data.messages.map(m => ({
-            id: String(m.id),
-            threadId: String(m.threadId),
+            id: String(m.messageId),
+            threadId: String(threadId),
             senderId: String(m.senderUserId),
             recipientId: String(m.recipientUserId),
             content: m.content,
-            isRead: m.isRead,
+            isRead: m.read,
             status: m.status as any,
             createdAt: m.createdAt,
         }));
@@ -108,30 +77,65 @@ export const chatService = {
         };
     },
 
-    // Mock API: Get threads list
+    // Real API: Get threads list
     getThreads: async (): Promise<ChatThread[]> => {
-        // TODO: Replace with real API GET /api/threads when available
-        return new Promise((resolve) => {
-            setTimeout(() => resolve(MOCK_THREADS), 500);
+        const response = await api.get<BackendThreadListResponse>('/threads', {
+            params: { page: 1, size: 50 },
         });
+        const data = response.data;
+
+        const threads: ChatThread[] = data.threads.map(t => {
+            const id = String(t.threadId);
+            const updatedAt = t.lastMessageCreatedAt ?? new Date().toISOString();
+            const otherName = t.otherUsername ?? '未知用户';
+            const otherId = t.otherUserId != null ? String(t.otherUserId) : 'unknown';
+
+            let lastMessage: Message | undefined;
+            if (t.lastMessageId != null) {
+                lastMessage = {
+                    id: String(t.lastMessageId),
+                    threadId: id,
+                    senderId: t.lastMessageSenderUserId != null ? String(t.lastMessageSenderUserId) : otherId,
+                    recipientId: otherId,
+                    content: t.lastMessageContent ?? '',
+                    isRead: !t.hasUnread,
+                    status: (t.lastMessageStatus as any) || 'active',
+                    createdAt: t.lastMessageCreatedAt ?? updatedAt,
+                };
+            }
+
+            return {
+                id,
+                targetType: (t.targetType as any) || 'system',
+                targetId: String(t.targetId ?? '0'),
+                unreadCount: t.unreadCount,
+                updatedAt,
+                otherUser: {
+                    id: otherId,
+                    name: otherName,
+                },
+                lastMessage,
+            };
+        });
+
+        return threads;
     },
 
-    // Mock API: Send reply
+    // Real API: Send reply
     sendMessage: async (threadId: string, content: string): Promise<Message> => {
-        // TODO: Replace with real API POST /api/threads/{id}/messages when available
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve({
-                    id: 'temp-' + Date.now(),
-                    threadId,
-                    senderId: 'me', // Should be current user ID
-                    recipientId: 'other', // Unknown in this context
-                    content,
-                    isRead: false,
-                    status: 'active',
-                    createdAt: new Date().toISOString(),
-                });
-            }, 300);
+        const response = await api.post<BackendMessageItem>(`/threads/${threadId}/messages`, {
+            content,
         });
+        const m = response.data;
+        return {
+            id: String(m.messageId),
+            threadId,
+            senderId: String(m.senderUserId),
+            recipientId: String(m.recipientUserId),
+            content: m.content,
+            isRead: m.read,
+            status: m.status as any,
+            createdAt: m.createdAt,
+        };
     }
 };

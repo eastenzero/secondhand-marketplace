@@ -157,6 +157,67 @@ public class ChatService {
         return response;
     }
 
+    @Transactional
+    public MessageListItem sendMessage(Long threadId, String content) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !(authentication.getPrincipal() instanceof AuthenticatedUser principal)) {
+            throw new BusinessException(ErrorCode.AUTH_REQUIRED, "Authentication required");
+        }
+
+        if (threadId == null) {
+            throw new BusinessException(ErrorCode.VALIDATION_ERROR, "threadId is required");
+        }
+        if (content == null || content.trim().isEmpty()) {
+            throw new BusinessException(ErrorCode.VALIDATION_ERROR, "content is required");
+        }
+
+        chatThreadRepository.findById(threadId)
+                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_FOUND, "Thread not found"));
+
+        Long currentUserId = principal.getUserId();
+        boolean participant = messageRepository.existsByThreadIdAndSenderUserIdOrThreadIdAndRecipientUserId(
+                threadId, currentUserId, threadId, currentUserId);
+        if (!participant) {
+            throw new BusinessException(ErrorCode.FORBIDDEN_OWNER, "Not participant of this thread");
+        }
+
+        Message lastMessage = messageRepository.findTopByThreadIdAndStatusNotOrderByCreatedAtDesc(threadId, MessageStatus.deleted);
+        if (lastMessage == null) {
+            throw new BusinessException(ErrorCode.CONFLICT_STATE, "Thread has no previous messages");
+        }
+
+        Long otherUserId = currentUserId.equals(lastMessage.getSenderUserId())
+                ? lastMessage.getRecipientUserId()
+                : lastMessage.getSenderUserId();
+        if (otherUserId == null) {
+            throw new BusinessException(ErrorCode.CONFLICT_STATE, "Cannot determine message recipient");
+        }
+
+        Instant now = Instant.now();
+
+        Message message = new Message();
+        message.setThreadId(threadId);
+        message.setSenderUserId(currentUserId);
+        message.setRecipientUserId(otherUserId);
+        message.setContent(content.trim());
+        message.setRead(false);
+        message.setStatus(MessageStatus.active);
+        message.setCreatedAt(now);
+        message.setUpdatedAt(now);
+
+        Message saved = messageRepository.save(message);
+
+        MessageListItem dto = new MessageListItem();
+        dto.setMessageId(saved.getMessageId());
+        dto.setSenderUserId(saved.getSenderUserId());
+        dto.setRecipientUserId(saved.getRecipientUserId());
+        dto.setContent(saved.getContent());
+        dto.setRead(saved.isRead());
+        dto.setCreatedAt(saved.getCreatedAt());
+        dto.setStatus(saved.getStatus().name());
+        return dto;
+    }
+
     @Transactional(readOnly = true)
     public ThreadListResponse listMyThreads(int page, int size) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

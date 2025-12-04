@@ -2,8 +2,9 @@ package com.example.marketplace.controller;
 
 import com.example.marketplace.domain.thread.ChatThread;
 import com.example.marketplace.dto.common.ManageResultResponse;
-import com.example.marketplace.dto.common.ManageResultResponse;
+import com.example.marketplace.dto.message.MessageListItem;
 import com.example.marketplace.dto.message.MessageListResponse;
+import com.example.marketplace.dto.message.SendMessageRequest;
 import com.example.marketplace.dto.thread.CreateThreadRequest;
 import com.example.marketplace.dto.thread.CreateThreadResponse;
 import com.example.marketplace.dto.thread.ThreadListResponse;
@@ -50,6 +51,13 @@ public class ChatController {
                                                             @RequestParam(defaultValue = "20") int size) {
         MessageListResponse response = chatService.listMessages(id, page, size);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/{id}/messages")
+    public ResponseEntity<MessageListItem> sendMessage(@PathVariable("id") Long id,
+                                                       @Valid @RequestBody SendMessageRequest request) {
+        MessageListItem response = chatService.sendMessage(id, request.getContent());
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PatchMapping("/{id}/read-all")

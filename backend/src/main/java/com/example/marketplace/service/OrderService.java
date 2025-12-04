@@ -11,6 +11,8 @@ import com.example.marketplace.domain.order.OrderStatus;
 import com.example.marketplace.dto.order.CreateOrderFromOfferRequest;
 import com.example.marketplace.dto.order.OrderDetailResponse;
 import com.example.marketplace.dto.order.OrderItemSummary;
+import com.example.marketplace.dto.order.OrderListItem;
+import com.example.marketplace.dto.order.OrderListResponse;
 import com.example.marketplace.exception.BusinessException;
 import com.example.marketplace.exception.ErrorCode;
 import com.example.marketplace.repository.DemandRepository;
@@ -19,6 +21,10 @@ import com.example.marketplace.repository.OfferRepository;
 import com.example.marketplace.repository.OrderItemRepository;
 import com.example.marketplace.repository.OrderRepository;
 import com.example.marketplace.security.AuthenticatedUser;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -39,6 +45,8 @@ public class OrderService {
     private final DemandRepository demandRepository;
     private final AuditService auditService;
     private final NotificationService notificationService;
+
+    private static final int MAX_PAGE_SIZE = 100;
 
     public OrderService(OrderRepository orderRepository,
                         OrderItemRepository orderItemRepository,
@@ -167,6 +175,67 @@ public class OrderService {
         );
 
         return savedOrder;
+    }
+
+    @Transactional(readOnly = true)
+    public OrderListResponse listMyOrders(String role, int page, int size) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !(authentication.getPrincipal() instanceof AuthenticatedUser principal)) {
+            throw new BusinessException(ErrorCode.AUTH_REQUIRED, "Authentication required");
+        }
+
+        if (page < 1 || size < 1) {
+            throw new BusinessException(ErrorCode.INVALID_RANGE, "Invalid page or size");
+        }
+
+        if (size > MAX_PAGE_SIZE) {
+            size = MAX_PAGE_SIZE;
+        }
+
+        Long currentUserId = principal.getUserId();
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.DESC, "createdAt"));
+
+        Page<Order> pageResult;
+        if ("seller".equalsIgnoreCase(role)) {
+            pageResult = orderRepository.findBySellerId(currentUserId, pageable);
+        } else {
+            pageResult = orderRepository.findByBuyerId(currentUserId, pageable);
+        }
+
+        List<OrderListItem> orderDtos = pageResult.getContent().stream()
+                .map(order -> {
+                    OrderListItem dto = new OrderListItem();
+                    dto.setOrderId(order.getOrderId());
+                    dto.setBuyerId(order.getBuyerId());
+                    dto.setSellerId(order.getSellerId());
+                    dto.setOfferId(order.getOfferId());
+                    dto.setTotalAmount(order.getTotalAmount());
+                    dto.setStatus(order.getStatus().name());
+                    dto.setShippingAddress(order.getShippingAddress());
+                    dto.setPaymentMethod(order.getPaymentMethod());
+                    dto.setCreatedAt(order.getCreatedAt());
+                    dto.setUpdatedAt(order.getUpdatedAt());
+
+                    List<OrderItem> items = orderItemRepository.findByOrderId(order.getOrderId());
+                    List<OrderItemSummary> itemDtos = items.stream().map(oi -> {
+                                OrderItemSummary s = new OrderItemSummary();
+                                s.setOrderItemId(oi.getOrderItemId());
+                                s.setTargetType(oi.getTargetType().name());
+                                s.setTargetId(oi.getTargetId());
+                                s.setQuantity(oi.getQuantity());
+                                s.setPrice(oi.getPrice());
+                                return s;
+                            })
+                            .collect(Collectors.toList());
+                    dto.setItems(itemDtos);
+                    return dto;
+                })
+                .collect(Collectors.toList());
+
+        OrderListResponse response = new OrderListResponse();
+        response.setTotal(pageResult.getTotalElements());
+        response.setOrders(orderDtos);
+        return response;
     }
 
     @Transactional(readOnly = true)

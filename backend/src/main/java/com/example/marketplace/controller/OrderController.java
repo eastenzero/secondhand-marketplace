@@ -4,6 +4,7 @@ import com.example.marketplace.domain.order.Order;
 import com.example.marketplace.dto.order.CreateOrderFromOfferRequest;
 import com.example.marketplace.dto.order.CreateOrderResponse;
 import com.example.marketplace.dto.order.OrderDetailResponse;
+import com.example.marketplace.dto.order.OrderListResponse;
 import com.example.marketplace.service.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,14 @@ public class OrderController {
 
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
+    }
+
+    @GetMapping
+    public ResponseEntity<OrderListResponse> listMyOrders(@RequestParam(defaultValue = "buyer") String role,
+                                                          @RequestParam(defaultValue = "1") int page,
+                                                          @RequestParam(defaultValue = "20") int size) {
+        OrderListResponse response = orderService.listMyOrders(role, page, size);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping
