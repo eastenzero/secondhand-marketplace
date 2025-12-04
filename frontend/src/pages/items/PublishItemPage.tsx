@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useItemStore } from '@/stores/useItemStore';
+import { ImageUpload } from '@/components/ui/image-upload';
 import {
     Select,
     SelectContent,
@@ -24,7 +25,7 @@ const publishSchema = z.object({
     description: z.string().max(2000, '描述最多 2000 个字符'),
     price: z.coerce.number().min(0.01, '价格必须大于 0'),
     category: z.string().min(1, '请选择分类'),
-    imageUrl: z.string().url('请输入有效的图片链接').optional().or(z.literal('')),
+    images: z.array(z.string()).min(1, '请至少上传一张图片'),
 });
 
 type PublishFormValues = z.infer<typeof publishSchema>;
@@ -49,10 +50,12 @@ export default function PublishItemPage() {
         defaultValues: {
             category: 'others',
             price: 0,
+            images: [],
         }
     });
 
     const categoryValue = watch('category');
+    const imagesValue = watch('images');
 
     useEffect(() => {
         if (editId) {
@@ -65,7 +68,7 @@ export default function PublishItemPage() {
                         description: item.description,
                         price: item.price,
                         category: item.category || 'others',
-                        imageUrl: item.images?.[0] || '',
+                        images: item.images && item.images.length > 0 ? item.images : (item.imageUrl ? [item.imageUrl] : []),
                     });
                 } else {
                     toast.error('无法加载商品信息');
@@ -82,7 +85,7 @@ export default function PublishItemPage() {
         try {
             const payload = {
                 ...data,
-                images: data.imageUrl ? [data.imageUrl] : [],
+                imageUrl: data.images[0], // Backward compatibility
             };
 
             if (editId) {
@@ -117,6 +120,18 @@ export default function PublishItemPage() {
                 </CardHeader>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <CardContent className="space-y-6">
+                        <div className="space-y-2">
+                            <Label>商品图片</Label>
+                            <ImageUpload
+                                value={imagesValue}
+                                onChange={(val) => setValue('images', val, { shouldValidate: true })}
+                                disabled={isLoading}
+                            />
+                            {errors.images && (
+                                <p className="text-sm text-destructive">{errors.images.message}</p>
+                            )}
+                        </div>
+
                         <div className="space-y-2">
                             <Label htmlFor="title">商品标题</Label>
                             <Input
@@ -179,19 +194,6 @@ export default function PublishItemPage() {
                             />
                             {errors.description && (
                                 <p className="text-sm text-destructive">{errors.description.message}</p>
-                            )}
-                        </div>
-
-                        <div className="space-y-2">
-                            <Label htmlFor="imageUrl">图片链接 (可选)</Label>
-                            <Input
-                                id="imageUrl"
-                                placeholder="https://example.com/image.jpg"
-                                {...register('imageUrl')}
-                                disabled={isLoading}
-                            />
-                            {errors.imageUrl && (
-                                <p className="text-sm text-destructive">{errors.imageUrl.message}</p>
                             )}
                         </div>
                     </CardContent>

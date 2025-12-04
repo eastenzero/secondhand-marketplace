@@ -23,24 +23,27 @@ export interface AuthResponse {
     token?: string; // If using token-based auth
 }
 
+export interface RegisterResponse {
+    userId: number;
+}
+
 export const authService = {
-    login: async (data: LoginRequest) => {
-        const response = await api.post<AuthResponse>('/auth/login', data);
-        return response.data;
+    login: async (data: LoginRequest): Promise<void> => {
+        await api.post<void>('/login', data);
     },
 
     register: async (data: RegisterRequest) => {
-        const response = await api.post<AuthResponse>('/auth/register', data);
+        const response = await api.post<RegisterResponse>('/register', data);
         return response.data;
     },
 
     logout: async () => {
         // If backend has a logout endpoint to clear cookies
-        await api.post('/auth/logout');
+        await api.post('/logout');
     },
 
     me: async () => {
-        const response = await api.get<AuthResponse['user']>('/auth/me');
+        const response = await api.get<AuthResponse['user']>('/me');
         return response.data;
     }
 };

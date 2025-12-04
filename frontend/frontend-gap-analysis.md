@@ -15,11 +15,11 @@
 以下功能在当前版本中为**占位符 (Placeholder)** 或**尚未开发**，需要后续迭代补充：
 
 ### 2.1 视觉与交互 (Visual & Interaction)
-- [ ] **首页 (Home Page)**: 目前仅为一个简单的 "Welcome" 文本。需要设计并实现包含 Banner、推荐商品、分类导航的完整首页。
-- [ ] **图片上传 (Image Upload)**: 发布页目前仅支持输入图片 URL。需要集成文件上传组件 (如 `react-dropzone`) 并对接后端 OSS 服务。
-- [ ] **图片画廊 (Image Gallery)**: 详情页目前仅展示单张图片。需要支持多图轮播、点击放大预览。
-- [ ] **用户头像 (User Avatar)**: 目前使用 emoji 或占位图标。需要支持用户上传头像，并在各处 (评论、详情页、Header) 正确显示。
-- [ ] **全局搜索 (Global Search)**: Header 中的搜索框目前为占位符。需要实现全局搜索功能，支持跨商品/需求搜索。
+- [x] **首页 (Home Page)**: 已实现包含 Banner、推荐商品、分类导航的完整首页。
+- [x] **图片上传 (Image Upload)**: 发布页已集成 `ImageUpload` 组件，支持多图拖拽上传。
+- [x] **图片画廊 (Image Gallery)**: 详情页已支持多图展示和缩略图切换。
+- [ ] **用户头像 (User Avatar)**: Header 和详情页已显示头像。需要实现用户在 "个人设置" 中上传/修改头像的功能。
+- [x] **全局搜索 (Global Search)**: Header 中已实现搜索框，可跳转至商品列表页。
 
 ### 2.2 业务深度 (Business Logic)
 - [ ] **消息通知 (Notifications)**: 缺乏通知中心。用户无法得知自己的商品被评论、被报价或审核结果。

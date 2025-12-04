@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 import { logger } from '@/lib/logger';
 import { getErrorMessage } from '@/lib/errors';
 import { useAuthStore } from '@/stores/useAuthStore';
-import { setupMockAdapter } from '@/mock/adapter';
+// import { setupMockAdapter } from '@/mock/adapter';
 
 export const api = axios.create({
     baseURL: '/api',
@@ -11,7 +11,7 @@ export const api = axios.create({
 });
 
 // Enable mock data for frontend verification
-setupMockAdapter(api);
+// setupMockAdapter(api);
 
 api.interceptors.request.use((config) => {
     const token = useAuthStore.getState().token;

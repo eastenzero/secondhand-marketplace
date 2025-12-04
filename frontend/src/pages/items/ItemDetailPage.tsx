@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import { useItemStore } from '@/stores/useItemStore';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Item } from '@/types/item';
 import { OfferDialog } from '@/components/offers/OfferDialog';
 import { CommentList } from '@/components/comments/CommentList';
+import { ImageGallery } from '@/components/items/ImageGallery';
 
 export default function ItemDetailPage() {
     const { id } = useParams<{ id: string }>();
@@ -60,20 +63,11 @@ export default function ItemDetailPage() {
 
     return (
         <div className="grid gap-8 lg:grid-cols-2">
-            {/* Left: Image Gallery (Placeholder) */}
-            <div className="overflow-hidden rounded-lg border bg-muted">
-                {item.imageUrl ? (
-                    <img
-                        src={item.imageUrl}
-                        alt={item.title}
-                        className="h-full w-full object-cover transition-transform hover:scale-105"
-                    />
-                ) : (
-                    <div className="flex aspect-square items-center justify-center text-muted-foreground">
-                        No Image Available
-                    </div>
-                )}
-            </div>
+            {/* Left: Image Gallery */}
+            <ImageGallery
+                images={item.images && item.images.length > 0 ? item.images : (item.imageUrl ? [item.imageUrl] : [])}
+                title={item.title}
+            />
 
             {/* Right: Info & Actions */}
             <div className="space-y-6">
@@ -95,11 +89,11 @@ export default function ItemDetailPage() {
                 <Card>
                     <CardContent className="p-4">
                         <h3 className="font-semibold mb-2">卖家信息</h3>
-                        <div className="flex items-center gap-2">
-                            <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center">
-                                {/* Avatar placeholder */}
-                                👤
-                            </div>
+                        <div className="flex items-center gap-3">
+                            <Avatar className="h-10 w-10">
+                                <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${item.sellerName || item.sellerId}`} />
+                                <AvatarFallback>{(item.sellerName || 'U')[0].toUpperCase()}</AvatarFallback>
+                            </Avatar>
                             <div>
                                 <p className="font-medium">{item.sellerName || 'Unknown Seller'}</p>
                                 <p className="text-xs text-muted-foreground">ID: {item.sellerId}</p>
@@ -116,7 +110,7 @@ export default function ItemDetailPage() {
                 </div>
 
                 <div className="flex gap-4 pt-4 border-t">
-                    <Button size="lg" className="flex-1">
+                    <Button size="lg" className="flex-1" onClick={() => toast.info('支付功能即将上线')}>
                         立即购买
                     </Button>
                     <div className="flex-1">
@@ -134,10 +128,6 @@ export default function ItemDetailPage() {
                     </div>
                 </div>
 
-                {/* Placeholders for future features */}
-                {/* <div className="rounded-lg border border-dashed p-4 text-center text-sm text-muted-foreground">
-                    留言区域 (Coming in F7)
-                </div> */}
                 <div className="pt-8 border-t">
                     <CommentList targetType="item" targetId={item.id} />
                 </div>

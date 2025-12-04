@@ -15,6 +15,9 @@ const DemandListPage = lazy(() => import('./pages/demands/DemandListPage'));
 const DemandDetailPage = lazy(() => import('./pages/demands/DemandDetailPage'));
 const PublishDemandPage = lazy(() => import('./pages/demands/PublishDemandPage'));
 const MyPostsPage = lazy(() => import('./pages/me/MyPostsPage'));
+const SettingsPage = lazy(() => import('./pages/me/SettingsPage'));
+const NotificationsPage = lazy(() => import('./pages/me/NotificationsPage'));
+const ChatPage = lazy(() => import('./pages/messages/ChatPage'));
 const AdminReviewPage = lazy(() => import('./pages/admin/AdminReviewPage'));
 
 import Home from '@/pages/Home';
@@ -59,6 +62,18 @@ export const router = createBrowserRouter([
             {
                 path: 'admin/review',
                 element: <RequireAdmin><SuspenseWrapper><AdminReviewPage /></SuspenseWrapper></RequireAdmin>
+            },
+            {
+                path: 'me/settings',
+                element: <RequireAuth><SuspenseWrapper><SettingsPage /></SuspenseWrapper></RequireAuth>
+            },
+            {
+                path: 'me/notifications',
+                element: <RequireAuth><SuspenseWrapper><NotificationsPage /></SuspenseWrapper></RequireAuth>
+            },
+            {
+                path: 'messages',
+                element: <RequireAuth><SuspenseWrapper><ChatPage /></SuspenseWrapper></RequireAuth>
             },
         ],
     },

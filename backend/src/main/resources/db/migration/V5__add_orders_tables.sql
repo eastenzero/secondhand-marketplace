@@ -1,0 +1,39 @@
+-- V5__add_orders_tables.sql
+-- 新增订单与订单条目表：orders / order_items
+-- 用于记录从报价（offers）成交后的正式订单，一单可包含多个商品条目，
+-- 并包含收货信息（姓名、电话、地址）与支付方式字段。
+-- 该变更仅新增表与索引，对现有数据完全兼容。
+
+CREATE TABLE IF NOT EXISTS orders (
+  order_id       BIGSERIAL PRIMARY KEY,
+  buyer_id       BIGINT       NOT NULL REFERENCES users(user_id),
+  seller_id      BIGINT       NOT NULL REFERENCES users(user_id),
+  offer_id       BIGINT       REFERENCES offers(offer_id),
+  total_amount   NUMERIC(10,2) NOT NULL CHECK (total_amount > 0),
+  status         VARCHAR(16)   NOT NULL DEFAULT 'created' CHECK (status IN ('created','paid','canceled','completed')),
+  shipping_name   VARCHAR(100) NOT NULL,
+  shipping_phone  VARCHAR(50)  NOT NULL,
+  shipping_address TEXT        NOT NULL,
+  payment_method  VARCHAR(32),
+  created_at     TIMESTAMPTZ  NOT NULL DEFAULT now(),
+  updated_at     TIMESTAMPTZ  NOT NULL DEFAULT now(),
+  deleted_at     TIMESTAMPTZ
+);
+
+CREATE INDEX IF NOT EXISTS idx_orders_buyer   ON orders(buyer_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_orders_seller  ON orders(seller_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_orders_status  ON orders(status);
+CREATE INDEX IF NOT EXISTS idx_orders_offer   ON orders(offer_id);
+
+CREATE TABLE IF NOT EXISTS order_items (
+  order_item_id BIGSERIAL PRIMARY KEY,
+  order_id      BIGINT      NOT NULL REFERENCES orders(order_id) ON DELETE CASCADE,
+  target_type   VARCHAR(10) NOT NULL CHECK (target_type IN ('item','demand')),
+  target_id     BIGINT      NOT NULL,
+  quantity      INTEGER     NOT NULL DEFAULT 1 CHECK (quantity > 0),
+  price         NUMERIC(10,2) NOT NULL CHECK (price > 0),
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_order_items_order  ON order_items(order_id);
+CREATE INDEX IF NOT EXISTS idx_order_items_target ON order_items(target_type, target_id);

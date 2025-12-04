@@ -39,8 +39,11 @@ export default function LoginPage() {
     const onSubmit = async (data: LoginFormValues) => {
         setIsLoading(true);
         try {
-            const response = await authService.login(data);
-            login(response.user, response.token);
+            await authService.login(data);
+            login(
+                { id: data.username, name: data.username, role: 'user' },
+                undefined
+            );
             toast.success('登录成功');
             navigate(from, { replace: true });
         } catch (error) {

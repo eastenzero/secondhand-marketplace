@@ -1,0 +1,53 @@
+-- V7__add_threads_messages_notifications.sql
+-- 新增会话 threads、消息 messages 与系统通知 notifications 三张表，用于支持即时聊天与站内通知。
+-- 仅新增表与索引，对现有数据兼容。
+
+CREATE TABLE IF NOT EXISTS threads (
+  thread_id         BIGSERIAL PRIMARY KEY,
+  target_type       VARCHAR(16)  NOT NULL CHECK (target_type IN ('item','demand','order','system')),
+  target_id         BIGINT,
+  created_by_user_id BIGINT      NOT NULL REFERENCES users(user_id),
+  status            VARCHAR(16)  NOT NULL DEFAULT 'active' CHECK (status IN ('active','muted','closed')),
+  created_at        TIMESTAMPTZ  NOT NULL DEFAULT now(),
+  updated_at        TIMESTAMPTZ  NOT NULL DEFAULT now(),
+  deleted_at        TIMESTAMPTZ
+);
+
+CREATE INDEX IF NOT EXISTS idx_threads_target ON threads(target_type, target_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_threads_creator ON threads(created_by_user_id, created_at DESC);
+
+CREATE TABLE IF NOT EXISTS messages (
+  message_id        BIGSERIAL PRIMARY KEY,
+  thread_id         BIGINT      NOT NULL REFERENCES threads(thread_id) ON DELETE CASCADE,
+  sender_user_id    BIGINT      NOT NULL REFERENCES users(user_id),
+  recipient_user_id BIGINT      NOT NULL REFERENCES users(user_id),
+  content           TEXT        NOT NULL,
+  is_read           BOOLEAN     NOT NULL DEFAULT FALSE,
+  read_at           TIMESTAMPTZ,
+  status            VARCHAR(16) NOT NULL DEFAULT 'active' CHECK (status IN ('active','recalled','deleted')),
+  created_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
+  deleted_at        TIMESTAMPTZ
+);
+
+CREATE INDEX IF NOT EXISTS idx_messages_thread ON messages(thread_id, created_at);
+CREATE INDEX IF NOT EXISTS idx_messages_recipient_unread ON messages(recipient_user_id) WHERE is_read = FALSE;
+
+CREATE TABLE IF NOT EXISTS notifications (
+  notification_id BIGSERIAL PRIMARY KEY,
+  user_id         BIGINT       NOT NULL REFERENCES users(user_id),
+  type            VARCHAR(32)  NOT NULL,
+  title           VARCHAR(200),
+  content         TEXT,
+  related_type    VARCHAR(16),
+  related_id      BIGINT,
+  is_read         BOOLEAN      NOT NULL DEFAULT FALSE,
+  read_at         TIMESTAMPTZ,
+  status          VARCHAR(16)  NOT NULL DEFAULT 'active' CHECK (status IN ('active','archived','deleted')),
+  created_at      TIMESTAMPTZ  NOT NULL DEFAULT now(),
+  updated_at      TIMESTAMPTZ  NOT NULL DEFAULT now(),
+  deleted_at      TIMESTAMPTZ
+);
+
+CREATE INDEX IF NOT EXISTS idx_notifications_user        ON notifications(user_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_notifications_user_unread ON notifications(user_id) WHERE is_read = FALSE;
