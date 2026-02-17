@@ -1,0 +1,399 @@
+nohup: ignoring input
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.example:marketplace >-----------------------
+[INFO] Building marketplace 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.4:run (default-cli) > test-compile @ marketplace >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace ---
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] Copying 10 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ marketplace ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace ---
+[INFO] skip non existing resourceDirectory /home/easten/github/secondhand-marketplace/backend/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ marketplace ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:3.2.4:run (default-cli) < test-compile @ marketplace <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.4:run (default-cli) @ marketplace ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.4)
+
+2026-02-16T15:53:44.041Z  INFO 131064 --- [           main] c.e.marketplace.MarketplaceApplication   : Starting MarketplaceApplication using Java 21.0.10 with PID 131064 (/home/easten/github/secondhand-marketplace/backend/target/classes started by easten in /home/easten/github/secondhand-marketplace/backend)
+2026-02-16T15:53:44.042Z  INFO 131064 --- [           main] c.e.marketplace.MarketplaceApplication   : The following 1 profile is active: "dev-h2"
+2026-02-16T15:53:44.723Z  INFO 131064 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-16T15:53:44.789Z  INFO 131064 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 14 JPA repository interfaces.
+2026-02-16T15:53:45.342Z  INFO 131064 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 18084 (http)
+2026-02-16T15:53:45.351Z  INFO 131064 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-16T15:53:45.351Z  INFO 131064 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2026-02-16T15:53:45.384Z  INFO 131064 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-16T15:53:45.384Z  INFO 131064 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1311 ms
+2026-02-16T15:53:45.523Z  INFO 131064 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-16T15:53:45.655Z  INFO 131064 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:marketplace user=SA
+2026-02-16T15:53:45.656Z  INFO 131064 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-16T15:53:45.664Z  INFO 131064 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:marketplace'
+2026-02-16T15:53:45.807Z  INFO 131064 --- [           main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.22.3 by Redgate
+2026-02-16T15:53:45.808Z  INFO 131064 --- [           main] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
+2026-02-16T15:53:45.808Z  INFO 131064 --- [           main] o.f.c.internal.license.VersionPrinter    : 
+2026-02-16T15:53:45.837Z  INFO 131064 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:marketplace (H2 2.2)
+2026-02-16T15:53:45.841Z  WARN 131064 --- [           main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+2026-02-16T15:53:45.857Z  INFO 131064 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+2026-02-16T15:53:45.858Z  INFO 131064 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 9 migrations (execution time 00:00.010s)
+2026-02-16T15:53:45.863Z  INFO 131064 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+2026-02-16T15:53:45.879Z  INFO 131064 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": << Empty Schema >>
+2026-02-16T15:53:45.887Z  INFO 131064 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1 - init schema"
+2026-02-16T15:53:45.891Z ERROR 131064 --- [           main] o.f.core.internal.command.DbMigrate      : Migration of schema "PUBLIC" to version "1 - init schema" failed! Please restore backups and roll back database and code!
+2026-02-16T15:53:45.894Z ERROR 131064 --- [           main] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'userBanFilter' defined in file [/home/easten/github/secondhand-marketplace/backend/target/classes/com/example/marketplace/security/UserBanFilter.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userBanService' defined in file [/home/easten/github/secondhand-marketplace/backend/target/classes/com/example/marketplace/service/UserBanService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userBanRepository' defined in com.example.marketplace.repository.UserBanRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+2026-02-16T15:53:45.910Z  INFO 131064 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-02-16T15:53:45.912Z  WARN 131064 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2026-02-16T15:53:45.912Z  INFO 131064 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-16T15:53:45.921Z  INFO 131064 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-16T15:53:45.932Z  INFO 131064 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-02-16T15:53:45.943Z ERROR 131064 --- [           main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:618) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.4.jar:3.2.4]
+	at com.example.marketplace.MarketplaceApplication.main(MarketplaceApplication.java:13) ~[classes/:na]
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:145) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:105) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:499) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:218) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:188) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162) ~[spring-boot-3.2.4.jar:3.2.4]
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userBanFilter' defined in file [/home/easten/github/secondhand-marketplace/backend/target/classes/com/example/marketplace/security/UserBanFilter.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userBanService' defined in file [/home/easten/github/secondhand-marketplace/backend/target/classes/com/example/marketplace/service/UserBanService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userBanRepository' defined in com.example.marketplace.repository.UserBanRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1355) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1192) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:210) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:173) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:168) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:153) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:86) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:266) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:240) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4866) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:845) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:240) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:433) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:921) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:437) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:126) ~[spring-boot-3.2.4.jar:3.2.4]
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userBanService' defined in file [/home/easten/github/secondhand-marketplace/backend/target/classes/com/example/marketplace/service/UserBanService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userBanRepository' defined in com.example.marketplace.repository.UserBanRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1355) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1192) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782) ~[spring-beans-6.1.5.jar:6.1.5]
+	... 54 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userBanRepository' defined in com.example.marketplace.repository.UserBanRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1685) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1434) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782) ~[spring-beans-6.1.5.jar:6.1.5]
+	... 68 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaSharedEM_entityManagerFactory': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:682) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.1.5.jar:6.1.5]
+	... 82 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Migration V1__init_schema.sql failed
+------------------------------------
+SQL State  : HY004
+Error Code : 50004
+Message    : Unknown data type: "TIMESTAMPTZ"; SQL statement:
+-- V1__init_schema.sql
+-- 二手交易平台 初始 Schema（PostgreSQL 15）
+
+-- 可选：独立 schema
+-- CREATE SCHEMA IF NOT EXISTS marketplace;
+-- SET search_path TO marketplace, public;
+
+CREATE TABLE IF NOT EXISTS users (
+  user_id        BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  username       VARCHAR(50)  NOT NULL UNIQUE,
+  password_hash  VARCHAR(255) NOT NULL,
+  contact_phone  VARCHAR(50),
+  contact_email  VARCHAR(100),
+  status         VARCHAR(16)  NOT NULL DEFAULT 'active' CHECK (status IN ('active','disabled')),
+  created_at     TIMESTAMPTZ  NOT NULL DEFAULT now()
+) [50004-224]
+Location   : db/migration/V1__init_schema.sql (/home/easten/github/secondhand-marketplace/backend/target/classes/db/migration/V1__init_schema.sql)
+Line       : 8
+Statement  : -- V1__init_schema.sql
+-- 二手交易平台 初始 Schema（PostgreSQL 15）
+
+-- 可选：独立 schema
+-- CREATE SCHEMA IF NOT EXISTS marketplace;
+-- SET search_path TO marketplace, public;
+
+CREATE TABLE IF NOT EXISTS users (
+  user_id        BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  username       VARCHAR(50)  NOT NULL UNIQUE,
+  password_hash  VARCHAR(255) NOT NULL,
+  contact_phone  VARCHAR(50),
+  contact_email  VARCHAR(100),
+  status         VARCHAR(16)  NOT NULL DEFAULT 'active' CHECK (status IN ('active','disabled')),
+  created_at     TIMESTAMPTZ  NOT NULL DEFAULT now()
+)
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.1.5.jar:6.1.5]
+	... 94 common frames omitted
+Caused by: org.flywaydb.core.internal.command.DbMigrate$FlywayMigrateException: Migration V1__init_schema.sql failed
+------------------------------------
+SQL State  : HY004
+Error Code : 50004
+Message    : Unknown data type: "TIMESTAMPTZ"; SQL statement:
+-- V1__init_schema.sql
+-- 二手交易平台 初始 Schema（PostgreSQL 15）
+
+-- 可选：独立 schema
+-- CREATE SCHEMA IF NOT EXISTS marketplace;
+-- SET search_path TO marketplace, public;
+
+CREATE TABLE IF NOT EXISTS users (
+  user_id        BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  username       VARCHAR(50)  NOT NULL UNIQUE,
+  password_hash  VARCHAR(255) NOT NULL,
+  contact_phone  VARCHAR(50),
+  contact_email  VARCHAR(100),
+  status         VARCHAR(16)  NOT NULL DEFAULT 'active' CHECK (status IN ('active','disabled')),
+  created_at     TIMESTAMPTZ  NOT NULL DEFAULT now()
+) [50004-224]
+Location   : db/migration/V1__init_schema.sql (/home/easten/github/secondhand-marketplace/backend/target/classes/db/migration/V1__init_schema.sql)
+Line       : 8
+Statement  : -- V1__init_schema.sql
+-- 二手交易平台 初始 Schema（PostgreSQL 15）
+
+-- 可选：独立 schema
+-- CREATE SCHEMA IF NOT EXISTS marketplace;
+-- SET search_path TO marketplace, public;
+
+CREATE TABLE IF NOT EXISTS users (
+  user_id        BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  username       VARCHAR(50)  NOT NULL UNIQUE,
+  password_hash  VARCHAR(255) NOT NULL,
+  contact_phone  VARCHAR(50),
+  contact_email  VARCHAR(100),
+  status         VARCHAR(16)  NOT NULL DEFAULT 'active' CHECK (status IN ('active','disabled')),
+  created_at     TIMESTAMPTZ  NOT NULL DEFAULT now()
+)
+
+	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:382) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.lambda$applyMigrations$1(DbMigrate.java:272) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:55) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.applyMigrations(DbMigrate.java:271) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.migrateGroup(DbMigrate.java:244) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.lambda$migrateAll$0(DbMigrate.java:139) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.jdbc.TableLockingExecutionTemplate$1.call(TableLockingExecutionTemplate.java:36) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:55) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.jdbc.TableLockingExecutionTemplate.execute(TableLockingExecutionTemplate.java:31) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.database.base.Connection.lock(Connection.java:102) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory.lock(JdbcTableSchemaHistory.java:144) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.migrateAll(DbMigrate.java:139) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:97) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.Flyway.lambda$migrate$0(Flyway.java:188) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:213) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:140) ~[flyway-core-9.22.3.jar:na]
+	at org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:66) ~[spring-boot-autoconfigure-3.2.4.jar:3.2.4]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.5.jar:6.1.5]
+	... 103 common frames omitted
+Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Migration V1__init_schema.sql failed
+------------------------------------
+SQL State  : HY004
+Error Code : 50004
+Message    : Unknown data type: "TIMESTAMPTZ"; SQL statement:
+-- V1__init_schema.sql
+-- 二手交易平台 初始 Schema（PostgreSQL 15）
+
+-- 可选：独立 schema
+-- CREATE SCHEMA IF NOT EXISTS marketplace;
+-- SET search_path TO marketplace, public;
+
+CREATE TABLE IF NOT EXISTS users (
+  user_id        BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  username       VARCHAR(50)  NOT NULL UNIQUE,
+  password_hash  VARCHAR(255) NOT NULL,
+  contact_phone  VARCHAR(50),
+  contact_email  VARCHAR(100),
+  status         VARCHAR(16)  NOT NULL DEFAULT 'active' CHECK (status IN ('active','disabled')),
+  created_at     TIMESTAMPTZ  NOT NULL DEFAULT now()
+) [50004-224]
+Location   : db/migration/V1__init_schema.sql (/home/easten/github/secondhand-marketplace/backend/target/classes/db/migration/V1__init_schema.sql)
+Line       : 8
+Statement  : -- V1__init_schema.sql
+-- 二手交易平台 初始 Schema（PostgreSQL 15）
+
+-- 可选：独立 schema
+-- CREATE SCHEMA IF NOT EXISTS marketplace;
+-- SET search_path TO marketplace, public;
+
+CREATE TABLE IF NOT EXISTS users (
+  user_id        BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  username       VARCHAR(50)  NOT NULL UNIQUE,
+  password_hash  VARCHAR(255) NOT NULL,
+  contact_phone  VARCHAR(50),
+  contact_email  VARCHAR(100),
+  status         VARCHAR(16)  NOT NULL DEFAULT 'active' CHECK (status IN ('active','disabled')),
+  created_at     TIMESTAMPTZ  NOT NULL DEFAULT now()
+)
+
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:267) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:222) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.execute(DefaultSqlScriptExecutor.java:126) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.executeOnce(SqlMigrationExecutor.java:68) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.lambda$execute$0(SqlMigrationExecutor.java:57) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.database.DefaultExecutionStrategy.execute(DefaultExecutionStrategy.java:27) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:56) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:374) ~[flyway-core-9.22.3.jar:na]
+	... 121 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Unknown data type: "TIMESTAMPTZ"; SQL statement:
+-- V1__init_schema.sql
+-- 二手交易平台 初始 Schema（PostgreSQL 15）
+
+-- 可选：独立 schema
+-- CREATE SCHEMA IF NOT EXISTS marketplace;
+-- SET search_path TO marketplace, public;
+
+CREATE TABLE IF NOT EXISTS users (
+  user_id        BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  username       VARCHAR(50)  NOT NULL UNIQUE,
+  password_hash  VARCHAR(255) NOT NULL,
+  contact_phone  VARCHAR(50),
+  contact_email  VARCHAR(100),
+  status         VARCHAR(16)  NOT NULL DEFAULT 'active' CHECK (status IN ('active','disabled')),
+  created_at     TIMESTAMPTZ  NOT NULL DEFAULT now()
+) [50004-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.message.DbException.get(DbException.java:199) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.command.Parser.readIfDataType1(Parser.java:5866) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.command.Parser.readIfDataType(Parser.java:5704) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:5686) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:5565) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:8999) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.command.Parser.parseCreateTable(Parser.java:8939) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.command.Parser.parseCreate(Parser.java:6404) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.command.Parser.parsePrepared(Parser.java:666) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.command.Parser.parse(Parser.java:592) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.command.Parser.parse(Parser.java:564) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.command.Parser.prepareCommand(Parser.java:483) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245) ~[h2-2.2.224.jar:2.2.224]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231) ~[h2-2.2.224.jar:2.2.224]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.flywaydb.core.internal.jdbc.JdbcTemplate.executeStatement(JdbcTemplate.java:201) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.sqlscript.ParsedSqlStatement.execute(ParsedSqlStatement.java:95) ~[flyway-core-9.22.3.jar:na]
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:210) ~[flyway-core-9.22.3.jar:na]
+	... 127 common frames omitted
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.695 s
+[INFO] Finished at: 2026-02-16T15:53:45Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.4:run (default-cli) on project marketplace: Process terminated with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
