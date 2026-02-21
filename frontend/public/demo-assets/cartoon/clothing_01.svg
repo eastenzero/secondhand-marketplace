@@ -1,0 +1,8 @@
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f0f0f0"/><stop offset="100%" style="stop-color:#e0e0e8"/></linearGradient></defs>
+          <rect width="800" height="800" fill="url(#bg)"/>
+          <path d="M150,480 Q200,360 350,340 L580,340 Q640,340 660,380 L680,420 Q700,460 650,480 Z" fill="white" stroke="#ccc" stroke-width="3"/>
+          <path d="M150,480 Q200,480 400,470 L680,460 L680,500 Q600,530 400,530 Q200,540 150,500 Z" fill="#e0e0e0" stroke="#ccc"/>
+          <path d="M350,340 L370,290 Q400,270 440,280 L460,340" fill="#f0f0f0" stroke="#ccc"/>
+          <text x="400" y="720" font-family="Arial" font-size="28" fill="#555" text-anchor="middle">Nike Air Force 1</text>
+        </svg>

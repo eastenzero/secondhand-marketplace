@@ -1,0 +1,962 @@
+[
+  {
+    "filename": "appliance_01.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "b3f2bf8b13f8bf5db6a9461c652e41664dc6db146a66331827158a15da7e1f3d",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "appliance_02.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "4c44a607616d5ec07a05dbd35064d4e58d6defc99a3dc9af0aa76367d72e0328",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "appliance_03.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "c04bb603910d3002c6a8c1daef6777bab0e2a16c556b395eaee3897c713fe67e",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "appliance_04.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "1f246067efaa2e08f70a1a944f69a4c55728bcb497bfc58aae8bb008036246b5",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "appliance_05.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "eb4eba8df146afb0e30efe4de67a65eb531b3891d914dd2d015b676311e278de",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "appliance_06.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "7b99600230f8997a59286aba1ae8b31c99cf886fd9fda82b51ad12fdc9d917d7",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "appliance_07.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "fc896eb22031f87eb2ba9bc9e6fdc6403c24bc48c58a1e856d1af715e4988adb",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "appliance_08.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "ae215c445f94130fb07b00e97581c4e2361d334d13e4cd7a8a8a7b78b9e1522f",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "appliance_09.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "341b6f5c1c6ca21db8f4be35645b394c2fbcaae46abef2e7e3a02528981e95ff",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "appliance_10.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "72b36fda66161da8859095f2f22faba6f5852e784cd49eb5e1c2a8cae523cff2",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "appliance_11.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "320f3f3e4e7fe727e8ca5729aecbe669eb7eb197e3914ef6ce56fc81670165ca",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "appliance_12.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "b0a496488bfe77537ae241c227c9f21543bd927a88bd4c752911d6e2b61bf77c",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "appliance_13.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "db8b4b202d63cb04ef57ab63fb104dc58d85c16197b930a6246789cca2a33953",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "appliance_14.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "b650f87835b3ee434dad1a980fe3bc54ba1d6401bb24ca0750c2c2b34f944270",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "appliance_15.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "b44e8594dd54b5df399aa738fbc7e1130053bbadedfca422f132e8f633c254da",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "appliance"
+  },
+  {
+    "filename": "beauty_01.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "c43fdfa41f503c599bcfcafb69a2d976802c300bd1cbd6a0ec5928ce56d01808",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "beauty_02.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "243739095bb767c564e2591f503658102d970b9c9b854ee7b2958a59c9b06c00",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "beauty_03.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "8f1522a8a19025233382a0afeaddd6fc2a7bcbcccf4389fcfba51d14e23401b0",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "beauty_04.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "7daa4f4eb1f346a4f22d92f2213aa7eaaa07fdf9c174956e026cd7dd6e90fe10",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "beauty_05.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "8d23932eb748a4dc97df90829fe9b954880cf7bec039401eb768bee0f65abb93",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "beauty_06.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "4174c7bc03789a5abb71c386ef299b00827ce8367947a23a0dfa47cc21691d7c",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "beauty_07.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "62aefd3e903f483f50b251d671e991028d35f4da1e362d897ca0042f65c15786",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "beauty_08.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "58735c6abe328ecdb3d9d5b63911f3b32c309ca1c0bc9fa7ef52d799501fed9d",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "beauty_09.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "89e0df53d3114c733513a631c58723cd60303bc41baa3192abf9741eaeab2fa6",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "beauty_10.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "f4cb9f7594b21b175731695725d43029754fb356a49112e50ceecb22b04f13a7",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "beauty_11.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "a468c003044150178252e19eeee6cfceb287e04541619aa4e6ee5d44ebdbf238",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "beauty_12.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "b9e5f1d2e5dc3d0e02fb03aa6d872620eb2e742e1db0ab4fb7491dff35058b12",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "beauty_13.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "e3734d121038e907955e0729b42a7a6472cb8edadcf7f59ad7beab9fbe3c811c",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "beauty_14.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "c129962032da657ed9bf6ddc3e629c8782ec868d713ebee0de165c2c50d05422",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "beauty_15.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "399a5034b26e0fa1cfe4e92df7535a5f44d0b0fb1316ea17d60340caa6e520b6",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "beauty"
+  },
+  {
+    "filename": "books_01.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "0679e56fbdacc62bda50563bade86d3cb0c494a8234f3515be0f20e980fb64b4",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "books_02.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "82cdf51be7eb312b9f203c76474b288a071afb3a28d5570b307d8c40531bebf1",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "books_03.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "0b4887f5c4370067e7a7e5c836e104a53f4f00d4aa479975e452233f39b528ff",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "books_04.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "8c8f92cab87646bad56041b426b5a799666ee1b552c1e0e9f51f542e1aba6585",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "books_05.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "79085be0d9b6151485b3b21e8cb8213af9c7829d867ccb49b72355bfc0daa5dd",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "books_06.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "3e736d3f1693e0e4bffcc4237c2d876bac6286ff01605702b6688d2cadc26578",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "books_07.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "95786e6d7f0e45c45f6ed08a3b13c01dc4777e66e0f17ad1b6907889fa2a8bf2",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "books_08.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "b4a57833a10f6a0fea1ccd3e4b7c149f178dd218661877eb5e2c738b8e91e043",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "books_09.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "7676476a56fb18fff23e1256f1612a8d34c25e985e702a5cb37d5a43c5674280",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "books_10.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "ad6551addc1600bd987473692711caeb627b98872598de96e78e2e8d27e9ce1a",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "books_11.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "610625e0d8bf7636a3ccf2809a5799858657b276285e6ef9a49f4acb1f5b0d0f",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "books_12.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "24810ab67bb5fb9a2823c9b8d160dcf7e9c160914a333033b75d32b68d10bb36",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "books_13.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "780828d30fb50bc37da33a9cf4e1898b532dc93cec52af16c7b77f24ce4be84e",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "books_14.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "9b8fdc045db8f5b122729a9718d474331a214175a06f75852e9b29bdaf663951",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "books_15.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "1d574fb966df94178dfebdcf79d3d08a15c721ffdcd6fe06441104ab5bc4a6f7",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "books"
+  },
+  {
+    "filename": "clothing_01.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "7fb4f56e6fd30a476f036318b3a788562fa34a75b7ba0cda49d7792bb3563f08",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "clothing_02.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "21717c57ca09dbef0e9d6b2758321a2d6a5508f6cf75cd66f81cb4dc194d0832",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "clothing_03.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "6d315f332fca7259578c3f769179871ff1b1bc284cbabe7a991a28e6c1a4a4c0",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "clothing_04.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "dfff1724bb270601e3be0136d08f9887e76911ad9a215ba8c46cd59ba0a577d2",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "clothing_05.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "c34c3313f231056b861084ec61271157f532e0c79e76a1f5c83530d57f42cd02",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "clothing_06.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "d9b1d908b258b666aaa436fd66fa150460f2e3022d16b9ea6f90d9ab2713e0ac",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "clothing_07.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "64ad4ce0307ba9be50c1a3bf9302acacd868ca0c9735febd51a261e2663c9de7",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "clothing_08.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "9f13424d40e2148d81359c9649320683a52cf6584bba87fdbef6c12facae876f",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "clothing_09.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "eb3040bf77e367ac685b041feed3015d19daf81c2b97f7b41f46d2a6fb2c1132",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "clothing_10.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "51bd2faba33a7c5584c8b3652de7c36e2a8b24e12c56cb2d9f2b66e47bcf16cd",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "clothing_11.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "c6595de27b2766c7064f07ca0ea8c21efd96e17e940d0f4fee54e1de14a0d78b",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "clothing_12.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "15755414e92dc65a7a84080612e69547b5dc9dce7035c0c234097a6a8e004719",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "clothing_13.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "13e4be0683ea6c9d7ae6f0aa162a8aeb4ba0d2932f833f47fe629cdcdf075773",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "clothing_14.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "920b25cbb5f17723642ca2c7eda6f6ba6ea6550f88675c1ccdcb938832e2aa8e",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "clothing_15.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "507e640d44108a3b28f376f0b94e22780c0f6551cf15059a0306e6bfed3be444",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "clothing"
+  },
+  {
+    "filename": "electronics_01.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "1efc2afefb35da9de3a9f84058b705392321abc687ca4c2d160dddeaa66cb641",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "electronics_02.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "05d474ba157a074032a7f6b328c915cad0e4dde1070b75fd66c8d8e1d46b6208",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "electronics_03.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "23740ee032c766250eed62e76a2c22fb9ab548f7b109147b337a3e48213a8753",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "electronics_04.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "46b6ae164f3d3382d0bd95fa3e57d03ddbf5abe7faa79af60c5d172b3ff30456",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "electronics_05.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "e0122521d87f59f8b1f28c7652afc4b1308eec6b004bc14368becafb766912fa",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "electronics_06.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "21be1dab65922a809d75acfed769c1d262acdaf286b8d917bfc605e5fa7d465d",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "electronics_07.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "83f1951e7117aa003304e6dc67c686ae6d5919b13d96d8310bd6caab8144cae8",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "electronics_08.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "d321c3602a9a165ef21a298c1f1f397ec8f9f5bb1173501f6a003c36af1e6593",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "electronics_09.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "a25573a7a857ff83316561774e14f6031cc606048f16c9a05dde6c6006ba4756",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "electronics_10.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "f59c250c0650c6fd803cafd5ba8b677dd30198ec7ea370a9d7085124ef29a9e4",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "electronics_11.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "4de000a5fa2adf3c3096cf89e32e71d4da69ee6387a5f8d9cf908ec04a3abade",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "electronics_12.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "49ff506db6daf644667c18b411c34fd1aa2e49a4b62392523a909653eb009ecd",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "electronics_13.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "5755810f9bed616b14dea912c62ecd3bed21db5c1228ddd904d17880a1c5a988",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "electronics_14.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "00247125523e7f82e6c2a24fccc6d7110ed9b2de45f00a8446ee3ff036fd85a8",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "electronics_15.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "df8aa3da1da3666733418f0d698e5d2327dab0e53733c3bc0188da0e8e1dec2f",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "electronics"
+  },
+  {
+    "filename": "furniture_01.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "42567c49332a3a056abcf6efc0c852468276d55159cfd472dce0193865cce8b7",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "furniture_02.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "90fa3dc73b3b49a9da3fc61ad57de99329bba1394b840e240f935a532e81105f",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "furniture_03.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "5fae4029ae1fa28d7c598846ba1b6fde28923d06b973a89474837367b40fc315",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "furniture_04.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "c34f27a2d5e1e51e49f93c0bd54fc6d9f6054542bd72578eeebdba68d2f4d8e9",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "furniture_05.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "1aecefbe1ed7ea47a92b9b5a8a81a74cd5154c65d16a7999afe2792cbb6b3cd7",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "furniture_06.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "2a07c399f42c0d2afbadf527d9c56ae1ebe92af32affa96d837a68e77a9d6ed8",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "furniture_07.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "da706ab099dd20148b8691cba7ba9ac283a65e76757aad8dbe4b38024feb87e4",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "furniture_08.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "cb80657d819f84ee40ca3f6d18504ce881c526732d91a744454771cbd33cc63d",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "furniture_09.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "7a51905d10a54b12c9f42a477e4c39dd9fdca7ef048a4e7732b64d1b1ce9c829",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "furniture_10.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "319709bae564d4c123c38885e59dfcc5b075e400d45f29d1f2e0d98d86cab0dc",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "furniture_11.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "833bd9ec05cfc0b396666afcce5013580b7850ee388d388b61216b68e14cd6f5",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "furniture_12.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "c6c8fbeba06667e8e460b6b840e7f7800b96e8cd9bdcd882be51695dca60bd11",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "furniture_13.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "2dc0cef1ecdcb009b00b4962a2aed43e82d49dd2764f6f3c1812960f6cf5c623",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "furniture_14.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "8760a5b41501063f24e1bbb026d43078061b76739afc16529d8d6075472cb4ac",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "furniture_15.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "37e101d60a4290b222b5024096cf9522a8415b56b5bd49ae68be6b5a6946f361",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "furniture"
+  },
+  {
+    "filename": "others_01.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "20c2aa6ae991467761955238fa785cbf103592980e09697249e0e606f33c964b",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "others_02.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "be19fe7e97f3937a14b8583a95b94435f42052f047437e25e22dc4f2fe99ed05",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "others_03.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "f6eb802a15f0c8431fd28e896a585dafeef070558c4a5bd84cbc046add4e4705",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "others_04.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "6488b8f6b5cc18de266c77f532cc1ea73a144aca983c8feed2d15b53f89bafc4",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "others_05.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "aa88325fccd70695645bd180aa04b1fa2ef702408b635dece439ec74e0951285",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "others_06.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "de048162f0e2406e0cb53a720f2729d794608c1355f1ffaf8eae508f287e2589",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "others_07.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "d4b07463c062cc72ba078f9c164e58f44a393317dd1c740d70dd4ac108a63c44",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "others_08.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "3e3ffe39f034e8e989c3164ec5eb30ec60ac8b73401ac56f19ef284acfdae47f",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "others_09.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "8637eeb4a510fdf854ad4dc8b778919e251fc084cda0e4a550a32695ceb26a9e",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "others_10.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "0353c099624536b23c0552967b5754697bf763ce87db3a3ed84e3f5f674b5dc8",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "others_11.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "711ff85551f1ae99ba3dc5ee4afb668d61b8b21b3166f04298c9aae874b41b46",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "others_12.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "f27c29f004d9aa463feb0ec8625c873c408453533f27bd3e0dc2d82443eae3eb",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "others_13.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "303f7c57c45e8c4ea50a4cea221997f02e35d22c6647668ada03f1ca1a851cb0",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "others_14.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "4f17e0baeec9563b0493ff1e28f28ca7f99f0d14bca6cf85e4c23be65708334c",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "others_15.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "5d78bb3cced69ec03bdf5c4ab3383ebf77d466736e7d582c50adad0073c37834",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "others"
+  },
+  {
+    "filename": "sports_01.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "927ede8e309c4b7abbe7f755e4687fda89ff80a2e23fe05cff0454df9f493077",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  },
+  {
+    "filename": "sports_02.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "e015efb6e39edb8149d4128c2ff6bf8a2d44ed9a1e3f87b55cbd4ddcae19170c",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  },
+  {
+    "filename": "sports_03.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "4c16cd0f28cd9306d25b2735cedd4eeb84b8a08eda3701161b3d6ac4dece9d5d",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  },
+  {
+    "filename": "sports_04.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "2ab8365ced854e59980b3a3f8804b8f30d7cfdc27ded950492f886ba489cf834",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  },
+  {
+    "filename": "sports_05.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "2cea979025770ff74f9fdaae1ff5ea0d3f631d13dc03c9bd29e23701a5e6d1b7",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  },
+  {
+    "filename": "sports_06.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "8bc25766c3267f12b562e33fa049a9c3ee09388f27282d80fbef2281ed918b53",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  },
+  {
+    "filename": "sports_07.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "227bd6d49e256fd8b45d14953e590d00b088b943770fa12609d0bd41a3650ec4",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  },
+  {
+    "filename": "sports_08.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "2ec55b3e365178677eb67d227f0380da6bb05bf8092e8652d211dec6d1ed77ff",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  },
+  {
+    "filename": "sports_09.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "3126a3c944323b8ac42feb7907ec6a1964393fd4c09092dae3127ccda24c1dcd",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  },
+  {
+    "filename": "sports_10.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "e4f29f95adbb31cfff1881af36fb2c2ea7199c83c06b7d6632b2c4ffcf5f89f8",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  },
+  {
+    "filename": "sports_11.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "0831f23b764e57a22e0f87458e84c750a4d2f131aec0be6c23acb322f771fec6",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  },
+  {
+    "filename": "sports_12.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "6bc86e8fad460fe6345f8a90d454f730e33c8ced89c3bf3635f3c7b203fca252",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  },
+  {
+    "filename": "sports_13.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "a5c407dc0911e6c8dab6e13ff8d8c830c3bc77f085ef107fef71f0e39fc24d66",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  },
+  {
+    "filename": "sports_14.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "a06f12e898ee3404f94b1063dd330710f6766f7b4c495f19894f698d481aa928",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  },
+  {
+    "filename": "sports_15.webp",
+    "source_url": "local-generated",
+    "source_provider": "generate_image / pillow",
+    "sha256": "aae08271921735f621927f284b618053969b8922c6809a742279507e9375c102",
+    "license_note": "AI-generated or programmatically created for demo purposes",
+    "category": "sports"
+  }
+]

@@ -12,9 +12,9 @@ CREATE TABLE IF NOT EXISTS reports (
   status           VARCHAR(16)  NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','reviewing','resolved','rejected')),
   handled_by_user_id BIGINT     REFERENCES users(user_id),
   resolution       TEXT,
-  created_at       TIMESTAMPTZ  NOT NULL DEFAULT now(),
-  updated_at       TIMESTAMPTZ  NOT NULL DEFAULT now(),
-  resolved_at      TIMESTAMPTZ
+  created_at       TIMESTAMP WITH TIME ZONE  NOT NULL DEFAULT now(),
+  updated_at       TIMESTAMP WITH TIME ZONE  NOT NULL DEFAULT now(),
+  resolved_at      TIMESTAMP WITH TIME ZONE
 );
 
 CREATE INDEX IF NOT EXISTS idx_reports_target   ON reports(target_type, target_id, created_at DESC);
@@ -26,11 +26,11 @@ CREATE TABLE IF NOT EXISTS user_bans (
   user_id          BIGINT       NOT NULL REFERENCES users(user_id),
   reason           TEXT,
   status           VARCHAR(16)  NOT NULL DEFAULT 'active' CHECK (status IN ('active','revoked','expired')),
-  start_at         TIMESTAMPTZ  NOT NULL DEFAULT now(),
-  end_at           TIMESTAMPTZ,
+  start_at         TIMESTAMP WITH TIME ZONE  NOT NULL DEFAULT now(),
+  end_at           TIMESTAMP WITH TIME ZONE,
   created_by_user_id BIGINT     REFERENCES users(user_id),
-  created_at       TIMESTAMPTZ  NOT NULL DEFAULT now(),
-  updated_at       TIMESTAMPTZ  NOT NULL DEFAULT now()
+  created_at       TIMESTAMP WITH TIME ZONE  NOT NULL DEFAULT now(),
+  updated_at       TIMESTAMP WITH TIME ZONE  NOT NULL DEFAULT now()
 );
 
 CREATE INDEX IF NOT EXISTS idx_user_bans_user ON user_bans(user_id, status);

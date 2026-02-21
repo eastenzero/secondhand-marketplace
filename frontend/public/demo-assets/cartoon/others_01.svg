@@ -1,0 +1,11 @@
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1a1a2e"/><stop offset="100%" style="stop-color:#0f3460"/></linearGradient></defs>
+          <rect width="800" height="800" fill="url(#bg)"/>
+          <rect x="100" y="280" width="600" height="240" rx="20" fill="#e74c3c" stroke="#c0392b"/>
+          <circle cx="100" cy="400" r="30" fill="#1a1a2e"/>
+          <circle cx="700" cy="400" r="30" fill="#1a1a2e"/>
+          <line x1="300" y1="280" x2="300" y2="520" stroke="#c0392b" stroke-width="3" stroke-dasharray="10"/>
+          <text x="480" y="400" font-family="Arial" font-size="40" fill="white" text-anchor="middle" font-weight="bold">演唱会</text>
+          <text x="480" y="450" font-family="Arial" font-size="22" fill="#ffeeee" text-anchor="middle">★ ★ ★ ★ ★</text>
+          <text x="400" y="740" font-family="Arial" font-size="28" fill="#aaa" text-anchor="middle">演唱会门票</text>
+        </svg>

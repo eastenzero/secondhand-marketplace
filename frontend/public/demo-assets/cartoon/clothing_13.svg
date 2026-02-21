@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#5a1a3a" rx="20"/>
+  <text x="200" y="140" text-anchor="middle" fill="white" font-size="40" font-family="sans-serif">服饰</text>
+  <text x="200" y="180" text-anchor="middle" fill="#aaa" font-size="16" font-family="monospace">cartoon #13</text>
+</svg>

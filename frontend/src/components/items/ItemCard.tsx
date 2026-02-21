@@ -11,13 +11,13 @@ export function ItemCard({ item }: ItemCardProps) {
     return (
         <Link to={`/items/${item.id}`}>
             <Card className="h-full overflow-hidden transition-all hover:shadow-md">
-                <div className="aspect-video w-full bg-muted object-cover">
+                <div className="aspect-video w-full bg-slate-100 dark:bg-slate-800">
                     {/* Placeholder for image */}
                     {(item.imageUrl || (item.images && item.images.length > 0)) ? (
                         <img
                             src={item.imageUrl || item.images?.[0]}
                             alt={item.title}
-                            className="h-full w-full object-cover"
+                            className="h-full w-full object-contain"
                             loading="lazy"
                         />
                     ) : (

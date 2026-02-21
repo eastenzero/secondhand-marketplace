@@ -20,8 +20,8 @@ public class SecurityConfig {
     private final UserBanFilter userBanFilter;
 
     public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter,
-                          RestAuthenticationEntryPoint authenticationEntryPoint,
-                          UserBanFilter userBanFilter) {
+            RestAuthenticationEntryPoint authenticationEntryPoint,
+            UserBanFilter userBanFilter) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.authenticationEntryPoint = authenticationEntryPoint;
         this.userBanFilter = userBanFilter;
@@ -34,11 +34,11 @@ public class SecurityConfig {
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/register", "/api/login", "/actuator/health").permitAll()
+                        .requestMatchers("/api/system/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/items/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/demands/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/comments/**").permitAll()
-                        .anyRequest().authenticated()
-                )
+                        .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(authenticationEntryPoint))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterAfter(userBanFilter, JwtAuthenticationFilter.class);

@@ -1,0 +1,8 @@
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1c1c1c"/><stop offset="100%" style="stop-color:#2d2d2d"/></linearGradient></defs>
+          <rect width="800" height="800" fill="url(#bg)"/>
+          <path d="M250,400 Q250,200 400,200 Q550,200 550,400" fill="none" stroke="#444" stroke-width="20"/>
+          <rect x="200" y="380" width="80" height="120" rx="40" fill="#333" stroke="#555" stroke-width="3"/>
+          <rect x="520" y="380" width="80" height="120" rx="40" fill="#333" stroke="#555" stroke-width="3"/>
+          <text x="400" y="740" font-family="Arial" font-size="28" fill="#aaa" text-anchor="middle">Sony WH-1000XM5</text>
+        </svg>

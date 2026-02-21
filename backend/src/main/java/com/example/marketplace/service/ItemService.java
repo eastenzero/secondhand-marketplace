@@ -37,17 +37,20 @@ public class ItemService {
     private final boolean reviewEnabled;
     private final ListingPermissionService listingPermissionService;
     private final AuditService auditService;
+    private final ImageStyleService imageStyleService;
 
     private static final int MAX_PAGE_SIZE = 100;
 
     public ItemService(ItemRepository itemRepository,
-                       @Value("${app.review.enabled:false}") boolean reviewEnabled,
-                       ListingPermissionService listingPermissionService,
-                       AuditService auditService) {
+            @Value("${app.review.enabled:false}") boolean reviewEnabled,
+            ListingPermissionService listingPermissionService,
+            AuditService auditService,
+            ImageStyleService imageStyleService) {
         this.itemRepository = itemRepository;
         this.reviewEnabled = reviewEnabled;
         this.listingPermissionService = listingPermissionService;
         this.auditService = auditService;
+        this.imageStyleService = imageStyleService;
     }
 
     public Item createItem(CreateItemRequest request) {
@@ -98,7 +101,8 @@ public class ItemService {
         resp.setCondition(item.getCondition());
         resp.setStatus(item.getStatus());
         if (item.getImages() != null) {
-            resp.setImages(Arrays.asList(item.getImages()));
+            String[] rewritten = imageStyleService.rewriteImageUrls(item.getImages());
+            resp.setImages(Arrays.asList(rewritten));
         }
         resp.setCreatedAt(item.getCreatedAt());
         resp.setUpdatedAt(item.getUpdatedAt());
@@ -160,11 +164,11 @@ public class ItemService {
     }
 
     public ItemSearchResponse searchItems(String keywords,
-                                          String category,
-                                          BigDecimal minPrice,
-                                          BigDecimal maxPrice,
-                                          int page,
-                                          int size) {
+            String category,
+            BigDecimal minPrice,
+            BigDecimal maxPrice,
+            int page,
+            int size) {
         if (page < 1 || size < 1) {
             throw new BusinessException(ErrorCode.INVALID_RANGE, "Invalid page or size");
         }
@@ -186,8 +190,7 @@ public class ItemService {
                 category,
                 minPrice,
                 maxPrice,
-                pageable
-        );
+                pageable);
 
         List<ItemSearchResultItem> items = pageResult.getContent().stream()
                 .map(item -> {
@@ -197,7 +200,7 @@ public class ItemService {
                     dto.setPrice(item.getPrice());
                     dto.setStatus(item.getStatus());
                     if (item.getImages() != null && item.getImages().length > 0) {
-                        dto.setThumbnailUrl(item.getImages()[0]);
+                        dto.setThumbnailUrl(imageStyleService.rewriteImageUrl(item.getImages()[0]));
                     }
                     return dto;
                 })

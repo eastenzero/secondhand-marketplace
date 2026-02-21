@@ -15,9 +15,9 @@ CREATE TABLE IF NOT EXISTS orders (
   shipping_phone  VARCHAR(50)  NOT NULL,
   shipping_address TEXT        NOT NULL,
   payment_method  VARCHAR(32),
-  created_at     TIMESTAMPTZ  NOT NULL DEFAULT now(),
-  updated_at     TIMESTAMPTZ  NOT NULL DEFAULT now(),
-  deleted_at     TIMESTAMPTZ
+  created_at     TIMESTAMP WITH TIME ZONE  NOT NULL DEFAULT now(),
+  updated_at     TIMESTAMP WITH TIME ZONE  NOT NULL DEFAULT now(),
+  deleted_at     TIMESTAMP WITH TIME ZONE
 );
 
 CREATE INDEX IF NOT EXISTS idx_orders_buyer   ON orders(buyer_id, created_at DESC);
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS order_items (
   target_id     BIGINT      NOT NULL,
   quantity      INTEGER     NOT NULL DEFAULT 1 CHECK (quantity > 0),
   price         NUMERIC(10,2) NOT NULL CHECK (price > 0),
-  created_at    TIMESTAMPTZ NOT NULL DEFAULT now()
+  created_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );
 
 CREATE INDEX IF NOT EXISTS idx_order_items_order  ON order_items(order_id);

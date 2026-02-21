@@ -1,0 +1,13 @@
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#faf8f0"/><stop offset="100%" style="stop-color:#f0ead8"/></linearGradient></defs>
+          <rect width="800" height="800" fill="url(#bg)"/>
+          <path d="M200,220 Q400,180 400,300 L400,560 Q400,580 380,580 L200,560 Z" fill="#e8e0d0" stroke="#ccc"/>
+          <path d="M600,220 Q400,180 400,300 L400,560 Q400,580 420,580 L600,560 Z" fill="#e8e0d0" stroke="#ccc"/>
+          <line x1="230" y1="320" x2="390" y2="310" stroke="#ccc" stroke-width="2"/>
+          <line x1="230" y1="355" x2="390" y2="345" stroke="#ccc" stroke-width="2"/>
+          <line x1="230" y1="390" x2="390" y2="380" stroke="#ccc" stroke-width="2"/>
+          <line x1="410" y1="310" x2="570" y2="320" stroke="#ccc" stroke-width="2"/>
+          <line x1="410" y1="345" x2="570" y2="355" stroke="#ccc" stroke-width="2"/>
+          <line x1="410" y1="380" x2="570" y2="390" stroke="#ccc" stroke-width="2"/>
+          <text x="400" y="740" font-family="Arial" font-size="28" fill="#555" text-anchor="middle">三体精装版</text>
+        </svg>

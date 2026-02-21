@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Search, ArrowRight, BookOpen, Smartphone, Shirt, Armchair, MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,12 +8,17 @@ import { Badge } from '@/components/ui/badge';
 import { useItemStore } from '@/stores/useItemStore';
 import { useDemandStore } from '@/stores/useDemandStore';
 import { ItemCard } from '@/components/items/ItemCard';
+import { ImageStyleToggle } from '@/components/ImageStyleToggle';
 
 export default function Home() {
     const navigate = useNavigate();
     const { items, fetchItems, isLoading: itemsLoading } = useItemStore();
     const { demands, fetchDemands, isLoading: demandsLoading } = useDemandStore();
     const [keyword, setKeyword] = useState('');
+
+    const handleStyleChange = useCallback(() => {
+        fetchItems({ limit: 8, status: 'active' as any });
+    }, [fetchItems]);
 
     useEffect(() => {
         fetchItems({ limit: 8, status: 'active' });
@@ -50,6 +55,8 @@ export default function Home() {
                         <p className="text-lg md:text-xl text-muted-foreground max-w-[600px]">
                             安全、便捷、可信赖。连接全校师生，让每一件物品都能找到新的主人。
                         </p>
+
+                        <ImageStyleToggle onStyleChange={handleStyleChange} />
 
                         <div className="w-full max-w-md space-y-4">
                             <form onSubmit={handleSearch} className="relative flex items-center">

@@ -1,0 +1,10 @@
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#006241"/><stop offset="100%" style="stop-color:#004d33"/></linearGradient></defs>
+          <rect width="800" height="800" fill="url(#bg)"/>
+          <rect x="120" y="260" width="560" height="280" rx="25" fill="#00704a" stroke="#005538"/>
+          <path d="M350,250 Q370,200 400,180 Q430,200 450,250" fill="none" stroke="#d4aa70" stroke-width="8"/>
+          <circle cx="400" cy="180" r="20" fill="#d4aa70"/>
+          <text x="400" y="380" font-family="Georgia" font-size="38" fill="white" text-anchor="middle">Starbucks</text>
+          <text x="400" y="430" font-family="Arial" font-size="24" fill="#d4aa70" text-anchor="middle">GIFT CARD ¥500</text>
+          <text x="400" y="740" font-family="Arial" font-size="28" fill="#aaa" text-anchor="middle">星巴克礼品卡</text>
+        </svg>

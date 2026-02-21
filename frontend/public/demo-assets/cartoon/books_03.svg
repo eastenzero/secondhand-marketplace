@@ -1,0 +1,8 @@
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="g25" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#f5f0e8"/><stop offset="100%" style="stop-color:#2c3e5020"/>
+      </linearGradient></defs>
+      <rect width="800" height="800" fill="url(#g25)"/>
+      <text x="400" y="380" font-family="Arial" font-size="48" fill="#2c3e50" text-anchor="middle" font-weight="bold">BOOKS</text>
+      <text x="400" y="450" font-family="Arial" font-size="28" fill="#2c3e50aa" text-anchor="middle">优品二手</text>
+    </svg>

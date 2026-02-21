@@ -1,0 +1,13 @@
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f0f0f0"/><stop offset="100%" style="stop-color:#e0e0e0"/></linearGradient></defs>
+          <rect width="800" height="800" fill="url(#bg)"/>
+          <rect x="280" y="200" width="240" height="280" rx="20" fill="#2d2d2d"/>
+          <rect x="250" y="460" width="300" height="40" rx="5" fill="#333"/>
+          <rect x="380" y="500" width="40" height="100" fill="#333"/>
+          <ellipse cx="400" cy="620" rx="140" ry="30" fill="#555" stroke="#444"/>
+          <line x1="300" y1="610" x2="250" y2="680" stroke="#444" stroke-width="10"/>
+          <line x1="370" y1="615" x2="340" y2="690" stroke="#444" stroke-width="10"/>
+          <line x1="430" y1="615" x2="460" y2="690" stroke="#444" stroke-width="10"/>
+          <line x1="500" y1="610" x2="550" y2="680" stroke="#444" stroke-width="10"/>
+          <text x="400" y="760" font-family="Arial" font-size="28" fill="#555" text-anchor="middle">人体工学椅</text>
+        </svg>

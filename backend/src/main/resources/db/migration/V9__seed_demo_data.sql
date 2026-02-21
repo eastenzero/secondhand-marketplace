@@ -1,167 +1,196 @@
 -- V9__seed_demo_data.sql
--- Seed demo users, items, demands and comments so that the frontend
--- can display realistic example content using the real backend APIs.
+-- Phase 2E: Real product photos (webp) + price coherence
 
--- Demo users
-INSERT INTO users (username, password_hash, contact_phone, contact_email, status, role)
-VALUES
-  ('test_user', 'password', NULL, 'test@example.com', 'active', 'MEMBER'),
-  ('digital_lover', 'password', NULL, NULL, 'active', 'MEMBER'),
-  ('graduate_2024', 'password', NULL, NULL, 'active', 'MEMBER'),
-  ('code_master', 'password', NULL, NULL, 'active', 'MEMBER'),
-  ('music_fan', 'password', NULL, NULL, 'active', 'MEMBER'),
-  ('math_genius', 'password', NULL, NULL, 'active', 'MEMBER'),
-  ('sneaker_head', 'password', NULL, NULL, 'active', 'MEMBER'),
-  ('lazy_boy', 'password', NULL, NULL, 'active', 'MEMBER'),
-  ('guitar_hero', 'password', NULL, NULL, 'active', 'MEMBER'),
-  ('apple_fan', 'password', NULL, NULL, 'active', 'MEMBER'),
-  ('bookworm', 'password', NULL, NULL, 'active', 'MEMBER'),
-  ('gym_rat', 'password', NULL, NULL, 'active', 'MEMBER'),
-  ('coder', 'password', NULL, NULL, 'active', 'MEMBER'),
-  ('rider', 'password', NULL, NULL, 'active', 'MEMBER'),
-  ('student_user', 'password', NULL, NULL, 'active', 'MEMBER');
+-- Users (40)
+INSERT INTO users (username, password_hash, contact_phone, contact_email, status, role) VALUES
+('user_1', 'password', '13800000001', 'user1@example.com', 'active', 'MEMBER'),
+('user_2', 'password', '13800000002', 'user2@example.com', 'active', 'MEMBER'),
+('user_3', 'password', '13800000003', 'user3@example.com', 'active', 'MEMBER'),
+('user_4', 'password', '13800000004', 'user4@example.com', 'active', 'MEMBER'),
+('user_5', 'password', '13800000005', 'user5@example.com', 'active', 'MEMBER'),
+('user_6', 'password', '13800000006', 'user6@example.com', 'active', 'MEMBER'),
+('user_7', 'password', '13800000007', 'user7@example.com', 'active', 'MEMBER'),
+('user_8', 'password', '13800000008', 'user8@example.com', 'active', 'MEMBER'),
+('user_9', 'password', '13800000009', 'user9@example.com', 'active', 'MEMBER'),
+('user_10', 'password', '13800000010', 'user10@example.com', 'disabled', 'MEMBER'),
+('user_11', 'password', '13800000011', 'user11@example.com', 'active', 'MEMBER'),
+('user_12', 'password', '13800000012', 'user12@example.com', 'active', 'MEMBER'),
+('user_13', 'password', '13800000013', 'user13@example.com', 'active', 'MEMBER'),
+('user_14', 'password', '13800000014', 'user14@example.com', 'active', 'MEMBER'),
+('user_15', 'password', '13800000015', 'user15@example.com', 'active', 'MEMBER'),
+('user_16', 'password', '13800000016', 'user16@example.com', 'active', 'MEMBER'),
+('user_17', 'password', '13800000017', 'user17@example.com', 'active', 'MEMBER'),
+('user_18', 'password', '13800000018', 'user18@example.com', 'active', 'MEMBER'),
+('user_19', 'password', '13800000019', 'user19@example.com', 'active', 'MEMBER'),
+('user_20', 'password', '13800000020', 'user20@example.com', 'disabled', 'MEMBER'),
+('user_21', 'password', '13800000021', 'user21@example.com', 'active', 'MEMBER'),
+('user_22', 'password', '13800000022', 'user22@example.com', 'active', 'MEMBER'),
+('user_23', 'password', '13800000023', 'user23@example.com', 'active', 'MEMBER'),
+('user_24', 'password', '13800000024', 'user24@example.com', 'active', 'MEMBER'),
+('user_25', 'password', '13800000025', 'user25@example.com', 'active', 'MEMBER'),
+('user_26', 'password', '13800000026', 'user26@example.com', 'active', 'MEMBER'),
+('user_27', 'password', '13800000027', 'user27@example.com', 'active', 'MEMBER'),
+('user_28', 'password', '13800000028', 'user28@example.com', 'active', 'MEMBER'),
+('user_29', 'password', '13800000029', 'user29@example.com', 'active', 'MEMBER'),
+('user_30', 'password', '13800000030', 'user30@example.com', 'disabled', 'MEMBER'),
+('user_31', 'password', '13800000031', 'user31@example.com', 'active', 'MEMBER'),
+('user_32', 'password', '13800000032', 'user32@example.com', 'active', 'MEMBER'),
+('user_33', 'password', '13800000033', 'user33@example.com', 'active', 'MEMBER'),
+('user_34', 'password', '13800000034', 'user34@example.com', 'active', 'MEMBER'),
+('user_35', 'password', '13800000035', 'user35@example.com', 'active', 'MEMBER'),
+('user_36', 'password', '13800000036', 'user36@example.com', 'active', 'MEMBER'),
+('user_37', 'password', '13800000037', 'user37@example.com', 'active', 'MEMBER'),
+('user_38', 'password', '13800000038', 'user38@example.com', 'active', 'MEMBER'),
+('user_39', 'password', '13800000039', 'user39@example.com', 'active', 'ADMIN'),
+('user_40', 'password', '13800000040', 'user40@example.com', 'disabled', 'ADMIN');
 
--- Demo items (subset of the original frontend mock data)
-INSERT INTO items (seller_id, title, description, category, price, condition, status, images, created_at, updated_at)
-VALUES
-  (
-    (SELECT user_id FROM users WHERE username = 'digital_lover'),
-    'iPhone 15 Pro Max',
-    '99新，电池健康100%，带Apple Care+。',
-    'electronics',
-    8999.00,
-    NULL,
-    'active',
-    ARRAY['https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&q=80&w=800']::text[],
-    now() - INTERVAL '1 day',
-    now() - INTERVAL '1 day'
-  ),
-  (
-    (SELECT user_id FROM users WHERE username = 'test_user'),
-    '考研英语红宝书',
-    '全新未拆封，买多了。',
-    'books',
-    25.00,
-    NULL,
-    'active',
-    ARRAY['https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800']::text[],
-    now() - INTERVAL '2 day',
-    now() - INTERVAL '2 day'
-  ),
-  (
-    (SELECT user_id FROM users WHERE username = 'graduate_2024'),
-    '宜家台灯',
-    '毕业出，功能正常，送灯泡。',
-    'furniture',
-    30.00,
-    NULL,
-    'off',
-    ARRAY['https://images.unsplash.com/photo-1507473888900-52e1ad14592d?auto=format&fit=crop&q=80&w=800']::text[],
-    now() - INTERVAL '3 day',
-    now() - INTERVAL '3 day'
-  ),
-  (
-    (SELECT user_id FROM users WHERE username = 'code_master'),
-    'MacBook Air M1',
-    '8+256G，深空灰，轻微使用痕迹，箱说全。',
-    'electronics',
-    4500.00,
-    NULL,
-    'active',
-    ARRAY['https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&q=80&w=800']::text[],
-    now() - INTERVAL '4 day',
-    now() - INTERVAL '4 day'
-  ),
-  (
-    (SELECT user_id FROM users WHERE username = 'music_fan'),
-    '索尼 WH-1000XM4',
-    '降噪耳机，音质无敌，耳罩有点磨损，功能完好。',
-    'electronics',
-    1200.00,
-    NULL,
-    'active',
-    ARRAY['https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&q=80&w=800']::text[],
-    now() - INTERVAL '5 day',
-    now() - INTERVAL '5 day'
-  );
+-- Items (130)
+INSERT INTO items (seller_id, title, description, category, price, condition, status, images, created_at, updated_at) VALUES
+(35, '猫架/猫爬架 三层原木', '主子嫌弃不用，纯摆设。实木材质很扎实，几乎全新。', 'others', 1901.96, 'like_new', 'deleted', ARRAY['/demo-assets/photo/others_01.webp']::TEXT ARRAY, now() - INTERVAL '1' DAY - INTERVAL '18' HOUR, now() - INTERVAL '0' DAY),
+(2, '北欧风圆形落地灯', '光源柔和，带遥控器，可以调色温。摆在客厅很有氛围感。', 'furniture', 328.67, 'fair', 'active', ARRAY['/demo-assets/photo/furniture_04.webp']::TEXT ARRAY, now() - INTERVAL '74' DAY - INTERVAL '13' HOUR, now() - INTERVAL '73' DAY),
+(33, 'Nike AF1 空军一号 纯白 42码', '经典百搭款，穿了大概一个月，定期清理，鞋底无明显磨损。', 'clothing', 1152.48, 'good', 'active', ARRAY['/demo-assets/photo/clothing_03.webp']::TEXT ARRAY, now() - INTERVAL '42' DAY - INTERVAL '5' HOUR, now() - INTERVAL '41' DAY),
+(3, '始祖鸟 Arc''''teryx 抓绒外套', '正品保证，穿着很保暖。衣服九成新，无抽丝起球。', 'clothing', 1396.12, 'like_new', 'active', ARRAY['/demo-assets/photo/clothing_01.webp']::TEXT ARRAY, now() - INTERVAL '65' DAY - INTERVAL '21' HOUR, now() - INTERVAL '64' DAY),
+(36, '星巴克 星礼卡 500面值', '公司发的福利，我不喝咖啡。八折出，密码没刮开。', 'others', 852.6, 'new', 'pending', ARRAY['/demo-assets/photo/others_02.webp']::TEXT ARRAY, now() - INTERVAL '83' DAY - INTERVAL '17' HOUR, now() - INTERVAL '82' DAY),
+(4, '索尼 WH-1000XM5 降噪耳机', '出差神器，使用次数不到十次，极品成色。音质无可挑剔。', 'electronics', 8332.42, 'like_new', 'off', ARRAY['/demo-assets/photo/electronics_02.webp']::TEXT ARRAY, now() - INTERVAL '26' DAY - INTERVAL '12' HOUR, now() - INTERVAL '25' DAY),
+(40, '简易四层衣柜/置物架', '布质衣柜，安装简单，非常适合出租屋过渡期使用。', 'furniture', 2056.88, 'fair', 'active', ARRAY['/demo-assets/photo/furniture_03.webp']::TEXT ARRAY, now() - INTERVAL '76' DAY - INTERVAL '11' HOUR, now() - INTERVAL '75' DAY),
+(4, '迪奥 999 哑光口红', '试色过一次，颜色不适合我。消毒后出，带原包装盒。', 'beauty', 414.15, 'like_new', 'active', ARRAY['/demo-assets/photo/beauty_01.webp']::TEXT ARRAY, now() - INTERVAL '32' DAY - INTERVAL '3' HOUR, now() - INTERVAL '31' DAY),
+(4, '人体工学椅 电竞版', '坐垫回弹好，网布透气。升降功能和扶手调节都正常，救你的老腰。', 'furniture', 178.65, 'fair', 'draft', ARRAY['/demo-assets/photo/furniture_01.webp']::TEXT ARRAY, now() - INTERVAL '39' DAY - INTERVAL '14' HOUR, now() - INTERVAL '38' DAY),
+(26, '宜家实木书桌 120x60cm', '毕业清仓，结实耐用，桌面有一些正常使用划痕。需要上门自提。', 'furniture', 6177.87, 'new', 'active', ARRAY['/demo-assets/photo/furniture_02.webp']::TEXT ARRAY, now() - INTERVAL '13' DAY - INTERVAL '16' HOUR, now() - INTERVAL '12' DAY),
+(38, '人体工学椅 电竞版', '坐垫回弹好，网布透气。升降功能和扶手调节都正常，救你的老腰。', 'furniture', 1227.35, 'good', 'active', ARRAY['/demo-assets/photo/furniture_01.webp']::TEXT ARRAY, now() - INTERVAL '39' DAY - INTERVAL '12' HOUR, now() - INTERVAL '38' DAY),
+(21, '李宁 尤尼克斯 羽毛球拍', '刚拉的 26 磅线。拍框有一处极小掉漆，不影响使用。', 'sports', 2115.8, 'fair', 'draft', ARRAY['/demo-assets/photo/sports_02.webp']::TEXT ARRAY, now() - INTERVAL '7' DAY - INTERVAL '8' HOUR, now() - INTERVAL '6' DAY),
+(2, 'Nike AF1 空军一号 纯白 42码', '经典百搭款，穿了大概一个月，定期清理，鞋底无明显磨损。', 'clothing', 639.15, 'fair', 'off', ARRAY['/demo-assets/photo/clothing_03.webp']::TEXT ARRAY, now() - INTERVAL '70' DAY - INTERVAL '3' HOUR, now() - INTERVAL '69' DAY),
+(13, '飞利浦 电流恒温吹风机', '风力大，带负离子功能。没怎么用过，看着像新的。', 'appliance', 4667.95, 'good', 'active', ARRAY['/demo-assets/photo/appliance_02.webp']::TEXT ARRAY, now() - INTERVAL '74' DAY - INTERVAL '2' HOUR, now() - INTERVAL '73' DAY),
+(4, '北欧风圆形落地灯', '光源柔和，带遥控器，可以调色温。摆在客厅很有氛围感。', 'furniture', 3279.56, 'fair', 'pending', ARRAY['/demo-assets/photo/furniture_04.webp']::TEXT ARRAY, now() - INTERVAL '65' DAY - INTERVAL '16' HOUR, now() - INTERVAL '64' DAY),
+(10, '优衣库 U系列 纯棉 T恤 M码', '买了没试穿，吊牌还在，因为颜色买重复了所以出。全新。', 'clothing', 133.17, 'fair', 'pending', ARRAY['/demo-assets/photo/clothing_01.webp']::TEXT ARRAY, now() - INTERVAL '90' DAY - INTERVAL '6' HOUR, now() - INTERVAL '89' DAY),
+(21, 'Kindle Paperwhite 5 签名版', '盖泡面神器，几乎全新，屏幕无划痕。为了护眼买的，结果还是看手机多。', 'electronics', 702.9, 'like_new', 'active', ARRAY['/demo-assets/photo/electronics_03.webp']::TEXT ARRAY, now() - INTERVAL '80' DAY - INTERVAL '21' HOUR, now() - INTERVAL '79' DAY),
+(18, '《深入理解计算机系统》CSAPP', '硬核砖头书，仅翻阅了前三章。适合计算机专业学弟学妹。', 'books', 164.8, 'good', 'deleted', ARRAY['/demo-assets/photo/books_01.webp']::TEXT ARRAY, now() - INTERVAL '37' DAY - INTERVAL '15' HOUR, now() - INTERVAL '36' DAY),
+(28, '迪奥 999 哑光口红', '试色过一次，颜色不适合我。消毒后出，带原包装盒。', 'beauty', 931.44, 'good', 'active', ARRAY['/demo-assets/photo/beauty_01.webp']::TEXT ARRAY, now() - INTERVAL '46' DAY - INTERVAL '23' HOUR, now() - INTERVAL '45' DAY),
+(22, 'The North Face 1996 冲锋衣', 'L码，黑色。防风防雨效果好。衣服太多了清库存。', 'clothing', 557.03, 'good', 'pending', ARRAY['/demo-assets/photo/clothing_02.webp']::TEXT ARRAY, now() - INTERVAL '64' DAY - INTERVAL '5' HOUR, now() - INTERVAL '63' DAY),
+(4, '飞利浦 电流恒温吹风机', '风力大，带负离子功能。没怎么用过，看着像新的。', 'appliance', 6573.32, 'new', 'draft', ARRAY['/demo-assets/photo/appliance_02.webp']::TEXT ARRAY, now() - INTERVAL '54' DAY - INTERVAL '16' HOUR, now() - INTERVAL '53' DAY),
+(27, '简易四层衣柜/置物架', '布质衣柜，安装简单，非常适合出租屋过渡期使用。', 'furniture', 2883.38, 'fair', 'active', ARRAY['/demo-assets/photo/furniture_03.webp']::TEXT ARRAY, now() - INTERVAL '57' DAY - INTERVAL '10' HOUR, now() - INTERVAL '56' DAY),
+(29, '《深入理解计算机系统》CSAPP', '硬核砖头书，仅翻阅了前三章。适合计算机专业学弟学妹。', 'books', 58.01, 'good', 'active', ARRAY['/demo-assets/photo/books_01.webp']::TEXT ARRAY, now() - INTERVAL '66' DAY - INTERVAL '19' HOUR, now() - INTERVAL '65' DAY),
+(39, '米家 小米扫地机器人 Pro', '每天都在勤勤恳恳扫地，因为换了洗地机所以出。工作正常。', 'appliance', 3975.46, 'like_new', 'active', ARRAY['/demo-assets/photo/appliance_03.webp']::TEXT ARRAY, now() - INTERVAL '74' DAY - INTERVAL '19' HOUR, now() - INTERVAL '73' DAY),
+(19, '人体工学椅 电竞版', '坐垫回弹好，网布透气。升降功能和扶手调节都正常，救你的老腰。', 'furniture', 6244.95, 'new', 'active', ARRAY['/demo-assets/photo/furniture_01.webp']::TEXT ARRAY, now() - INTERVAL '3' DAY - INTERVAL '22' HOUR, now() - INTERVAL '2' DAY),
+(7, '周杰伦 演唱会门票 随机出', '抢多了，原价转让给杰迷。座位随机，必须先付款。', 'others', 853.2, 'fair', 'active', ARRAY['/demo-assets/photo/others_03.webp']::TEXT ARRAY, now() - INTERVAL '59' DAY - INTERVAL '3' HOUR, now() - INTERVAL '58' DAY),
+(3, '戴森 V10 吸尘器', '吸力依旧强劲。电池老化，最高档大概能用十分钟。配有多种吸头。', 'appliance', 2047.25, 'good', 'draft', ARRAY['/demo-assets/photo/appliance_01.webp']::TEXT ARRAY, now() - INTERVAL '80' DAY - INTERVAL '10' HOUR, now() - INTERVAL '79' DAY),
+(32, '三体全集（刘慈欣）精装版', '塑封已经拆了，但只读了第一部。书页无折痕，书脊完好。', 'books', 49.97, 'fair', 'active', ARRAY['/demo-assets/photo/books_02.webp']::TEXT ARRAY, now() - INTERVAL '39' DAY - INTERVAL '22' HOUR, now() - INTERVAL '38' DAY),
+(38, 'The North Face 1996 冲锋衣', 'L码，黑色。防风防雨效果好。衣服太多了清库存。', 'clothing', 489.44, 'fair', 'draft', ARRAY['/demo-assets/photo/clothing_02.webp']::TEXT ARRAY, now() - INTERVAL '1' DAY - INTERVAL '15' HOUR, now() - INTERVAL '0' DAY),
+(10, '公路自行车 铝合金车架', '骑了不到三百公里，变线刹车全好。换工作了不方便骑车通勤。', 'sports', 146.77, 'fair', 'active', ARRAY['/demo-assets/photo/sports_01.webp']::TEXT ARRAY, now() - INTERVAL '88' DAY - INTERVAL '23' HOUR, now() - INTERVAL '87' DAY),
+(26, 'MacBook Air M2 16G 512G', '大学时期用来写代码的，保护得很好。附带原装充电器和一个内胆包。', 'electronics', 1474.66, 'good', 'deleted', ARRAY['/demo-assets/photo/electronics_06.webp']::TEXT ARRAY, now() - INTERVAL '2' DAY - INTERVAL '3' HOUR, now() - INTERVAL '1' DAY),
+(7, '始祖鸟 Arc''''teryx 抓绒外套', '正品保证，穿着很保暖。衣服九成新，无抽丝起球。', 'clothing', 636.33, 'good', 'active', ARRAY['/demo-assets/photo/clothing_02.webp']::TEXT ARRAY, now() - INTERVAL '75' DAY - INTERVAL '15' HOUR, now() - INTERVAL '74' DAY),
+(25, '人体工学椅 电竞版', '坐垫回弹好，网布透气。升降功能和扶手调节都正常，救你的老腰。', 'furniture', 4336.83, 'good', 'active', ARRAY['/demo-assets/photo/furniture_01.webp']::TEXT ARRAY, now() - INTERVAL '79' DAY - INTERVAL '17' HOUR, now() - INTERVAL '78' DAY),
+(31, '李宁 尤尼克斯 羽毛球拍', '刚拉的 26 磅线。拍框有一处极小掉漆，不影响使用。', 'sports', 1498.71, 'fair', 'deleted', ARRAY['/demo-assets/photo/sports_02.webp']::TEXT ARRAY, now() - INTERVAL '83' DAY - INTERVAL '16' HOUR, now() - INTERVAL '82' DAY),
+(3, '星巴克 星礼卡 500面值', '公司发的福利，我不喝咖啡。八折出，密码没刮开。', 'others', 1178.36, 'new', 'pending', ARRAY['/demo-assets/photo/others_02.webp']::TEXT ARRAY, now() - INTERVAL '89' DAY - INTERVAL '21' HOUR, now() - INTERVAL '88' DAY),
+(8, '人体工学椅 电竞版', '坐垫回弹好，网布透气。升降功能和扶手调节都正常，救你的老腰。', 'furniture', 1138.64, 'like_new', 'off', ARRAY['/demo-assets/photo/furniture_01.webp']::TEXT ARRAY, now() - INTERVAL '49' DAY - INTERVAL '12' HOUR, now() - INTERVAL '48' DAY),
+(6, '人体工学椅 电竞版', '坐垫回弹好，网布透气。升降功能和扶手调节都正常，救你的老腰。', 'furniture', 5502.87, 'like_new', 'draft', ARRAY['/demo-assets/photo/furniture_01.webp']::TEXT ARRAY, now() - INTERVAL '52' DAY - INTERVAL '10' HOUR, now() - INTERVAL '51' DAY),
+(34, '周杰伦 演唱会门票 随机出', '抢多了，原价转让给杰迷。座位随机，必须先付款。', 'others', 1034.5, 'like_new', 'active', ARRAY['/demo-assets/photo/others_03.webp']::TEXT ARRAY, now() - INTERVAL '17' DAY - INTERVAL '16' HOUR, now() - INTERVAL '16' DAY),
+(39, '人体工学椅 电竞版', '坐垫回弹好，网布透气。升降功能和扶手调节都正常，救你的老腰。', 'furniture', 2432.93, 'new', 'active', ARRAY['/demo-assets/photo/furniture_01.webp']::TEXT ARRAY, now() - INTERVAL '17' DAY - INTERVAL '17' HOUR, now() - INTERVAL '16' DAY),
+(12, '李宁 尤尼克斯 羽毛球拍', '刚拉的 26 磅线。拍框有一处极小掉漆，不影响使用。', 'sports', 3234.13, 'good', 'off', ARRAY['/demo-assets/photo/sports_02.webp']::TEXT ARRAY, now() - INTERVAL '68' DAY - INTERVAL '19' HOUR, now() - INTERVAL '67' DAY),
+(10, '星巴克 星礼卡 500面值', '公司发的福利，我不喝咖啡。八折出，密码没刮开。', 'others', 1329.97, 'good', 'off', ARRAY['/demo-assets/photo/others_02.webp']::TEXT ARRAY, now() - INTERVAL '78' DAY - INTERVAL '11' HOUR, now() - INTERVAL '77' DAY),
+(39, 'The North Face 1996 冲锋衣', 'L码，黑色。防风防雨效果好。衣服太多了清库存。', 'clothing', 453.54, 'new', 'active', ARRAY['/demo-assets/photo/clothing_02.webp']::TEXT ARRAY, now() - INTERVAL '11' DAY - INTERVAL '9' HOUR, now() - INTERVAL '10' DAY),
+(11, '宜家实木书桌 120x60cm', '毕业清仓，结实耐用，桌面有一些正常使用划痕。需要上门自提。', 'furniture', 1486.13, 'new', 'active', ARRAY['/demo-assets/photo/furniture_02.webp']::TEXT ARRAY, now() - INTERVAL '79' DAY - INTERVAL '3' HOUR, now() - INTERVAL '78' DAY),
+(7, '猫架/猫爬架 三层原木', '主子嫌弃不用，纯摆设。实木材质很扎实，几乎全新。', 'others', 92.12, 'new', 'off', ARRAY['/demo-assets/photo/others_01.webp']::TEXT ARRAY, now() - INTERVAL '43' DAY - INTERVAL '11' HOUR, now() - INTERVAL '42' DAY),
+(7, '人体工学椅 电竞版', '坐垫回弹好，网布透气。升降功能和扶手调节都正常，救你的老腰。', 'furniture', 2118.65, 'good', 'active', ARRAY['/demo-assets/photo/furniture_01.webp']::TEXT ARRAY, now() - INTERVAL '88' DAY - INTERVAL '19' HOUR, now() - INTERVAL '87' DAY),
+(4, '李宁 尤尼克斯 羽毛球拍', '刚拉的 26 磅线。拍框有一处极小掉漆，不影响使用。', 'sports', 1988.58, 'fair', 'off', ARRAY['/demo-assets/photo/sports_02.webp']::TEXT ARRAY, now() - INTERVAL '44' DAY - INTERVAL '6' HOUR, now() - INTERVAL '43' DAY),
+(11, '米家 小米扫地机器人 Pro', '每天都在勤勤恳恳扫地，因为换了洗地机所以出。工作正常。', 'appliance', 1987.98, 'good', 'deleted', ARRAY['/demo-assets/photo/appliance_03.webp']::TEXT ARRAY, now() - INTERVAL '33' DAY - INTERVAL '7' HOUR, now() - INTERVAL '32' DAY),
+(40, '迪奥 999 哑光口红', '试色过一次，颜色不适合我。消毒后出，带原包装盒。', 'beauty', 1488.03, 'like_new', 'deleted', ARRAY['/demo-assets/photo/beauty_01.webp']::TEXT ARRAY, now() - INTERVAL '49' DAY - INTERVAL '6' HOUR, now() - INTERVAL '48' DAY),
+(11, '罗技 MX Master 3S 无线鼠标', '办公升级换下来的，微动完美，续航还有很久。带接收器。', 'electronics', 9480.25, 'new', 'draft', ARRAY['/demo-assets/photo/electronics_05.webp']::TEXT ARRAY, now() - INTERVAL '6' DAY - INTERVAL '4' HOUR, now() - INTERVAL '5' DAY),
+(11, '九阳 破壁机/榨汁机', '给宝宝做辅食用了一年，现在用不上了。刀头锋利，无异味。', 'appliance', 3236.18, 'new', 'off', ARRAY['/demo-assets/photo/appliance_04.webp']::TEXT ARRAY, now() - INTERVAL '28' DAY - INTERVAL '1' HOUR, now() - INTERVAL '27' DAY),
+(21, '三体全集（刘慈欣）精装版', '塑封已经拆了，但只读了第一部。书页无折痕，书脊完好。', 'books', 93.86, 'fair', 'active', ARRAY['/demo-assets/photo/books_02.webp']::TEXT ARRAY, now() - INTERVAL '87' DAY - INTERVAL '17' HOUR, now() - INTERVAL '86' DAY),
+(18, '新概念英语 1-4册全套', '买来想好好学英语的，结果完全没动。现低价打包出售，适合初学者。', 'books', 133.37, 'good', 'off', ARRAY['/demo-assets/photo/books_03.webp']::TEXT ARRAY, now() - INTERVAL '28' DAY - INTERVAL '20' HOUR, now() - INTERVAL '27' DAY),
+(7, '迪奥 999 哑光口红', '试色过一次，颜色不适合我。消毒后出，带原包装盒。', 'beauty', 2226.13, 'new', 'active', ARRAY['/demo-assets/photo/beauty_01.webp']::TEXT ARRAY, now() - INTERVAL '45' DAY - INTERVAL '8' HOUR, now() - INTERVAL '44' DAY),
+(40, '索尼 WH-1000XM5 降噪耳机', '出差神器，使用次数不到十次，极品成色。音质无可挑剔。', 'electronics', 3896.8, 'fair', 'active', ARRAY['/demo-assets/photo/electronics_02.webp']::TEXT ARRAY, now() - INTERVAL '37' DAY - INTERVAL '10' HOUR, now() - INTERVAL '36' DAY),
+(25, '北欧风圆形落地灯', '光源柔和，带遥控器，可以调色温。摆在客厅很有氛围感。', 'furniture', 3039.88, 'fair', 'active', ARRAY['/demo-assets/photo/furniture_04.webp']::TEXT ARRAY, now() - INTERVAL '75' DAY - INTERVAL '20' HOUR, now() - INTERVAL '74' DAY),
+(35, '索尼 WH-1000XM5 降噪耳机', '出差神器，使用次数不到十次，极品成色。音质无可挑剔。', 'electronics', 8050.29, 'new', 'off', ARRAY['/demo-assets/photo/electronics_02.webp']::TEXT ARRAY, now() - INTERVAL '32' DAY - INTERVAL '21' HOUR, now() - INTERVAL '31' DAY),
+(38, '周杰伦 演唱会门票 随机出', '抢多了，原价转让给杰迷。座位随机，必须先付款。', 'others', 1373.72, 'like_new', 'deleted', ARRAY['/demo-assets/photo/others_03.webp']::TEXT ARRAY, now() - INTERVAL '83' DAY - INTERVAL '4' HOUR, now() - INTERVAL '82' DAY),
+(6, '简易四层衣柜/置物架', '布质衣柜，安装简单，非常适合出租屋过渡期使用。', 'furniture', 771.14, 'like_new', 'active', ARRAY['/demo-assets/photo/furniture_03.webp']::TEXT ARRAY, now() - INTERVAL '12' DAY - INTERVAL '13' HOUR, now() - INTERVAL '11' DAY),
+(15, 'Apple Watch Series 9 45mm', '蜂窝版，带了几个月，因为换安卓手机所以出了。表盘无磕碰。', 'electronics', 5211.19, 'new', 'pending', ARRAY['/demo-assets/photo/electronics_04.webp']::TEXT ARRAY, now() - INTERVAL '34' DAY - INTERVAL '17' HOUR, now() - INTERVAL '33' DAY),
+(3, '海蓝之谜 面霜 30ml 全新', '年会抽奖的奖品，用不上。查过批号，保真。', 'beauty', 129.95, 'like_new', 'active', ARRAY['/demo-assets/photo/beauty_03.webp']::TEXT ARRAY, now() - INTERVAL '10' DAY - INTERVAL '5' HOUR, now() - INTERVAL '9' DAY),
+(19, '戴森 V10 吸尘器', '吸力依旧强劲。电池老化，最高档大概能用十分钟。配有多种吸头。', 'appliance', 6621.91, 'like_new', 'active', ARRAY['/demo-assets/photo/appliance_01.webp']::TEXT ARRAY, now() - INTERVAL '54' DAY - INTERVAL '16' HOUR, now() - INTERVAL '53' DAY),
+(22, '飞利浦 电流恒温吹风机', '风力大，带负离子功能。没怎么用过，看着像新的。', 'appliance', 4665.49, 'like_new', 'deleted', ARRAY['/demo-assets/photo/appliance_02.webp']::TEXT ARRAY, now() - INTERVAL '83' DAY - INTERVAL '12' HOUR, now() - INTERVAL '82' DAY),
+(3, 'The North Face 1996 冲锋衣', 'L码，黑色。防风防雨效果好。衣服太多了清库存。', 'clothing', 142.88, 'fair', 'active', ARRAY['/demo-assets/photo/clothing_02.webp']::TEXT ARRAY, now() - INTERVAL '34' DAY - INTERVAL '1' HOUR, now() - INTERVAL '33' DAY),
+(18, '简易四层衣柜/置物架', '布质衣柜，安装简单，非常适合出租屋过渡期使用。', 'furniture', 3433.47, 'good', 'off', ARRAY['/demo-assets/photo/furniture_03.webp']::TEXT ARRAY, now() - INTERVAL '89' DAY - INTERVAL '15' HOUR, now() - INTERVAL '88' DAY),
+(28, '公路自行车 铝合金车架', '骑了不到三百公里，变线刹车全好。换工作了不方便骑车通勤。', 'sports', 1884.3, 'fair', 'active', ARRAY['/demo-assets/photo/sports_01.webp']::TEXT ARRAY, now() - INTERVAL '81' DAY - INTERVAL '3' HOUR, now() - INTERVAL '80' DAY),
+(38, 'Nike AF1 空军一号 纯白 42码', '经典百搭款，穿了大概一个月，定期清理，鞋底无明显磨损。', 'clothing', 1012.87, 'new', 'active', ARRAY['/demo-assets/photo/clothing_03.webp']::TEXT ARRAY, now() - INTERVAL '1' DAY - INTERVAL '11' HOUR, now() - INTERVAL '0' DAY),
+(9, '海蓝之谜 面霜 30ml 全新', '年会抽奖的奖品，用不上。查过批号，保真。', 'beauty', 452.62, 'good', 'draft', ARRAY['/demo-assets/photo/beauty_03.webp']::TEXT ARRAY, now() - INTERVAL '13' DAY - INTERVAL '14' HOUR, now() - INTERVAL '12' DAY),
+(27, '考研数学复习全书+习题', '学长上岸后留下的祈福秘籍，做了不到二十页，几乎全新。', 'books', 140.4, 'good', 'off', ARRAY['/demo-assets/photo/books_04.webp']::TEXT ARRAY, now() - INTERVAL '58' DAY - INTERVAL '5' HOUR, now() - INTERVAL '57' DAY),
+(14, '索尼 WH-1000XM5 降噪耳机', '出差神器，使用次数不到十次，极品成色。音质无可挑剔。', 'electronics', 5223.22, 'like_new', 'active', ARRAY['/demo-assets/photo/electronics_02.webp']::TEXT ARRAY, now() - INTERVAL '69' DAY - INTERVAL '13' HOUR, now() - INTERVAL '68' DAY),
+(23, '公路自行车 铝合金车架', '骑了不到三百公里，变线刹车全好。换工作了不方便骑车通勤。', 'sports', 2965.52, 'like_new', 'draft', ARRAY['/demo-assets/photo/sports_01.webp']::TEXT ARRAY, now() - INTERVAL '24' DAY - INTERVAL '22' HOUR, now() - INTERVAL '23' DAY),
+(38, '三体全集（刘慈欣）精装版', '塑封已经拆了，但只读了第一部。书页无折痕，书脊完好。', 'books', 72.21, 'like_new', 'active', ARRAY['/demo-assets/photo/books_02.webp']::TEXT ARRAY, now() - INTERVAL '47' DAY - INTERVAL '13' HOUR, now() - INTERVAL '46' DAY),
+(29, '迪奥 999 哑光口红', '试色过一次，颜色不适合我。消毒后出，带原包装盒。', 'beauty', 397.43, 'like_new', 'off', ARRAY['/demo-assets/photo/beauty_01.webp']::TEXT ARRAY, now() - INTERVAL '42' DAY - INTERVAL '18' HOUR, now() - INTERVAL '41' DAY),
+(23, 'Zara 休闲西装外套 S码', '面试的时候穿过一次，非常修身。颜色是藏青色。', 'clothing', 246.23, 'good', 'active', ARRAY['/demo-assets/photo/clothing_04.webp']::TEXT ARRAY, now() - INTERVAL '2' DAY - INTERVAL '20' HOUR, now() - INTERVAL '1' DAY),
+(35, '北欧风圆形落地灯', '光源柔和，带遥控器，可以调色温。摆在客厅很有氛围感。', 'furniture', 2831.69, 'good', 'off', ARRAY['/demo-assets/photo/furniture_04.webp']::TEXT ARRAY, now() - INTERVAL '8' DAY - INTERVAL '14' HOUR, now() - INTERVAL '7' DAY),
+(7, 'Kindle Paperwhite 5 签名版', '盖泡面神器，几乎全新，屏幕无划痕。为了护眼买的，结果还是看手机多。', 'electronics', 4967.29, 'good', 'active', ARRAY['/demo-assets/photo/electronics_03.webp']::TEXT ARRAY, now() - INTERVAL '58' DAY - INTERVAL '23' HOUR, now() - INTERVAL '57' DAY),
+(19, '始祖鸟 Arc''''teryx 抓绒外套', '正品保证，穿着很保暖。衣服九成新，无抽丝起球。', 'clothing', 748.41, 'good', 'active', ARRAY['/demo-assets/photo/clothing_03.webp']::TEXT ARRAY, now() - INTERVAL '31' DAY - INTERVAL '5' HOUR, now() - INTERVAL '30' DAY),
+(9, '人体工学椅 电竞版', '坐垫回弹好，网布透气。升降功能和扶手调节都正常，救你的老腰。', 'furniture', 4756.45, 'good', 'off', ARRAY['/demo-assets/photo/furniture_01.webp']::TEXT ARRAY, now() - INTERVAL '42' DAY - INTERVAL '13' HOUR, now() - INTERVAL '41' DAY),
+(8, '迪奥 999 哑光口红', '试色过一次，颜色不适合我。消毒后出，带原包装盒。', 'beauty', 1164.89, 'like_new', 'active', ARRAY['/demo-assets/photo/beauty_02.webp']::TEXT ARRAY, now() - INTERVAL '8' DAY - INTERVAL '7' HOUR, now() - INTERVAL '7' DAY),
+(20, '三体全集（刘慈欣）精装版', '塑封已经拆了，但只读了第一部。书页无折痕，书脊完好。', 'books', 168.17, 'good', 'deleted', ARRAY['/demo-assets/photo/books_02.webp']::TEXT ARRAY, now() - INTERVAL '5' DAY - INTERVAL '6' HOUR, now() - INTERVAL '4' DAY),
+(30, '毛泽东选集 第一卷至第四卷', '经典好书，适合收藏或阅读。品相九五新，无笔记。', 'books', 17.78, 'good', 'deleted', ARRAY['/demo-assets/photo/books_05.webp']::TEXT ARRAY, now() - INTERVAL '32' DAY - INTERVAL '15' HOUR, now() - INTERVAL '31' DAY),
+(14, '优衣库 U系列 纯棉 T恤 M码', '买了没试穿，吊牌还在，因为颜色买重复了所以出。全新。', 'clothing', 1054.15, 'good', 'active', ARRAY['/demo-assets/photo/clothing_01.webp']::TEXT ARRAY, now() - INTERVAL '87' DAY - INTERVAL '12' HOUR, now() - INTERVAL '86' DAY),
+(38, '周杰伦 演唱会门票 随机出', '抢多了，原价转让给杰迷。座位随机，必须先付款。', 'others', 1945.68, 'good', 'active', ARRAY['/demo-assets/photo/others_03.webp']::TEXT ARRAY, now() - INTERVAL '24' DAY - INTERVAL '4' HOUR, now() - INTERVAL '23' DAY),
+(27, '猫架/猫爬架 三层原木', '主子嫌弃不用，纯摆设。实木材质很扎实，几乎全新。', 'others', 629.18, 'new', 'active', ARRAY['/demo-assets/photo/others_01.webp']::TEXT ARRAY, now() - INTERVAL '65' DAY - INTERVAL '11' HOUR, now() - INTERVAL '64' DAY),
+(8, '迪奥 999 哑光口红', '试色过一次，颜色不适合我。消毒后出，带原包装盒。', 'beauty', 2439.99, 'like_new', 'active', ARRAY['/demo-assets/photo/beauty_01.webp']::TEXT ARRAY, now() - INTERVAL '15' DAY - INTERVAL '14' HOUR, now() - INTERVAL '14' DAY),
+(1, 'SK-II 神仙水 230ml', '使用了大概五分之一，不太适合我的肤质，低价转让。', 'beauty', 769.62, 'new', 'active', ARRAY['/demo-assets/photo/beauty_04.webp']::TEXT ARRAY, now() - INTERVAL '66' DAY - INTERVAL '3' HOUR, now() - INTERVAL '65' DAY),
+(15, '毛泽东选集 第一卷至第四卷', '经典好书，适合收藏或阅读。品相九五新，无笔记。', 'books', 125.2, 'fair', 'active', ARRAY['/demo-assets/photo/books_05.webp']::TEXT ARRAY, now() - INTERVAL '35' DAY - INTERVAL '13' HOUR, now() - INTERVAL '34' DAY),
+(10, '始祖鸟 Arc''''teryx 抓绒外套', '正品保证，穿着很保暖。衣服九成新，无抽丝起球。', 'clothing', 251.67, 'fair', 'active', ARRAY['/demo-assets/photo/clothing_04.webp']::TEXT ARRAY, now() - INTERVAL '74' DAY - INTERVAL '8' HOUR, now() - INTERVAL '73' DAY),
+(34, '简易四层衣柜/置物架', '布质衣柜，安装简单，非常适合出租屋过渡期使用。', 'furniture', 5008.65, 'good', 'draft', ARRAY['/demo-assets/photo/furniture_03.webp']::TEXT ARRAY, now() - INTERVAL '65' DAY - INTERVAL '1' HOUR, now() - INTERVAL '64' DAY),
+(28, '优衣库 U系列 纯棉 T恤 M码', '买了没试穿，吊牌还在，因为颜色买重复了所以出。全新。', 'clothing', 845.95, 'like_new', 'active', ARRAY['/demo-assets/photo/clothing_01.webp']::TEXT ARRAY, now() - INTERVAL '47' DAY - INTERVAL '13' HOUR, now() - INTERVAL '46' DAY),
+(19, '宜家实木书桌 120x60cm', '毕业清仓，结实耐用，桌面有一些正常使用划痕。需要上门自提。', 'furniture', 3643.22, 'good', 'active', ARRAY['/demo-assets/photo/furniture_02.webp']::TEXT ARRAY, now() - INTERVAL '68' DAY - INTERVAL '7' HOUR, now() - INTERVAL '67' DAY),
+(37, '考研数学复习全书+习题', '学长上岸后留下的祈福秘籍，做了不到二十页，几乎全新。', 'books', 54.54, 'fair', 'active', ARRAY['/demo-assets/photo/books_04.webp']::TEXT ARRAY, now() - INTERVAL '85' DAY - INTERVAL '9' HOUR, now() - INTERVAL '84' DAY),
+(34, '星巴克 星礼卡 500面值', '公司发的福利，我不喝咖啡。八折出，密码没刮开。', 'others', 1399.91, 'good', 'active', ARRAY['/demo-assets/photo/others_02.webp']::TEXT ARRAY, now() - INTERVAL '68' DAY - INTERVAL '6' HOUR, now() - INTERVAL '67' DAY),
+(27, 'SK-II 神仙水 230ml', '使用了大概五分之一，不太适合我的肤质，低价转让。', 'beauty', 2316.8, 'like_new', 'active', ARRAY['/demo-assets/photo/beauty_04.webp']::TEXT ARRAY, now() - INTERVAL '86' DAY - INTERVAL '10' HOUR, now() - INTERVAL '85' DAY),
+(36, 'iPhone 15 Pro Max 256G', '电池健康98%，无拆无修，一直贴膜带壳使用。支持发快递或当面交易。', 'electronics', 2929.3, 'good', 'active', ARRAY['/demo-assets/photo/electronics_01.webp']::TEXT ARRAY, now() - INTERVAL '20' DAY - INTERVAL '7' HOUR, now() - INTERVAL '19' DAY),
+(20, 'Apple Watch Series 9 45mm', '蜂窝版，带了几个月，因为换安卓手机所以出了。表盘无磕碰。', 'electronics', 4376.06, 'fair', 'pending', ARRAY['/demo-assets/photo/electronics_04.webp']::TEXT ARRAY, now() - INTERVAL '82' DAY - INTERVAL '11' HOUR, now() - INTERVAL '81' DAY),
+(20, '戴森 V10 吸尘器', '吸力依旧强劲。电池老化，最高档大概能用十分钟。配有多种吸头。', 'appliance', 3239.92, 'fair', 'pending', ARRAY['/demo-assets/photo/appliance_01.webp']::TEXT ARRAY, now() - INTERVAL '67' DAY - INTERVAL '19' HOUR, now() - INTERVAL '66' DAY),
+(32, '毛泽东选集 第一卷至第四卷', '经典好书，适合收藏或阅读。品相九五新，无笔记。', 'books', 158.56, 'new', 'active', ARRAY['/demo-assets/photo/books_05.webp']::TEXT ARRAY, now() - INTERVAL '10' DAY - INTERVAL '20' HOUR, now() - INTERVAL '9' DAY),
+(8, 'Nike AF1 空军一号 纯白 42码', '经典百搭款，穿了大概一个月，定期清理，鞋底无明显磨损。', 'clothing', 243.81, 'fair', 'active', ARRAY['/demo-assets/photo/clothing_03.webp']::TEXT ARRAY, now() - INTERVAL '51' DAY - INTERVAL '11' HOUR, now() - INTERVAL '50' DAY),
+(10, '新概念英语 1-4册全套', '买来想好好学英语的，结果完全没动。现低价打包出售，适合初学者。', 'books', 88.32, 'new', 'active', ARRAY['/demo-assets/photo/books_03.webp']::TEXT ARRAY, now() - INTERVAL '16' DAY - INTERVAL '6' HOUR, now() - INTERVAL '15' DAY),
+(35, '戴森 V10 吸尘器', '吸力依旧强劲。电池老化，最高档大概能用十分钟。配有多种吸头。', 'appliance', 1650.36, 'like_new', 'active', ARRAY['/demo-assets/photo/appliance_01.webp']::TEXT ARRAY, now() - INTERVAL '52' DAY - INTERVAL '8' HOUR, now() - INTERVAL '51' DAY),
+(39, '考研数学复习全书+习题', '学长上岸后留下的祈福秘籍，做了不到二十页，几乎全新。', 'books', 108.81, 'fair', 'active', ARRAY['/demo-assets/photo/books_04.webp']::TEXT ARRAY, now() - INTERVAL '60' DAY - INTERVAL '22' HOUR, now() - INTERVAL '59' DAY),
+(5, '毛泽东选集 第一卷至第四卷', '经典好书，适合收藏或阅读。品相九五新，无笔记。', 'books', 11.95, 'like_new', 'deleted', ARRAY['/demo-assets/photo/books_05.webp']::TEXT ARRAY, now() - INTERVAL '27' DAY - INTERVAL '20' HOUR, now() - INTERVAL '26' DAY),
+(1, '公路自行车 铝合金车架', '骑了不到三百公里，变线刹车全好。换工作了不方便骑车通勤。', 'sports', 732.69, 'fair', 'active', ARRAY['/demo-assets/photo/sports_01.webp']::TEXT ARRAY, now() - INTERVAL '51' DAY - INTERVAL '20' HOUR, now() - INTERVAL '50' DAY),
+(12, 'SK-II 神仙水 230ml', '使用了大概五分之一，不太适合我的肤质，低价转让。', 'beauty', 793.14, 'good', 'active', ARRAY['/demo-assets/photo/beauty_04.webp']::TEXT ARRAY, now() - INTERVAL '45' DAY - INTERVAL '6' HOUR, now() - INTERVAL '44' DAY),
+(37, 'SK-II 神仙水 230ml', '使用了大概五分之一，不太适合我的肤质，低价转让。', 'beauty', 703.95, 'new', 'active', ARRAY['/demo-assets/photo/beauty_04.webp']::TEXT ARRAY, now() - INTERVAL '28' DAY - INTERVAL '21' HOUR, now() - INTERVAL '27' DAY),
+(7, '星巴克 星礼卡 500面值', '公司发的福利，我不喝咖啡。八折出，密码没刮开。', 'others', 409.04, 'fair', 'deleted', ARRAY['/demo-assets/photo/others_02.webp']::TEXT ARRAY, now() - INTERVAL '8' DAY - INTERVAL '12' HOUR, now() - INTERVAL '7' DAY),
+(39, '公路自行车 铝合金车架', '骑了不到三百公里，变线刹车全好。换工作了不方便骑车通勤。', 'sports', 3969.58, 'like_new', 'active', ARRAY['/demo-assets/photo/sports_01.webp']::TEXT ARRAY, now() - INTERVAL '78' DAY - INTERVAL '21' HOUR, now() - INTERVAL '77' DAY),
+(15, '迪卡侬 哑铃套装 15KG', '原打算在家练肌肉的，结果成了阻门器。有点重，限自提。', 'sports', 2126.83, 'like_new', 'active', ARRAY['/demo-assets/photo/sports_03.webp']::TEXT ARRAY, now() - INTERVAL '54' DAY - INTERVAL '14' HOUR, now() - INTERVAL '53' DAY),
+(30, '瑜伽垫 + 泡沫轴 套装', '防滑加厚款，完全没用过，还在吃灰中。适合居家健身新手。', 'sports', 1307.26, 'like_new', 'off', ARRAY['/demo-assets/photo/sports_04.webp']::TEXT ARRAY, now() - INTERVAL '18' DAY - INTERVAL '13' HOUR, now() - INTERVAL '17' DAY),
+(21, '戴森 V10 吸尘器', '吸力依旧强劲。电池老化，最高档大概能用十分钟。配有多种吸头。', 'appliance', 4213.8, 'like_new', 'deleted', ARRAY['/demo-assets/photo/appliance_01.webp']::TEXT ARRAY, now() - INTERVAL '85' DAY - INTERVAL '19' HOUR, now() - INTERVAL '84' DAY),
+(5, 'iPhone 15 Pro Max 256G', '电池健康98%，无拆无修，一直贴膜带壳使用。支持发快递或当面交易。', 'electronics', 1450.95, 'fair', 'active', ARRAY['/demo-assets/photo/electronics_01.webp']::TEXT ARRAY, now() - INTERVAL '21' DAY - INTERVAL '1' HOUR, now() - INTERVAL '20' DAY),
+(19, '雅诗兰黛 小棕瓶精华 50ml', '免税店带回，带外盒和塑封。保质期到明年底，囤多了出。', 'beauty', 735.89, 'like_new', 'active', ARRAY['/demo-assets/photo/beauty_04.webp']::TEXT ARRAY, now() - INTERVAL '4' DAY - INTERVAL '2' HOUR, now() - INTERVAL '3' DAY),
+(6, '九阳 破壁机/榨汁机', '给宝宝做辅食用了一年，现在用不上了。刀头锋利，无异味。', 'appliance', 4156.53, 'like_new', 'active', ARRAY['/demo-assets/photo/appliance_04.webp']::TEXT ARRAY, now() - INTERVAL '35' DAY - INTERVAL '14' HOUR, now() - INTERVAL '34' DAY),
+(36, '米家 小米扫地机器人 Pro', '每天都在勤勤恳恳扫地，因为换了洗地机所以出。工作正常。', 'appliance', 3899.39, 'fair', 'active', ARRAY['/demo-assets/photo/appliance_03.webp']::TEXT ARRAY, now() - INTERVAL '34' DAY - INTERVAL '2' HOUR, now() - INTERVAL '33' DAY),
+(24, '简易四层衣柜/置物架', '布质衣柜，安装简单，非常适合出租屋过渡期使用。', 'furniture', 2635.3, 'good', 'off', ARRAY['/demo-assets/photo/furniture_03.webp']::TEXT ARRAY, now() - INTERVAL '37' DAY - INTERVAL '15' HOUR, now() - INTERVAL '36' DAY),
+(10, '宜家实木书桌 120x60cm', '毕业清仓，结实耐用，桌面有一些正常使用划痕。需要上门自提。', 'furniture', 3147.62, 'like_new', 'active', ARRAY['/demo-assets/photo/furniture_02.webp']::TEXT ARRAY, now() - INTERVAL '54' DAY - INTERVAL '5' HOUR, now() - INTERVAL '53' DAY),
+(14, '戴森 V10 吸尘器', '吸力依旧强劲。电池老化，最高档大概能用十分钟。配有多种吸头。', 'appliance', 5454.37, 'good', 'deleted', ARRAY['/demo-assets/photo/appliance_01.webp']::TEXT ARRAY, now() - INTERVAL '66' DAY - INTERVAL '3' HOUR, now() - INTERVAL '65' DAY),
+(15, '米家 小米扫地机器人 Pro', '每天都在勤勤恳恳扫地，因为换了洗地机所以出。工作正常。', 'appliance', 6015.4, 'new', 'active', ARRAY['/demo-assets/photo/appliance_03.webp']::TEXT ARRAY, now() - INTERVAL '36' DAY - INTERVAL '21' HOUR, now() - INTERVAL '35' DAY),
+(6, '雅诗兰黛 小棕瓶精华 50ml', '免税店带回，带外盒和塑封。保质期到明年底，囤多了出。', 'beauty', 315.1, 'like_new', 'active', ARRAY['/demo-assets/photo/beauty_04.webp']::TEXT ARRAY, now() - INTERVAL '48' DAY - INTERVAL '1' HOUR, now() - INTERVAL '47' DAY),
+(29, '公路自行车 铝合金车架', '骑了不到三百公里，变线刹车全好。换工作了不方便骑车通勤。', 'sports', 2472.89, 'like_new', 'active', ARRAY['/demo-assets/photo/sports_01.webp']::TEXT ARRAY, now() - INTERVAL '74' DAY - INTERVAL '1' HOUR, now() - INTERVAL '73' DAY),
+(2, '星巴克 星礼卡 500面值', '公司发的福利，我不喝咖啡。八折出，密码没刮开。', 'others', 607.91, 'good', 'active', ARRAY['/demo-assets/photo/others_02.webp']::TEXT ARRAY, now() - INTERVAL '46' DAY - INTERVAL '15' HOUR, now() - INTERVAL '45' DAY),
+(14, 'The North Face 1996 冲锋衣', 'L码，黑色。防风防雨效果好。衣服太多了清库存。', 'clothing', 316.8, 'fair', 'active', ARRAY['/demo-assets/photo/clothing_02.webp']::TEXT ARRAY, now() - INTERVAL '60' DAY - INTERVAL '2' HOUR, now() - INTERVAL '59' DAY),
+(20, '飞利浦 电流恒温吹风机', '风力大，带负离子功能。没怎么用过，看着像新的。', 'appliance', 3550.57, 'fair', 'off', ARRAY['/demo-assets/photo/appliance_02.webp']::TEXT ARRAY, now() - INTERVAL '23' DAY - INTERVAL '2' HOUR, now() - INTERVAL '22' DAY),
+(25, 'Zara 休闲西装外套 S码', '面试的时候穿过一次，非常修身。颜色是藏青色。', 'clothing', 709.59, 'fair', 'active', ARRAY['/demo-assets/photo/clothing_05.webp']::TEXT ARRAY, now() - INTERVAL '3' DAY - INTERVAL '22' HOUR, now() - INTERVAL '2' DAY),
+(15, '祖玛珑 蓝风铃香水 100ml', '女朋友不喜欢这个味道。余量还有很多，几乎没喷几次。', 'beauty', 229.63, 'fair', 'active', ARRAY['/demo-assets/photo/beauty_02.webp']::TEXT ARRAY, now() - INTERVAL '23' DAY - INTERVAL '17' HOUR, now() - INTERVAL '22' DAY),
+(30, '始祖鸟 Arc''''teryx 抓绒外套', '正品保证，穿着很保暖。衣服九成新，无抽丝起球。', 'clothing', 1091.36, 'like_new', 'active', ARRAY['/demo-assets/photo/clothing_05.webp']::TEXT ARRAY, now() - INTERVAL '58' DAY - INTERVAL '17' HOUR, now() - INTERVAL '57' DAY),
+(40, '星巴克 星礼卡 500面值', '公司发的福利，我不喝咖啡。八折出，密码没刮开。', 'others', 293.08, 'like_new', 'active', ARRAY['/demo-assets/photo/others_02.webp']::TEXT ARRAY, now() - INTERVAL '66' DAY - INTERVAL '16' HOUR, now() - INTERVAL '65' DAY),
+(26, '戴森 V10 吸尘器', '吸力依旧强劲。电池老化，最高档大概能用十分钟。配有多种吸头。', 'appliance', 636.32, 'good', 'deleted', ARRAY['/demo-assets/photo/appliance_01.webp']::TEXT ARRAY, now() - INTERVAL '19' DAY - INTERVAL '18' HOUR, now() - INTERVAL '18' DAY),
+(8, '新概念英语 1-4册全套', '买来想好好学英语的，结果完全没动。现低价打包出售，适合初学者。', 'books', 107.09, 'fair', 'active', ARRAY['/demo-assets/photo/books_03.webp']::TEXT ARRAY, now() - INTERVAL '52' DAY - INTERVAL '8' HOUR, now() - INTERVAL '51' DAY),
+(29, 'The North Face 1996 冲锋衣', 'L码，黑色。防风防雨效果好。衣服太多了清库存。', 'clothing', 734.65, 'good', 'deleted', ARRAY['/demo-assets/photo/clothing_02.webp']::TEXT ARRAY, now() - INTERVAL '44' DAY - INTERVAL '19' HOUR, now() - INTERVAL '43' DAY);
 
--- Demo demands (simplified from the original mock data)
-INSERT INTO demands (buyer_id, title, description, category, expected_price, status, created_at, updated_at)
-VALUES
-  (
-    (SELECT user_id FROM users WHERE username = 'test_user'),
-    '求购二手 iPad Air 5',
-    '预算3000左右，要求屏幕无划痕，颜色不限。',
-    'electronics',
-    3000.00,
-    'active',
-    now() - INTERVAL '1 day',
-    now() - INTERVAL '1 day'
-  ),
-  (
-    (SELECT user_id FROM users WHERE username = 'bookworm'),
-    '收个书架',
-    '宿舍用，小一点的，最好是木质的。',
-    'furniture',
-    35.00,
-    'active',
-    now() - INTERVAL '2 day',
-    now() - INTERVAL '2 day'
-  ),
-  (
-    (SELECT user_id FROM users WHERE username = 'gym_rat'),
-    '求购健身卡',
-    '学校附近的健身房，还剩半年左右的最好。',
-    'others',
-    650.00,
-    'active',
-    now() - INTERVAL '3 day',
-    now() - INTERVAL '3 day'
-  ),
-  (
-    (SELECT user_id FROM users WHERE username = 'coder'),
-    '收个显示器',
-    '24寸或27寸，1080P以上，用来写代码。',
-    'electronics',
-    450.00,
-    'active',
-    now() - INTERVAL '4 day',
-    now() - INTERVAL '4 day'
-  );
-
--- Demo comments attached to one item and one demand
-INSERT INTO comments (target_type, target_id, user_id, content, created_at)
-SELECT 'item', i.item_id, u.user_id,
-       '请问还在吗？',
-       now() - INTERVAL '1 hour'
-FROM items i
-JOIN users u ON u.username = 'digital_lover'
-WHERE i.title = '考研英语红宝书'
-LIMIT 1;
-
-INSERT INTO comments (target_type, target_id, user_id, content, created_at)
-SELECT 'item', i.item_id, u.user_id,
-       '可以小刀吗？',
-       now() - INTERVAL '30 minutes'
-FROM items i
-JOIN users u ON u.username = 'graduate_2024'
-WHERE i.title = '考研英语红宝书'
-LIMIT 1;
-
-INSERT INTO comments (target_type, target_id, user_id, content, created_at)
-SELECT 'demand', d.demand_id, u.user_id,
-       '我有一张合适的卡，可以私聊。',
-       now() - INTERVAL '45 minutes'
-FROM demands d
-JOIN users u ON u.username = 'gym_rat'
-WHERE d.title = '求购健身卡'
-LIMIT 1;
-
-INSERT INTO comments (target_type, target_id, user_id, content, created_at)
-SELECT 'demand', d.demand_id, u.user_id,
-       '同求书架',
-       now() - INTERVAL '20 minutes'
-FROM demands d
-JOIN users u ON u.username = 'sneaker_head'
-WHERE d.title = '收个书架'
-LIMIT 1;
+-- Demands (15)
+INSERT INTO demands (buyer_id, title, description, category, expected_price, status, created_at, updated_at) VALUES
+(27, '求购：Nike AF1 空军一号 纯白 42码', '诚心收购，最好带包装盒和购买凭证。价格 976.88 左右', 'clothing', 976.88, 'active', now() - INTERVAL '11' DAY, now() - INTERVAL '10' DAY),
+(10, '求购：祖玛珑 蓝风铃香水 100ml', '诚心收购，最好带包装盒和购买凭证。价格 926.19 左右', 'beauty', 926.19, 'active', now() - INTERVAL '24' DAY, now() - INTERVAL '23' DAY),
+(25, '求购：大疆 DJI Mini 3 Pro 无人机', '诚心收购，最好带包装盒和购买凭证。价格 4960.27 左右', 'electronics', 4960.27, 'active', now() - INTERVAL '10' DAY, now() - INTERVAL '9' DAY),
+(38, '求购：瑜伽垫 + 泡沫轴 套装', '诚心收购，最好带包装盒和购买凭证。价格 3070.94 左右', 'sports', 3070.94, 'active', now() - INTERVAL '20' DAY, now() - INTERVAL '19' DAY),
+(14, '求购：索尼 WH-1000XM5 降噪耳机', '诚心收购，最好带包装盒和购买凭证。价格 1447.29 左右', 'electronics', 1447.29, 'active', now() - INTERVAL '29' DAY, now() - INTERVAL '28' DAY),
+(33, '求购：美的 20L 迷你微波炉', '诚心收购，最好带包装盒和购买凭证。价格 2350.71 左右', 'appliance', 2350.71, 'active', now() - INTERVAL '28' DAY, now() - INTERVAL '27' DAY),
+(36, '求购：公路自行车 铝合金车架', '诚心收购，最好带包装盒和购买凭证。价格 2692.61 左右', 'sports', 2692.61, 'active', now() - INTERVAL '8' DAY, now() - INTERVAL '7' DAY),
+(38, '求购：毛泽东选集 第一卷至第四卷', '诚心收购，最好带包装盒和购买凭证。价格 43.65 左右', 'books', 43.65, 'active', now() - INTERVAL '4' DAY, now() - INTERVAL '3' DAY),
+(12, '求购：单人折叠沙发床', '诚心收购，最好带包装盒和购买凭证。价格 1616.82 左右', 'furniture', 1616.82, 'active', now() - INTERVAL '13' DAY, now() - INTERVAL '12' DAY),
+(6, '求购：三体全集（刘慈欣）精装版', '诚心收购，最好带包装盒和购买凭证。价格 56.59 左右', 'books', 56.59, 'active', now() - INTERVAL '15' DAY, now() - INTERVAL '14' DAY),
+(26, '求购：李宁 尤尼克斯 羽毛球拍', '诚心收购，最好带包装盒和购买凭证。价格 31.55 左右', 'sports', 31.55, 'active', now() - INTERVAL '13' DAY, now() - INTERVAL '12' DAY),
+(28, '求购：Switch OLED 日版续航增强板', '诚心收购，最好带包装盒和购买凭证。价格 8349.34 左右', 'electronics', 8349.34, 'active', now() - INTERVAL '4' DAY, now() - INTERVAL '3' DAY),
+(4, '求购：Nike AF1 空军一号 纯白 42码', '诚心收购，最好带包装盒和购买凭证。价格 491.68 左右', 'clothing', 491.68, 'active', now() - INTERVAL '3' DAY, now() - INTERVAL '2' DAY),
+(38, '求购：iPhone 15 Pro Max 256G', '诚心收购，最好带包装盒和购买凭证。价格 1549.44 左右', 'electronics', 1549.44, 'active', now() - INTERVAL '22' DAY, now() - INTERVAL '21' DAY),
+(25, '求购：米家 小米扫地机器人 Pro', '诚心收购，最好带包装盒和购买凭证。价格 136.5 左右', 'appliance', 136.5, 'active', now() - INTERVAL '19' DAY, now() - INTERVAL '18' DAY);

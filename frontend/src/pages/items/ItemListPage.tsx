@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useItemStore } from '@/stores/useItemStore';
 import { ItemCard } from '@/components/items/ItemCard';
+import { ImageStyleToggle } from '@/components/ImageStyleToggle';
 import { ItemFilters } from '@/components/items/ItemFilters';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
@@ -66,7 +67,10 @@ export default function ItemListPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-4">
-        <h1 className="text-3xl font-bold tracking-tight">商品列表</h1>
+        <div className="flex items-center justify-between flex-wrap gap-3">
+          <h1 className="text-3xl font-bold tracking-tight">商品列表</h1>
+          <ImageStyleToggle onStyleChange={loadItems} />
+        </div>
         <ItemFilters onSearch={handleSearch} />
       </div>
 

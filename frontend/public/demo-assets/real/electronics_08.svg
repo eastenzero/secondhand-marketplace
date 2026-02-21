@@ -1,0 +1,12 @@
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#0a0a1a"/><stop offset="100%" style="stop-color:#1a1a2e"/></linearGradient></defs>
+          <rect width="800" height="800" fill="url(#bg)"/>
+          <path d="M200,380 Q200,260 300,260 L500,260 Q600,260 600,380 Q600,520 500,540 L300,540 Q200,520 200,380 Z" fill="#2d2d2d" stroke="#555"/>
+          <rect x="280" y="310" width="80" height="15" rx="5" fill="#555"/>
+          <rect x="313" y="280" width="15" height="80" rx="5" fill="#555"/>
+          <circle cx="490" cy="310" r="15" fill="#e74c3c"/>
+          <circle cx="530" cy="330" r="15" fill="#2ecc71"/>
+          <circle cx="470" cy="340" r="15" fill="#3498db"/>
+          <circle cx="510" cy="355" r="15" fill="#f39c12"/>
+          <text x="400" y="740" font-family="Arial" font-size="28" fill="#aaa" text-anchor="middle">Switch OLED</text>
+        </svg>

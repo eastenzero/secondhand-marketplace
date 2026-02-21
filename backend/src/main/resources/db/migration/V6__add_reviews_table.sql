@@ -12,9 +12,9 @@ CREATE TABLE IF NOT EXISTS reviews (
   internal_note    TEXT,
   is_public        BOOLEAN      NOT NULL DEFAULT TRUE,
   status           VARCHAR(16)  NOT NULL DEFAULT 'active' CHECK (status IN ('active','hidden','deleted')),
-  created_at       TIMESTAMPTZ  NOT NULL DEFAULT now(),
-  updated_at       TIMESTAMPTZ  NOT NULL DEFAULT now(),
-  deleted_at       TIMESTAMPTZ
+  created_at       TIMESTAMP WITH TIME ZONE  NOT NULL DEFAULT now(),
+  updated_at       TIMESTAMP WITH TIME ZONE  NOT NULL DEFAULT now(),
+  deleted_at       TIMESTAMP WITH TIME ZONE
 );
 
 CREATE INDEX IF NOT EXISTS idx_reviews_target   ON reviews(target_type, target_id, created_at DESC);
