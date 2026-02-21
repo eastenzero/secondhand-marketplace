@@ -1,247 +1,287 @@
-# 二手交易平台（secondhand-marketplace）
+# 🏪 二手交易平台 Secondhand Marketplace
 
-一个基于 Spring Boot + React + PostgreSQL 的二手交易平台，用于完成课程设计的 **MVP 功能实现**，并对齐前期的需求分析、DFD、OOA、数据库与 API 设计文档。
+> 基于 **Spring Boot 3.2 + React 18 + H2/PostgreSQL** 的全栈二手交易平台，服务于软件工程课程设计。  
+> 从需求分析 → DFD → OOA → 数据库设计 → API 设计 → 前后端实现，完成一个可运行的 MVP。
 
-后端负责用户认证、商品/需求管理、报价、留言与基础审计日志；前端提供注册登录、列表与详情浏览、发布与管理等交互界面。
-
----
-
-## 功能概览（MVP）
-
-- **用户与认证**
-  - 注册 / 登录 / 退出；基于 JWT（HttpOnly Cookie `sid`）。
-  - 角色：默认 `MEMBER`，预留 `ADMIN` 能力。
-- **商品 Items**
-  - 商品发布、搜索、详情查看。
-  - 上下架管理（`draft/pending/active/off/deleted` 状态机）。
-- **需求 Demands**
-  - 与商品对称的“求购信息”发布、搜索与管理。
-- **报价 Offers**
-  - 对商品或需求发起报价；校验金额>0、目标有效、禁止自报价。
-- **留言 Comments**
-  - 针对商品/需求的留言与列表查询。
-- **数据库与审计**
-  - PostgreSQL 15，含 users/items/demands/offers/comments/orders 等表结构。
-  - 关键操作写入审计日志，支持后续追踪。
-
-更详细的接口说明见 `backend/api-spec.md`，数据库 DDL 见 `database/db-schema.sql`。
+![hero](docs/screenshots/hero-home-hq.png)
 
 ---
 
-## 文档产出顺序与真实性规范
+## ✨ 已实现功能
 
-为了便于后续在任意仓库复用项目展示材料，建议统一遵循以下规则：
+| 模块 | 功能 | 状态 |
+|------|------|------|
+| **用户认证** | 注册 / 登录 / 退出（JWT HttpOnly Cookie） | ✅ 已实现 |
+| **商品管理** | 发布、搜索、详情、上下架（`active/off/deleted` 状态机） | ✅ 已实现 |
+| **需求广场** | 求购信息发布、搜索、管理 | ✅ 已实现 |
+| **报价系统** | 对商品/需求发起报价；校验金额>0、禁止自报价 | ✅ 已实现 |
+| **评论留言** | 针对商品/需求的留言与列表 | ✅ 已实现 |
+| **订单管理** | 订单创建与状态流转 | ✅ 已实现 |
+| **评价系统** | 交易后评价 | ✅ 已实现 |
+| **聊天系统** | 站内消息/聊天线程 | ✅ 已实现 |
+| **通知系统** | 系统通知 | ✅ 已实现 |
+| **举报与封禁** | 内容举报、用户封禁管理 | ✅ 已实现 |
+| **审计日志** | 关键操作写入审计日志 | ✅ 已实现 |
+| **图片模式切换** | 照片/卡通双模式切换（`/api/system/image-style`） | ✅ 已实现 |
 
-1. **先文本，后图片**
-   - 先把 README 的目标、边界、能力、已知限制写清楚，再补截图和图表。
-   - 图片用于增强理解，不替代事实描述。
-2. **图表只画“当前真实存在”的架构与流程**
-   - 对仓库里不存在的能力（如 MQ、K8s、CI/CD）应明确标注为“规划态”，不要画成“已上线”。
-3. **复用图片必须先做真实性校验**
-   - 复用前核对来源、时间、环境、版本、页面路径/接口。
-   - 复用后在图注里标注“采集时间 + 采集环境 + 对应版本/分支”。
+### 🚧 未实现 / 规划中
 
-可直接复用的 20 类图表模板与校验清单见：
-
-- `docs/PROJECT_SHOWCASE_TEMPLATE.md`
-
----
-
-## 技术栈
-
-- **后端 Backend**
-  - Java 17, Spring Boot 3.2
-  - Spring Web / Validation / Data JPA / Security / Actuator
-  - Flyway 数据库迁移
-  - PostgreSQL 驱动
-  - JWT（jjwt）认证
-
-- **前端 Frontend**
-  - React 18 + TypeScript + Vite
-  - React Router v6
-  - 状态管理：Zustand
-  - 表单与校验：React Hook Form + Zod
-  - UI：TailwindCSS + Radix UI 组件 + Lucide 图标
-
-- **数据库与文档**
-  - PostgreSQL 15
-  - SQL DDL：`database/db-schema.sql`
-  - 需求/DFD/OOA/架构等文档（Markdown + Mermaid 图 + Word 模板）。
+- 支付闭环（仅有订单壳，无支付网关对接）
+- 实时消息推送（当前为轮询）
+- CI/CD 自动化流水线
+- Docker 生产部署
+- 后台管理面板
 
 ---
 
-## 目录结构
+## 🛠 技术栈
+
+### 后端
+
+| 层级 | 技术 |
+|------|------|
+| 框架 | Spring Boot 3.2.4, Java 17 |
+| Web | Spring Web + Validation |
+| 持久层 | Spring Data JPA + Flyway 迁移（9 个版本） |
+| 安全 | Spring Security + JWT（jjwt 0.11.5） |
+| 数据库 | **H2**（开发/演示）/ **PostgreSQL 15**（生产） |
+| 监控 | Spring Boot Actuator |
+
+### 前端
+
+| 层级 | 技术 |
+|------|------|
+| 框架 | React 18 + TypeScript + Vite 5 |
+| 路由 | React Router v6 |
+| 状态 | Zustand |
+| 表单 | React Hook Form + Zod |
+| UI | TailwindCSS + Radix UI + Lucide Icons |
+
+---
+
+## 📁 目录结构
 
 ```text
-.
-├── backend/                    # Spring Boot 后端服务
-│   ├── pom.xml                 # Maven 配置
-│   ├── src/main/java/com/example/marketplace/
-│   ├── src/main/resources/
-│   │   └── application.yml     # 应用与数据库配置
-│   ├── api-spec.md             # API 规范（MVP）
-│   ├── backend-components-status.md   # 后端模块完成度说明
-│   ├── backend-testing-guide.md       # 后端测试说明
-│   └── 开发启动包.md            # 后端开发启动/架构说明
-├── frontend/                   # React + Vite 前端工程
-│   ├── package.json            # 前端依赖与脚本
-│   ├── vite.config.ts          # Vite 与 /api 代理配置
+secondhand-marketplace/
+├── backend/                           # Spring Boot 后端
+│   ├── pom.xml
+│   ├── src/main/java/.../marketplace/
+│   │   ├── controller/                # 13 个 REST 控制器
+│   │   │   ├── AuthController         # 认证
+│   │   │   ├── ItemController         # 商品
+│   │   │   ├── DemandController       # 需求
+│   │   │   ├── OfferController        # 报价
+│   │   │   ├── CommentController      # 评论
+│   │   │   ├── OrderController        # 订单
+│   │   │   ├── ReviewController       # 评价
+│   │   │   ├── ChatController         # 聊天
+│   │   │   ├── MessageController      # 消息
+│   │   │   ├── NotificationController # 通知
+│   │   │   ├── ReportController       # 举报
+│   │   │   ├── UserBanController      # 封禁
+│   │   │   └── SystemController       # 系统设置
+│   │   ├── domain/                    # 领域实体
+│   │   ├── repository/                # JPA 仓储
+│   │   ├── service/                   # 业务逻辑
+│   │   └── security/                  # JWT + 过滤器
+│   └── src/main/resources/
+│       ├── application.yml
+│       └── db/migration/              # Flyway V1–V9
+├── frontend/                          # React + Vite 前端
 │   ├── src/
-│   │   ├── main.tsx            # 前端入口
-│   │   ├── router.tsx          # 路由与页面映射
-│   │   ├── pages/              # 业务页面
-│   │   ├── components/         # 通用组件与布局
-│   │   └── services/stores/... # API 客户端与状态管理
-│   ├── frontend-gap-analysis.md      # 前端进度与差距分析
-│   └── 前端开发计划.md                # 前端开发计划（MVP）
-├── database/
-│   ├── db-schema.sql           # PostgreSQL 数据库 DDL
-│   └── db-design-prompt.md     # 数据库设计提示与约束
-├── images/                     # DFD 图等分析用图片
-├── 二手交易平台_结构化需求分析_export.md
-├── 实验四 面向对象的软件分析.md/
-├── 开发建议顺序.md                 # 整体开发建议顺序
-├── 模板结构提取.md                 # 与课程论文模板对齐的结构骨架
-├── 课程设计报告草稿.md             # 课程设计文稿（Markdown）
-└── 软件工程课程设计论文模板.docx   # 提交模板
+│   │   ├── pages/                     # 业务页面
+│   │   │   ├── auth/                  # 登录/注册
+│   │   │   ├── items/                 # 商品列表/详情/发布
+│   │   │   ├── demands/               # 需求
+│   │   │   ├── orders/                # 订单
+│   │   │   ├── messages/              # 消息
+│   │   │   ├── me/                    # 个人中心
+│   │   │   └── admin/                 # 管理页
+│   │   ├── components/                # 通用组件
+│   │   ├── services/                  # API 客户端
+│   │   └── stores/                    # 状态管理
+│   ├── public/demo-assets/            # 演示图片资产
+│   └── vite.config.ts                 # 代理 /api → :8080
+└── database/
+    ├── db-schema.sql                  # DDL 参考
+    └── db-design-prompt.md
 ```
 
 ---
 
-## 环境准备
+## 🚀 快速启动
 
-- **必需**
-  - JDK 17+
-  - Maven 3.8+
-  - Node.js 18+（推荐）
-  - PostgreSQL 15（或兼容版本）
+### 环境要求
 
-- **可选工具**
-  - IDE：IntelliJ IDEA / VS Code
-  - API 调试：Postman / curl
+- JDK 17+
+- Maven 3.8+
+- Node.js 18+
 
----
+> **无需安装 PostgreSQL！** 默认使用 H2 内存数据库，零配置即可运行。
 
-## 数据库初始化
-
-默认配置见 `backend/src/main/resources/application.yml`：
-
-- JDBC URL：`jdbc:postgresql://localhost:5432/marketplace`
-- 用户名：`marketplace`
-- 密码：`change-me`
-
-你可以按照以下方式初始化本地数据库（示例）：
+### 一键启动
 
 ```bash
-# 登录 PostgreSQL 后执行，例如：psql -U postgres
-CREATE USER marketplace WITH PASSWORD 'change-me';
-CREATE DATABASE marketplace OWNER marketplace;
-GRANT ALL PRIVILEGES ON DATABASE marketplace TO marketplace;
-```
-
-后端启动时会通过 **Flyway** 执行 `classpath:db/migration` 中的迁移脚本。对于完整表结构与索引说明，可以参考：
-
-- `database/db-schema.sql`
-
----
-
-## 启动后端（Spring Boot）
-
-```bash
+# 1. 启动后端（H2 内存数据库，自动建表 + 填充演示数据）
 cd backend
+mvn spring-boot:run \
+  -Dspring-boot.run.arguments="\
+    --spring.datasource.url=jdbc:h2:mem:testdb \
+    --spring.datasource.driverClassName=org.h2.Driver \
+    --spring.datasource.username=sa \
+    --spring.datasource.password=password \
+    --spring.jpa.database-platform=org.hibernate.dialect.H2Dialect"
 
-# 安装依赖并启动（需要已安装 Maven）
-mvn spring-boot:run
-
-# 或在 IDE 中运行主类：
-# com.example.marketplace.MarketplaceApplication
-```
-
-- 默认端口：`http://localhost:8080`
-- 健康检查：`/actuator/health`
-
----
-
-## 启动前端（React + Vite）
-
-前端通过 Vite dev server 运行，并将 `/api` 代理到本地后端：
-
-- 代理目标：`http://localhost:8080`（见 `frontend/vite.config.ts`）
-
-启动步骤：
-
-```bash
+# 2. 另开终端，启动前端
 cd frontend
-
 npm install
 npm run dev
 ```
 
-启动后访问：`http://localhost:5173`
+启动后访问：**http://localhost:15176**
 
----
+| 服务 | 地址 | 说明 |
+|------|------|------|
+| 前端 | `http://localhost:15176` | Vite 开发服务器 |
+| 后端 API | `http://localhost:8080` | Spring Boot |
+| 健康检查 | `http://localhost:8080/actuator/health` | Actuator |
 
-## 常用脚本
-
-### 后端
-
-```bash
-cd backend
-
-# 运行测试
-mvn test
-
-# 构建可执行 JAR
-mvn clean package
-```
-
-### 前端
+### 使用 PostgreSQL（可选）
 
 ```bash
-cd frontend
+# 创建数据库
+psql -U postgres -c "CREATE USER marketplace WITH PASSWORD 'change-me';"
+psql -U postgres -c "CREATE DATABASE marketplace OWNER marketplace;"
 
-# 本地开发
-npm run dev
-
-# 生产构建
-npm run build
-
-# 启动本地预览
-npm run preview
+# 直接启动（默认 application.yml 配置即用）
+cd backend && mvn spring-boot:run
 ```
 
-更多测试与质量说明见 `backend/backend-testing-guide.md` 与前端目录下相关文档。
+---
+
+## 📸 界面预览
+
+| 首页 | 商品列表 |
+|------|----------|
+| ![首页](docs/screenshots/hero-home-hq.png) | ![商品列表](docs/screenshots/items-list-photo-hq.png) |
+
+| 商品详情 | 图片模式切换 |
+|----------|-------------|
+| ![详情](docs/screenshots/item-detail-photo-hq.png) | ![切换](docs/screenshots/style-toggle-photo-hq.png) |
 
 ---
 
-## 设计与文档索引
+## 🏗 架构概览
 
-- **需求与分析**
-  - `二手交易平台_结构化需求分析_export.md`
-  - `实验四 面向对象的软件分析.md/`
-- **数据库设计**
-  - `database/db-design-prompt.md`
-  - `database/db-schema.sql`
-- **后端设计与状态**
-  - `backend/开发启动包.md`
-  - `backend/api-spec.md`
-  - `backend/backend-components-status.md`
-  - `backend/backend-testing-guide.md`
-- **前端规划与进度**
-  - `frontend/前端开发计划.md`
-  - `frontend/frontend-gap-analysis.md`
-  - `frontend/plan-backlog-frontend.md`
+```mermaid
+graph TB
+    subgraph Frontend["前端 React + Vite"]
+        Pages[页面组件]
+        Services[API 服务层]
+        Stores[Zustand 状态]
+    end
+
+    subgraph Backend["后端 Spring Boot"]
+        Controllers[REST 控制器]
+        ServiceLayer[业务服务层]
+        Security[JWT 安全层]
+        Repository[JPA 仓储层]
+    end
+
+    subgraph Database["数据库"]
+        H2[(H2 内存)]
+        PG[(PostgreSQL)]
+    end
+
+    Pages --> Services
+    Services -->|HTTP /api/*| Controllers
+    Controllers --> Security
+    Controllers --> ServiceLayer
+    ServiceLayer --> Repository
+    Repository --> H2
+    Repository -.->|生产环境| PG
+```
+
+## 🗄 核心数据模型（简化 ERD）
+
+```mermaid
+erDiagram
+    USERS ||--o{ ITEMS : "发布"
+    USERS ||--o{ DEMANDS : "发布"
+    USERS ||--o{ OFFERS : "发起"
+    USERS ||--o{ COMMENTS : "评论"
+    USERS ||--o{ ORDERS : "下单"
+    USERS ||--o{ REVIEWS : "评价"
+    ITEMS ||--o{ OFFERS : "收到报价"
+    ITEMS ||--o{ COMMENTS : "收到评论"
+    ITEMS ||--o{ ORDER_ITEMS : "关联"
+    DEMANDS ||--o{ OFFERS : "收到报价"
+    ORDERS ||--o{ ORDER_ITEMS : "包含"
+    USERS ||--o{ CHAT_THREADS : "参与"
+    CHAT_THREADS ||--o{ MESSAGES : "包含"
+    USERS ||--o{ NOTIFICATIONS : "接收"
+    USERS ||--o{ USER_BANS : "被封禁"
+```
+
+## 🔄 核心业务流程
+
+```mermaid
+sequenceDiagram
+    participant U as 用户
+    participant F as 前端
+    participant B as 后端 API
+    participant DB as 数据库
+
+    U->>F: 注册/登录
+    F->>B: POST /api/auth/login
+    B->>DB: 验证用户
+    B-->>F: JWT Cookie
+
+    U->>F: 发布商品
+    F->>B: POST /api/items
+    B->>DB: 保存商品
+    B-->>F: 201 Created
+
+    U->>F: 浏览/搜索商品
+    F->>B: GET /api/items?keywords=...
+    B->>DB: 分页查询
+    B-->>F: 商品列表
+
+    U->>F: 发起报价
+    F->>B: POST /api/offers
+    B->>DB: 创建报价
+    B-->>F: 报价信息
+```
 
 ---
 
-## 说明
+## 📚 设计文档索引
 
-本仓库主要服务于课程设计与教学目的，重点展示：
+| 文档 | 路径 | 内容 |
+|------|------|------|
+| API 规范 | `backend/api-spec.md` | RESTful API 接口说明 |
+| 数据库设计 | `database/db-schema.sql` | PostgreSQL DDL |
+| 后端模块状态 | `backend/backend-components-status.md` | 各模块完成度 |
+| 前端计划 | `frontend/前端开发计划.md` | 前端开发规划 |
+| 需求分析 | `二手交易平台_结构化需求分析_export.md` | 结构化需求 |
+| OOA 分析 | `实验四 面向对象的软件分析.md` | 面向对象分析 |
 
-- 从需求/DFD/OOA → 数据库 → API → 前后端实现的一致性。
-- 如何在有限时间内完成一个可运行的二手交易平台 MVP。
+---
 
-如需继续演进，可优先考虑：
+## 📝 已知限制
 
-- 订单/支付闭环、通知与聊天、后台管理与风控等增强模块。
-- 更完善的监控、日志与自动化测试。
+1. **H2 数据库**：默认使用内存模式，重启后数据丢失。适合演示，不适合持久化。
+2. **图片资产**：商品图片为 AI 生成的演示用图，非真实商品照片。
+3. **无支付**：订单模块仅有状态流转，无支付网关对接。
+4. **无实时推送**：消息/通知依赖前端轮询，无 WebSocket。
+5. **单机部署**：无 Docker / K8s 配置，无负载均衡。
+
+---
+
+## 🎓 说明
+
+本仓库为软件工程课程设计项目，旨在展示：
+- 从 **需求分析 → DFD → OOA → 数据库 → API → 前后端** 的完整开发链路
+- 如何在有限时间内交付可运行的 MVP
+
+如需演进，可优先考虑：支付闭环、WebSocket 实时通信、后台管理面板、Docker 部署。
